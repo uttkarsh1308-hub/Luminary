@@ -501,7 +501,7 @@ tr.highlight td{background:rgba(255,69,0,0.1);color:#fff8ee;font-weight:600}
 </div>
 
 <!-- S18: END -->
-<div class="slide" id="s18">
+<div class="slide" id="s17">
   <div style="text-align:center;max-width:720px">
     <div class="tag green">Thank You</div>
     <h1 style="font-size:56px;margin-bottom:8px"><span class="grad">✦ Luminary</span></h1>
@@ -594,7 +594,7 @@ function go(dir,target){
   document.querySelectorAll('.nav button[id^=nb]').forEach(b=>b.classList.remove('active'));
   const nb=document.getElementById('nb'+cur);
   if(nb)nb.classList.add('active');
-  if(cur===12)buildRice();
+  if(cur===11)buildRice();
   const newVid=document.querySelector('#s'+cur+' video');
   if(newVid){newVid.currentTime=0;newVid.play().catch(()=>{});}
 }
