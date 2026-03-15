@@ -285,93 +285,112 @@ tr.highlight td{background:rgba(255,69,0,0.1);color:#fff8ee;font-weight:600}
 </div>
 
 <!-- SLIDE 7: ARCHITECTURE -->
-<div class="slide" id="s7">
-  <div style="width:100%;max-width:1000px">
-    <div class="tag blue">Technical Architecture</div>
-    <h2>System Architecture Flow</h2>
-    <div class="card" style="padding:24px;margin-top:16px">
-      <!-- Layer 3 -->
-      <div class="arch-layer" style="background:rgba(56,189,248,0.05);border:1px solid rgba(56,189,248,0.2)">
-        <div class="arch-title">Layer 3: University Systems</div>
-        <div class="grid3" style="gap:12px">
-          <div style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:14px;text-align:center">
-            <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:8px">University 1</div>
-            <div style="display:flex;gap:6px;justify-content:center;margin-bottom:8px">
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">KH</span>
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">CPS</span>
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">CE</span>
-            </div>
-            <div style="font-size:10px;color:#c9a96e">↓</div>
-            <div style="padding:6px;background:rgba(56,189,248,0.15);border-radius:6px;font-size:11px;color:#fff8ee;margin-top:6px">University Database</div>
-            <div style="font-size:10px;color:#c9a96e;margin-top:4px">↓</div>
-            <div style="padding:4px;background:rgba(56,189,248,0.1);border-radius:4px;font-size:10px;color:#38bdf8;margin-top:4px">SharePoint / Local Data</div>
-          </div>
-          <div style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:14px;text-align:center">
-            <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:8px">University 2</div>
-            <div style="display:flex;gap:6px;justify-content:center;margin-bottom:8px">
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">KH</span>
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">CPS</span>
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">CE</span>
-            </div>
-            <div style="font-size:10px;color:#c9a96e">↓</div>
-            <div style="padding:6px;background:rgba(56,189,248,0.15);border-radius:6px;font-size:11px;color:#fff8ee;margin-top:6px">University Database</div>
-            <div style="font-size:10px;color:#c9a96e;margin-top:4px">↓</div>
-            <div style="padding:4px;background:rgba(56,189,248,0.1);border-radius:4px;font-size:10px;color:#38bdf8;margin-top:4px">SharePoint / Local Data</div>
-          </div>
-          <div style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:14px;text-align:center">
-            <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:8px">University 3</div>
-            <div style="display:flex;gap:6px;justify-content:center;margin-bottom:8px">
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">KH</span>
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">CPS</span>
-              <span style="padding:3px 8px;background:rgba(56,189,248,0.2);border-radius:4px;font-size:10px;color:#38bdf8">CE</span>
-            </div>
-            <div style="font-size:10px;color:#c9a96e">↓</div>
-            <div style="padding:6px;background:rgba(56,189,248,0.15);border-radius:6px;font-size:11px;color:#fff8ee;margin-top:6px">University Database</div>
-            <div style="font-size:10px;color:#c9a96e;margin-top:4px">↓</div>
-            <div style="padding:4px;background:rgba(56,189,248,0.1);border-radius:4px;font-size:10px;color:#38bdf8;margin-top:4px">SharePoint / Local Data</div>
-          </div>
+<section id="technical-architecture">
+  <h2>TECHNICAL ARCHITECTURE</h2>
+  <h3>How<br>Luminary<br>Works — 3-Layer System</h3>
+  <p>
+    A federated architecture that brings intelligence to research — without ever touching raw data.
+    <strong>Click any processing node to explore.</strong>
+  </p>
+
+  <!-- Layer 3: University Systems -->
+  <div class="layer layer-3">
+    <h4>LAYER 3 · UNIVERSITY SYSTEMS</h4>
+    <div class="universities">
+      <div class="university">
+        <h5>UNIVERSITY 1</h5>
+        <div class="nodes">
+          <div class="node">KH<br><span>Know.</span></div>
+          <div class="node">CPS<br><span>Comp.</span></div>
+          <div class="node">CE<br><span>Collab</span></div>
+        </div>
+        <div class="storage">
+          <div>University DB</div>
+          <div>SharePoint / Local DS</div>
         </div>
       </div>
-      <!-- Flow arrows -->
-      <div style="display:flex;justify-content:center;gap:80px;margin:12px 0;font-size:11px;color:#a07050">
-        <span>Raw Data ↓</span>
-        <span>Training Data ↓</span>
-      </div>
-      <!-- Layer 2 -->
-      <div class="arch-layer" style="background:rgba(255,165,0,0.05);border:1px solid rgba(255,165,0,0.2)">
-        <div class="arch-title">Layer 2: Processing & Learning Pipeline</div>
-        <div style="display:flex;justify-content:center;gap:24px">
-          <div style="padding:12px 24px;background:rgba(255,165,0,0.2);border:2px solid #ffa500;border-radius:8px;text-align:center">
-            <div style="font-size:13px;font-weight:700;color:#ffa500">Quantum Encoding (QED)</div>
-            <div style="font-size:10px;color:#c9a96e;margin-top:4px">User-side encryption</div>
-          </div>
-          <div style="padding:12px 24px;background:rgba(255,165,0,0.2);border:2px solid #ffa500;border-radius:8px;text-align:center">
-            <div style="font-size:13px;font-weight:700;color:#ffa500">Federated Learning (FDL)</div>
-            <div style="font-size:10px;color:#c9a96e;margin-top:4px">Distributed model training</div>
-          </div>
+
+      <div class="university">
+        <h5>UNIVERSITY 2</h5>
+        <div class="nodes">
+          <div class="node">KH<br><span>Know.</span></div>
+          <div class="node">CPS<br><span>Comp.</span></div>
+          <div class="node">CE<br><span>Collab</span></div>
+        </div>
+        <div class="storage">
+          <div>University DB</div>
+          <div>SharePoint / Local DS</div>
         </div>
       </div>
-      <!-- Flow arrows -->
-      <div style="display:flex;justify-content:center;gap:80px;margin:12px 0;font-size:11px;color:#a07050">
-        <span>Encoded Data ↓</span>
-        <span>Federated Models ↓</span>
-      </div>
-      <!-- Layer 1 -->
-      <div class="arch-layer" style="background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.2)">
-        <div class="arch-title">Layer 1: Centralized System</div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
-          <div style="padding:10px 28px;background:rgba(16,185,129,0.2);border:1px solid #10b981;border-radius:20px">
-            <div style="font-size:13px;font-weight:700;color:#10b981">Local DB - LDB</div>
-          </div>
-          <div style="font-size:11px;color:#c9a96e">↓</div>
-          <div style="padding:12px 32px;background:rgba(16,185,129,0.3);border:2px solid #10b981;border-radius:20px">
-            <div style="font-size:14px;font-weight:700;color:#10b981">Central System - CENT</div>
-          </div>
+
+      <div class="university">
+        <h5>UNIVERSITY 3</h5>
+        <div class="nodes">
+          <div class="node">KH<br><span>Know.</span></div>
+          <div class="node">CPS<br><span>Comp.</span></div>
+          <div class="node">CE<br><span>Collab</span></div>
+        </div>
+        <div class="storage">
+          <div>University DB</div>
+          <div>SharePoint / Local DS</div>
         </div>
       </div>
     </div>
+
+    <div class="raw-data">
+      <div>RAW TEXT<br>IMAGES</div>
+      <div>RAW TEXT<br>IMAGES</div>
+      <div>RAW TEXT<br>IMAGES</div>
+    </div>
   </div>
-</div>
+
+  <!-- Layer 2: Processing & Encoding Pipeline -->
+  <div class="layer layer-2">
+    <h4>LAYER 2 · PROCESSING &amp; ENCODING PIPELINE</h4>
+    <div class="pipeline">
+      <button class="node quantum">
+        ⚛️<br>QUANTUM ENCRYPTION<br><span>click to explore</span>
+      </button>
+      <span class="connector">parallel</span>
+      <button class="node federated">
+        🧠<br>FEDERATED LEARNING<br><span>click to explore</span>
+      </button>
+    </div>
+    <div class="artifacts">
+      <div>ENCODED DATA</div>
+      <div>FEDERATED MODELS</div>
+    </div>
+  </div>
+
+  <!-- Layer 1: Centralized System -->
+  <div class="layer layer-1">
+    <h4>LAYER 1 · CENTRALIZED SYSTEM</h4>
+    <div class="central-grid">
+      <div class="central-db">
+        <strong>LOCAL DB — LDB</strong><br>
+        <span>stores encoded data + model index</span>
+      </div>
+      <div class="central-system">
+        <strong>CENTRAL SYSTEM — CENT</strong><br>
+        <span>USER-TRIGGERED SEARCH — QUERIES LOCAL DB</span>
+      </div>
+    </div>
+    <div class="search-flow">
+      <div class="user">
+        👤<br>USER
+      </div>
+      <div class="search-node">
+        🔍<br>SCIBERT + COSINE<br><span>click to explore</span>
+      </div>
+      <div class="optimizer">
+        ⚡<br>QAOA OPTIMIZER<br><span>click to explore</span>
+      </div>
+      <div class="results">
+        📊<br>RESULTS
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- SLIDE 8: PRODUCT WALKTHROUGH -->
 <div class="slide" id="s8">
