@@ -594,7 +594,8 @@ function go(dir,target){
   document.querySelectorAll('.nav button[id^=nb]').forEach(b=>b.classList.remove('active'));
   const nb=document.getElementById('nb'+cur);
   if(nb)nb.classList.add('active');
-  if(cur===11)buildRice();
+  if(cur===12)buildRice();
+  
   const newVid=document.querySelector('#s'+cur+' video');
   if(newVid){newVid.currentTime=0;newVid.play().catch(()=>{});}
 }
