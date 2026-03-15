@@ -286,15 +286,12 @@ tr.highlight td{background:rgba(255,69,0,0.1);color:#fff8ee;font-weight:600}
     <h2>The Problem — In Their Own Words</h2>
     <p style="margin-bottom:24px">User interview highlighting the research discovery pain point</p>
     <div style="display:flex;justify-content:center">
-      <label class="video-placeholder" id="pinpoint-video-container" style="width:100%;max-width:680px;min-height:320px">
-        <input type="file" accept="video/*" onchange="handleVideoUpload(this, 'pinpoint-video-container')">
-        <div class="placeholder-content">
-          <div style="font-size:52px;margin-bottom:16px">📍</div>
-          <div style="font-size:18px;font-weight:700;color:#fff8ee;margin-bottom:8px">Pinpoint Video</div>
-          <div style="font-size:13px;color:#ff4500;margin-bottom:4px">User interview — pain point discovery</div>
-          <div style="font-size:11px;color:#7a5c2a;margin-top:16px">Click to upload video</div>
-        </div>
-      </label>
+<div id="pinpoint-video-container" style="width:100%;max-width:680px;border-radius:14px;overflow:hidden;background:#000">
+  <video src="https://raw.githubusercontent.com/uttkarsh1308-hub/Luminary/main/HTML/before.mp4"
+    autoplay muted loop playsinline controls
+    style="width:100%;max-height:360px;display:block;border-radius:14px">
+  </video>
+</div>
     </div>
     <div style="margin-top:20px;padding:14px 20px;background:rgba(255,69,0,0.08);border-radius:10px;border:1px solid rgba(255,69,0,0.2);text-align:center">
       <p style="font-size:13px;color:#ff4500"><strong>Pain Point:</strong> Researchers discovering too late that their work already exists elsewhere.</p>
