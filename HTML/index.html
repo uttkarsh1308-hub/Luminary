@@ -444,15 +444,12 @@ tr.highlight td{background:rgba(255,69,0,0.1);color:#fff8ee;font-weight:600}
     <h2>Luminary — The Solution in Action</h2>
     <p style="margin-bottom:24px">Product demo showing how Luminary resolves the research discovery problem</p>
     <div style="display:flex;justify-content:center">
-      <label class="video-placeholder" id="solution-video-container" style="width:100%;max-width:680px;min-height:320px;border-color:rgba(16,185,129,0.4)">
-        <input type="file" accept="video/*" onchange="handleVideoUpload(this, 'solution-video-container')">
-        <div class="placeholder-content">
-          <div style="font-size:52px;margin-bottom:16px">🎉</div>
-          <div style="font-size:18px;font-weight:700;color:#fff8ee;margin-bottom:8px">Solution Video</div>
-          <div style="font-size:13px;color:#10b981;margin-bottom:4px">Luminary product demo — the problem solved</div>
-          <div style="font-size:11px;color:#7a5c2a;margin-top:16px">Click to upload video</div>
-        </div>
-      </label>
+     <div id="solution-video-container" style="width:100%;max-width:680px;border-radius:14px;overflow:hidden;background:#000">
+  <video src="https://raw.githubusercontent.com/uttkarsh1308-hub/Luminary/main/HTML/after.mp4"
+    autoplay muted loop playsinline controls
+    style="width:100%;max-height:360px;display:block;border-radius:14px">
+  </video>
+</div>
     </div>
     <div style="margin-top:20px;padding:14px 20px;background:rgba(16,185,129,0.08);border-radius:10px;border:1px solid rgba(16,185,129,0.2);text-align:center">
       <p style="font-size:13px;color:#10b981"><strong>Result:</strong> What took weeks now takes minutes — with privacy preserved at every step.</p>
