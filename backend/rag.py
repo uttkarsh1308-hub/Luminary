@@ -3,8 +3,21 @@ import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+
 with open(os.path.join(BASE, "researchers.json")) as f:
     RESEARCHERS = json.load(f)["researchers"]
+
+
+def reload_researchers():
+    """
+    Re-reads researchers.json and updates the global RESEARCHERS list in-place.
+    Called after every new upload so the new entry is immediately searchable
+    without restarting the server.
+    """
+    global RESEARCHERS
+    with open(os.path.join(BASE, "researchers.json")) as f:
+        RESEARCHERS = json.load(f)["researchers"]
+    print(f"✅ RESEARCHERS reloaded — {len(RESEARCHERS)} total entries")
 
 
 def get_query_embedding(query: str) -> np.ndarray:
