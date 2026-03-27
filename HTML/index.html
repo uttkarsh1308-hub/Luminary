@@ -3,886 +3,879 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quminary — Protothon 8.0</title>
+<title>Luminary — Eden AI Deck</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',sans-serif;background:#03000a;color:#fff;overflow:hidden;width:100vw;height:100vh}
-.deck{width:100vw;height:100vh;position:relative}
-.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 80px;opacity:0;pointer-events:none;transition:opacity .6s ease;overflow:auto}
-.slide.active{opacity:1;pointer-events:all}
 canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.deck{width:100vw;height:100vh;position:relative}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px 72px;opacity:0;pointer-events:none;transition:opacity .5s ease;overflow:hidden}
+.slide.active{opacity:1;pointer-events:all}
 .slide>*{position:relative;z-index:1}
-.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:100;align-items:center;background:rgba(0,0,0,0.5);padding:10px 20px;border-radius:30px;border:1px solid rgba(255,69,0,0.3);backdrop-filter:blur(10px)}
-.nav button{background:none;border:none;color:#a07050;font-size:12px;cursor:pointer;padding:6px 12px;border-radius:20px;transition:all .2s;font-family:inherit}
-.nav button:hover,.nav button.active{background:rgba(255,69,0,0.2);color:#ff4500}
-#slideNum{color:#7a5c2a;font-size:12px;min-width:50px;text-align:center}
-.arr{font-size:18px;cursor:pointer;color:#ff4500;background:none;border:none;padding:4px 10px}
-.tag{display:inline-block;font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
-.tag.red{background:rgba(255,69,0,0.15);color:#ff4500;border:1px solid rgba(255,69,0,0.3)}
-.tag.amber{background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
-.tag.blue{background:rgba(56,189,248,0.15);color:#38bdf8;border:1px solid rgba(56,189,248,0.3)}
-.tag.green{background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3)}
-h1{font-size:52px;font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:16px}
-h2{font-size:36px;font-weight:800;line-height:1.1;letter-spacing:-0.5px;margin-bottom:14px}
-h3{font-size:20px;font-weight:700;margin-bottom:10px}
-p{font-size:15px;line-height:1.7;color:#c9a96e}
-.grad{background:linear-gradient(90deg,#ff4500,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.white{color:#fff8ee}
-.card{background:rgba(20,5,40,0.75);border:1px solid rgba(220,80,0,0.2);border-radius:14px;padding:24px;backdrop-filter:blur(8px)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;width:100%}
-.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;width:100%}
-.stat-box{text-align:center;padding:24px 16px}
-.stat-num{font-size:32px;font-weight:900;margin-bottom:6px}
-.stat-label{font-size:12px;color:#c9a96e;font-weight:600;margin-bottom:6px}
-.stat-src{font-size:10px;color:#7a5c2a;line-height:1.4}
-blockquote{border-left:3px solid #ff4500;padding:14px 20px;background:rgba(255,69,0,0.08);border-radius:0 10px 10px 0;font-size:14px;font-style:italic;color:#fff8ee;line-height:1.7;margin:10px 0}
-blockquote span{display:block;font-size:11px;color:#ff4500;margin-top:8px;font-style:normal;font-weight:700}
-.pill{display:inline-block;padding:3px 12px;border-radius:20px;font-size:12px;margin:3px}
-.pill.red{background:rgba(255,69,0,0.15);color:#ff4500;border:1px solid rgba(255,69,0,0.3)}
-.pill.amber{background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
-.pill.blue{background:rgba(56,189,248,0.15);color:#38bdf8;border:1px solid rgba(56,189,248,0.3)}
-.pill.green{background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3)}
-.pill.purple{background:rgba(168,85,247,0.15);color:#a855f7;border:1px solid rgba(168,85,247,0.3)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#a07050;border-bottom:1px solid rgba(255,255,255,0.08)}
-td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:#c9a96e}
-tr.highlight td{background:rgba(255,69,0,0.1);color:#fff8ee;font-weight:600}
-.check{color:#10b981}
-.cross{color:#ef4444}
-.ba-col{flex:1;padding:24px;border-radius:14px}
-.ba-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:13px}
-.persona{display:flex;flex-direction:column;gap:12px;padding:20px}
-.persona-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
-.arch-layer{margin-bottom:20px;padding:20px;border-radius:12px}
-.arch-title{font-size:11px;color:#a07050;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;text-align:center}
-.arch-box{padding:10px 20px;border-radius:8px;text-align:center;font-size:12px}
-.video-placeholder{border:2px dashed rgba(255,69,0,0.4);border-radius:14px;padding:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(20,5,40,0.5);min-height:200px;cursor:pointer;transition:all 0.3s}
-.video-placeholder:hover{border-color:#ff4500;background:rgba(255,69,0,0.1)}
-.video-placeholder input{display:none}
-.video-placeholder video{max-width:100%;max-height:300px;border-radius:10px}
-.img-placeholder{border:2px dashed rgba(56,189,248,0.4);border-radius:12px;padding:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(20,5,40,0.5);min-height:150px;cursor:pointer;transition:all 0.3s}
-.img-placeholder:hover{border-color:#38bdf8;background:rgba(56,189,248,0.1)}
-.img-placeholder input{display:none}
-.img-placeholder img{max-width:100%;max-height:200px;border-radius:8px}
-.rice-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.rice-label{flex:2;font-size:12px;color:#fff8ee}
-.rice-bar{flex:3;height:8px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden}
-.rice-fill{height:100%;border-radius:4px}
-.rice-score{font-size:14px;font-weight:700;min-width:40px;text-align:right}
-.walkthrough-step{text-align:center}
-.walkthrough-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 10px;font-size:14px}
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:100;align-items:center;background:rgba(0,0,0,0.7);padding:8px 14px;border-radius:30px;border:1px solid rgba(255,69,0,0.25);backdrop-filter:blur(12px);flex-wrap:nowrap;overflow-x:auto;max-width:98vw}
+.nav button{background:none;border:none;color:#7a5c2a;font-size:10px;cursor:pointer;padding:4px 8px;border-radius:14px;transition:all .2s;font-family:inherit;white-space:nowrap}
+.nav button:hover,.nav button.act{background:rgba(255,69,0,0.2);color:#ff4500}
+#snum{color:#7a5c2a;font-size:10px;min-width:36px;text-align:center}
+.arr{font-size:15px;cursor:pointer;color:#ff4500;background:none;border:none;padding:2px 6px;flex-shrink:0}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.tag.r{background:rgba(255,69,0,0.15);color:#ff4500;border:1px solid rgba(255,69,0,0.3)}
+.tag.a{background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
+.tag.b{background:rgba(56,189,248,0.15);color:#38bdf8;border:1px solid rgba(56,189,248,0.3)}
+.tag.g{background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3)}
+.tag.p{background:rgba(168,85,247,0.15);color:#a855f7;border:1px solid rgba(168,85,247,0.3)}
+h1{font-size:48px;font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:14px}
+h2{font-size:30px;font-weight:800;line-height:1.1;letter-spacing:-0.5px;margin-bottom:12px}
+h3{font-size:16px;font-weight:700;margin-bottom:7px}
+p{font-size:14px;line-height:1.7;color:#c9a96e}
+.grad{background:linear-gradient(90deg,#ff4500,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.card{background:rgba(15,5,30,0.85);border:1px solid rgba(220,80,0,0.2);border-radius:12px;padding:18px;backdrop-filter:blur(8px)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:100%}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;width:100%}
+.sn{font-size:28px;font-weight:900;margin-bottom:4px}
+.sl{font-size:10px;color:#a07050;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.src{font-size:10px;color:#4a3010;margin-top:3px;font-style:italic}
+.bq{border-left:3px solid #ff4500;padding:10px 16px;background:rgba(255,69,0,0.07);border-radius:0 8px 8px 0;font-size:13px;font-style:italic;color:#fff8ee;line-height:1.6;margin:7px 0}
+.bqs{display:block;font-size:10px;color:#ff4500;margin-top:5px;font-style:normal;font-weight:700}
+.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;margin:2px}
+.pr{background:rgba(255,69,0,0.12);color:#ff4500;border:1px solid rgba(255,69,0,0.25)}
+.pa{background:rgba(255,215,0,0.12);color:#ffd700;border:1px solid rgba(255,215,0,0.25)}
+.pb{background:rgba(56,189,248,0.12);color:#38bdf8;border:1px solid rgba(56,189,248,0.25)}
+.pg{background:rgba(16,185,129,0.12);color:#10b981;border:1px solid rgba(16,185,129,0.25)}
+.pp{background:rgba(168,85,247,0.12);color:#a855f7;border:1px solid rgba(168,85,247,0.25)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:8px 10px;text-align:left;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#a07050;border-bottom:1px solid rgba(255,255,255,0.06)}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.04);color:#c9a96e;vertical-align:middle}
+tr.hl td{background:rgba(255,69,0,0.08);color:#fff8ee;font-weight:600}
+.ck{color:#10b981}.cx{color:#ef4444}
+.brow{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:7px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.05)}
+.bdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.blab{font-size:12px;color:#fff8ee}
+.bevid{font-size:10px;color:#ff4500;margin-top:2px;font-weight:600}
+.bbar{flex:2;height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;align-self:center}
+.bfill{height:100%;border-radius:3px;background:linear-gradient(90deg,#ff4500,#ffd700)}
+.rrow{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:rgba(255,255,255,0.03);border-radius:9px;margin-bottom:7px;border:1px solid rgba(255,255,255,0.06)}
+.rtitle{font-size:12px;font-weight:700;color:#fff8ee;margin-bottom:2px}
+.rdesc{font-size:11px;color:#c9a96e;line-height:1.5}
+.rmit{font-size:11px;color:#10b981;margin-top:3px;font-weight:600}
+.barlab{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;color:#c9a96e}
+.bartrack{height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.barfill{height:100%;border-radius:3px;transition:width 1.5s ease}
+.ptier{border-radius:10px;padding:14px 16px;border:1px solid;margin-bottom:7px}
+.jrow{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px}
+.jtime{font-size:10px;font-weight:700;min-width:62px}
+.jtext{color:#c9a96e}
+.funrow{border-radius:7px;padding:9px 14px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+.funlabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.fundesc{font-size:11px;color:#c9a96e;margin-top:2px}
+.funval{font-size:14px;font-weight:900;white-space:nowrap;margin-left:10px}
+.metrow{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,0.03);border-radius:6px;margin-bottom:5px;border:1px solid rgba(255,255,255,0.05)}
+.metleft{font-size:12px;color:#fff8ee;font-weight:600}
+.metsub{font-size:10px;color:#7a5c2a}
+.metval{font-size:12px;color:#ffd700;font-weight:700;white-space:nowrap;margin-left:8px}
+.costrow{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px}
+.costlabel{color:#c9a96e}
+.costval{color:#fff8ee;font-weight:600}
+.comprow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.complabel{font-size:12px;color:#fff8ee;font-weight:600}
+.compsub{font-size:10px;color:#7a5c2a;margin-top:1px}
+.compstat{font-size:11px;color:#10b981;font-weight:600}
+.ricerow{display:flex;align-items:center;gap:12px;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:7px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.05)}
+.ricefeat{flex:2;font-size:12px;color:#fff8ee;font-weight:600}
+.ricebar{flex:3;height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.ricefill{height:100%;border-radius:3px}
+.ricesc{font-size:17px;font-weight:900;min-width:44px;text-align:right}
+.lrow{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:#c9a96e}
 </style>
 </head>
 <body>
-
 <canvas id="bg"></canvas>
-
 <div class="deck">
 
-<!-- SLIDE 1: COVER -->
+<!-- S1 COVER -->
 <div class="slide active" id="s1">
-  <div style="text-align:center;max-width:800px">
-    <div class="tag amber">Protothon 8.0 · Team Quaffle · APMC @ Northeastern</div>
-    <h1><span class="grad">✦ Luminary</span></h1>
-    <p style="font-size:22px;color:#fff8ee;margin-bottom:12px">Cross-University Research Discovery Platform</p>
-    <p style="font-size:16px;max-width:560px;margin:0 auto 32px">Making institutional research visible, discoverable, and collaborative — without exposing any raw data.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-      <span class="pill red">Federated Learning</span>
-      <span class="pill amber">Quantum QAOA</span>
-      <span class="pill purple">Quantum Encoding</span>
-      <span class="pill green">RAG Search</span>
+  <div style="text-align:center;max-width:780px">
+    <div class="tag a">Team Quaffle · Protothon 8.0 Winners · APMC @ Northeastern</div>
+    <h1><span class="grad">Luminary</span></h1>
+    <p style="font-size:19px;color:#fff8ee;margin-bottom:10px">Cross-University Research Discovery Platform</p>
+    <p style="font-size:14px;max-width:540px;margin:0 auto 24px">Making institutional research visible, discoverable, and collaborative — without exposing any raw data.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+      <span class="pill pr">Federated Learning</span>
+      <span class="pill pa">Quantum QAOA</span>
+      <span class="pill pb">Privacy by Architecture</span>
+      <span class="pill pg">RAG Semantic Search</span>
     </div>
-    <p style="margin-top:20px;font-size:13px;color:#7a5c2a">March 15, 2026 · Product Conference · Northeastern University</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <div class="card" style="padding:12px 20px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#ff4500">🏆 #1</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">Protothon 8.0</div>
+      </div>
+      <div class="card" style="padding:12px 20px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#ffd700">50</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">Teams Competed</div>
+      </div>
+      <div class="card" style="padding:12px 20px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#10b981">2 wks</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">Build Time</div>
+      </div>
+      <div class="card" style="padding:12px 20px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#38bdf8">6</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">University Nodes</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 2: PROBLEM -->
+<!-- S2 PROBLEM -->
 <div class="slide" id="s2">
-  <div style="width:100%;max-width:960px">
-    <div class="tag red">The Problem</div>
-    <h2>Meet the Researchers</h2>
-    <p style="margin-bottom:20px;font-size:14px">3 interviews conducted with PhD students and researchers across universities</p>
-    <div class="grid3">
-      <div class="card persona">
-        <div style="display:flex;gap:14px;align-items:center">
-          <div class="persona-avatar" style="background:linear-gradient(135deg,#ff4500,#ffd700)">A</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;color:#fff8ee">Arjun</div>
-            <div style="font-size:11px;color:#a07050">PhD Candidate · Northeastern University</div>
-          </div>
+  <div style="width:100%;max-width:980px">
+    <div class="tag r">The Problem</div>
+    <h2>Three Researchers. Three Wasted Years.</h2>
+    <div class="g3">
+      <div class="card" style="border-color:rgba(255,69,0,0.35)">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+          <div style="width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#ff4500,#ffd700);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0">A</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Arjun</div><div style="font-size:10px;color:#a07050">PhD · Northeastern CS</div></div>
         </div>
-        <p style="font-size:13px">Spent <strong style="color:#ff4500">4 months</strong> building a federated learning pipeline. Found out a Health Sciences lab two buildings away finished the same work 6 months ago.</p>
-        <span class="pill red" style="font-size:11px">4 months wasted</span>
+        <p style="font-size:12px;margin-bottom:10px">Spent <strong style="color:#ff4500">4 months</strong> building a federated learning pipeline. Found out a Health Sciences lab two buildings away finished the exact same work 6 months ago.</p>
+        <div style="background:rgba(255,69,0,0.1);border-radius:6px;padding:7px;font-size:11px;color:#ff4500;font-weight:700;text-align:center">4 months of PhD — gone</div>
       </div>
-      <div class="card persona">
-        <div style="display:flex;gap:14px;align-items:center">
-          <div class="persona-avatar" style="background:linear-gradient(135deg,#38bdf8,#10b981)">P</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;color:#fff8ee">Priya</div>
-            <div style="font-size:11px;color:#a07050">PhD Researcher · Research University</div>
-          </div>
+      <div class="card" style="border-color:rgba(56,189,248,0.35)">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+          <div style="width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#1d6fa4,#38bdf8);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0">P</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Priya</div><div style="font-size:10px;color:#a07050">International PhD · F-1 Visa</div></div>
         </div>
-        <p style="font-size:13px">Needs IRB-approved genomic datasets. Emailed 12 professors across 4 universities. <strong style="color:#ff4500">8 weeks later</strong> — still waiting. Thesis deadline moved.</p>
-        <span class="pill red" style="font-size:11px">8 weeks lost</span>
+        <p style="font-size:12px;margin-bottom:10px">Needs IRB-approved genomic datasets. Emailed 12 professors across 4 universities. <strong style="color:#38bdf8">8 weeks later</strong> — still waiting. Thesis deadline moved.</p>
+        <div style="background:rgba(56,189,248,0.1);border-radius:6px;padding:7px;font-size:11px;color:#38bdf8;font-weight:700;text-align:center">8 weeks lost to cold emails</div>
       </div>
-      <div class="card persona">
-        <div style="display:flex;gap:14px;align-items:center">
-          <div class="persona-avatar" style="background:linear-gradient(135deg,#10b981,#ffd700)">W</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;color:#fff8ee">Wei</div>
-            <div style="font-size:11px;color:#a07050">PhD Student · MIT</div>
-          </div>
+      <div class="card" style="border-color:rgba(16,185,129,0.35)">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+          <div style="width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0">W</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Wei</div><div style="font-size:10px;color:#a07050">First-Gen PhD · MIT</div></div>
         </div>
-        <p style="font-size:13px">Found his perfect collaborator at a conference — same university, different building. <strong style="color:#ff4500">2 years</strong> after he could have met them.</p>
-        <span class="pill red" style="font-size:11px">2 years too late</span>
+        <p style="font-size:12px;margin-bottom:10px">Found his perfect collaborator at a conference — same university, different building. <strong style="color:#10b981">2 years</strong> after he could have met them through a simple search.</p>
+        <div style="background:rgba(16,185,129,0.1);border-radius:6px;padding:7px;font-size:11px;color:#10b981;font-weight:700;text-align:center">2 years too late</div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:20px;padding:16px;background:rgba(255,69,0,0.08);border-radius:10px;border:1px solid rgba(255,69,0,0.2)">
-      <p style="font-size:15px;color:#fff8ee">These are not edge cases. <strong style="color:#ffd700">This is the daily reality of every PhD student at every research university.</strong></p>
+    <div style="margin-top:12px;padding:12px 18px;background:rgba(255,69,0,0.06);border-radius:9px;border:1px solid rgba(255,69,0,0.15);text-align:center">
+      <p style="font-size:13px;color:#fff8ee">These are not edge cases. <strong style="color:#ffd700">This is the daily reality of every PhD student at every research university.</strong></p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 3: SCALE -->
+<!-- S3 SCALE -->
 <div class="slide" id="s3">
-  <div style="width:100%;max-width:960px;text-align:center">
-    <div class="tag red">The Scale</div>
+  <div style="width:100%;max-width:980px;text-align:center">
+    <div class="tag r">Validated at Scale</div>
     <h2>The Hidden Cost of <span class="grad">Invisible Research</span></h2>
-    <div class="grid4" style="margin:28px 0">
-      <div class="card stat-box">
-        <div class="stat-num" style="color:#ff4500">85%</div>
-        <div class="stat-label">Research investment wasted</div>
-        <div class="stat-src">Lancet, 2014 — Biomedical research waste study</div>
+    <div class="g4" style="margin:18px 0">
+      <div class="card" style="text-align:center;padding:18px 12px">
+        <div class="sn" style="color:#ff4500">$28B</div>
+        <div class="sl">Annual duplication cost</div>
+        <div class="src">RAND Corporation, 2016 R&D Inefficiency Study</div>
       </div>
-      <div class="card stat-box">
-        <div class="stat-num" style="color:#ffd700">50%</div>
-        <div class="stat-label">Studies never published</div>
-        <div class="stat-src">PMC Research Waste, 2023</div>
+      <div class="card" style="text-align:center;padding:18px 12px">
+        <div class="sn" style="color:#ffd700">15%</div>
+        <div class="sl">Formal collaboration rate</div>
+        <div class="src">Academic Network Studies, peer-reviewed literature</div>
       </div>
-      <div class="card stat-box">
-        <div class="stat-num" style="color:#38bdf8">187</div>
-        <div class="stat-label">R1 Research Universities (US)</div>
-        <div class="stat-src">Carnegie Classification, 2025</div>
+      <div class="card" style="text-align:center;padding:18px 12px">
+        <div class="sn" style="color:#38bdf8">5.8 yrs</div>
+        <div class="sl">Average PhD duration</div>
+        <div class="src">NSF Survey of Earned Doctorates, 2022</div>
       </div>
-      <div class="card stat-box">
-        <div class="stat-num" style="color:#10b981">$580B</div>
-        <div class="stat-label">Global Academic R&D spend</div>
-        <div class="stat-src">Business Research Company, 2025</div>
+      <div class="card" style="text-align:center;padding:18px 12px">
+        <div class="sn" style="color:#10b981">&lt;30%</div>
+        <div class="sl">Datasets reused post-pub</div>
+        <div class="src">PLOS ONE reproducibility studies</div>
       </div>
     </div>
-    <blockquote style="max-width:700px;margin:0 auto">
-      "We are surrounded by geniuses — but we're all staring at our own screens."
-      <span>— PhD Student, User Interview #3</span>
-    </blockquote>
+    <div class="g2">
+      <div class="bq">"The hardest part is figuring out what work already exists. A lot of time is spent searching scattered sources."<span class="bqs">— PhD Student, Interview #1 · Northeastern University</span></div>
+      <div class="bq">"We are surrounded by geniuses — but we're all staring at our own screens."<span class="bqs">— PhD Student, Interview #3 · Confirmed across all 3 interviews</span></div>
+    </div>
+    <div style="margin-top:10px;padding:10px 18px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:12px;color:#ffd700">
+      Boston alone has 8 world-class research institutions within 5 miles of each other — and zero shared infrastructure connecting their PhD students.
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 4: USER RESEARCH -->
+<!-- S4 USER RESEARCH -->
 <div class="slide" id="s4">
-  <div style="width:100%;max-width:960px">
-    <div class="tag amber">User Research</div>
-    <h2>3 Interviews. Same 5 Failure Modes.</h2>
-    <div class="grid2" style="align-items:start;margin-top:20px">
+  <div style="width:100%;max-width:980px">
+    <div class="tag a">User Research</div>
+    <h2>3 Interviews. 5 Failure Modes. Zero Prompting.</h2>
+    <div class="g2" style="align-items:start">
       <div>
-        <blockquote>"The hardest part is figuring out what work already exists. A lot of time is spent searching scattered sources." <span>— Interview #1</span></blockquote>
-        <blockquote style="margin-top:12px">"Projects die on the vine because the administrative friction of moving data across departments is higher than the value of the research." <span>— Interview #3</span></blockquote>
-        <blockquote style="margin-top:12px">"If I had known they were working on that algorithm last year, my methodology would have been 10x stronger." <span>— Interview #3</span></blockquote>
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Validated Pain Points</div>
+        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div style="flex:1"><div class="blab">Duplication of effort is the norm</div><div class="bevid">3/3 users · avg 3 months wasted per incident</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div style="flex:1"><div class="blab">Discovery is entirely accidental</div><div class="bevid">3/3 users · seminars, hallways, coffee shop conversations</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div style="flex:1"><div class="blab">Cross-department data access: 4–12 weeks</div><div class="bevid">3/3 users · cold emails, IRB amendments, data agreements</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#f97316"></div><div style="flex:1"><div class="blab">Cold start — dead ends repeat every semester</div><div class="bevid">2/3 users · negative results never published</div></div><div class="bbar"><div class="bfill" style="width:67%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#f97316"></div><div style="flex:1"><div class="blab">Collaboration found 2 years post-publication</div><div class="bevid">2/3 users · opportunity cost enormous</div></div><div class="bbar"><div class="bfill" style="width:67%"></div></div></div>
       </div>
       <div>
-        <div style="font-size:12px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">Validated Pain Points</div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,69,0,0.06);border-radius:8px;margin-bottom:8px;border:1px solid rgba(255,69,0,0.15)">
-          <div style="width:8px;height:8px;border-radius:50%;background:#ff4500"></div>
-          <div style="flex:1;font-size:13px;color:#fff8ee">Duplication of effort is the norm</div>
-          <div style="font-size:11px;color:#ffd700;font-weight:700">3/3</div>
+        <div class="card" style="margin-bottom:10px;padding:14px 16px">
+          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:6px">Methodology · 3 open-ended interviews · 7 questions each</div>
+          <p style="font-size:12px">Themes: Discovery and Duplication · Data Access · Frustration Moments. All 3 users independently confirmed the same failure modes without leading questions.</p>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,69,0,0.06);border-radius:8px;margin-bottom:8px;border:1px solid rgba(255,69,0,0.15)">
-          <div style="width:8px;height:8px;border-radius:50%;background:#ff4500"></div>
-          <div style="flex:1;font-size:13px;color:#fff8ee">Discovery is entirely accidental</div>
-          <div style="font-size:11px;color:#ffd700;font-weight:700">3/3</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,69,0,0.06);border-radius:8px;margin-bottom:8px;border:1px solid rgba(255,69,0,0.15)">
-          <div style="width:8px;height:8px;border-radius:50%;background:#ff4500"></div>
-          <div style="flex:1;font-size:13px;color:#fff8ee">Data access takes 4–12 weeks</div>
-          <div style="font-size:11px;color:#ffd700;font-weight:700">3/3</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,69,0,0.06);border-radius:8px;margin-bottom:8px;border:1px solid rgba(255,69,0,0.15)">
-          <div style="width:8px;height:8px;border-radius:50%;background:#ff4500"></div>
-          <div style="flex:1;font-size:13px;color:#fff8ee">Cold start problem — dead ends repeat</div>
-          <div style="font-size:11px;color:#ffd700;font-weight:700">2/3</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,69,0,0.06);border-radius:8px;border:1px solid rgba(255,69,0,0.15)">
-          <div style="width:8px;height:8px;border-radius:50%;background:#ff4500"></div>
-          <div style="flex:1;font-size:13px;color:#fff8ee">Collaboration found years too late</div>
-          <div style="font-size:11px;color:#ffd700;font-weight:700">2/3</div>
-        </div>
+        <div class="bq">"Projects die on the vine because the administrative friction of moving data across departments is higher than the value of the research itself."<span class="bqs">— PhD Student, Interview #3</span></div>
+        <div class="bq" style="margin-top:8px">"If I had known they were working on that algorithm last year, my methodology would have been 10x stronger."<span class="bqs">— PhD Student, Interview #3</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 5: USER INTERVIEW VIDEO -->
+<!-- S5 COMPETITIVE -->
 <div class="slide" id="s5">
-  <div style="width:100%;max-width:900px">
-    <div class="tag amber">User Interviews</div>
-    <h2>Hear From Real Researchers</h2>
-    <p style="margin-bottom:24px">Click to upload your user interview videos</p>
-    <div class="grid2" style="gap:24px">
-      <label class="video-placeholder" id="video1-container">
-        <input type="file" accept="video/*" onchange="handleVideoUpload(this, 'video1-container')">
-        <div class="placeholder-content">
-          <div style="font-size:40px;margin-bottom:12px">🎬</div>
-          <div style="font-size:15px;font-weight:700;color:#fff8ee">User Interview #1</div>
-          <div style="font-size:12px;color:#a07050;margin-top:4px">Pain point discussion (30-60 sec)</div>
-          <div style="font-size:11px;color:#7a5c2a;margin-top:12px">Click to upload video</div>
-        </div>
-      </label>
-      <label class="video-placeholder" id="video2-container">
-        <input type="file" accept="video/*" onchange="handleVideoUpload(this, 'video2-container')">
-        <div class="placeholder-content">
-          <div style="font-size:40px;margin-bottom:12px">🎬</div>
-          <div style="font-size:15px;font-weight:700;color:#fff8ee">User Interview #2</div>
-          <div style="font-size:12px;color:#a07050;margin-top:4px">Collaboration challenges (30-60 sec)</div>
-          <div style="font-size:11px;color:#7a5c2a;margin-top:12px">Click to upload video</div>
-        </div>
-      </label>
-    </div>
-    <div style="margin-top:24px;padding:14px 20px;background:rgba(255,215,0,0.08);border-radius:10px;border:1px solid rgba(255,215,0,0.2)">
-      <p style="font-size:13px;color:#ffd700;text-align:center"><strong>Tip:</strong> Videos are stored locally in your browser. For the actual presentation, embed videos directly or use file paths.</p>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE 6: SOLUTION -->
-<div class="slide" id="s6">
-  <div style="width:100%;max-width:960px;text-align:center">
-    <div class="tag green">The Solution</div>
-    <h2><span class="grad">✦ Luminary</span></h2>
-    <p style="font-size:18px;color:#fff8ee;max-width:680px;margin:0 auto 32px">One search. Every university. All ongoing research. Zero raw data exposure.</p>
-    <div class="grid4">
-      <div class="card" style="text-align:left">
-        <div style="font-size:28px;margin-bottom:12px">🔍</div>
-        <h3 style="font-size:14px;color:#ffd700;margin-bottom:8px">Semantic Discovery</h3>
-        <p style="font-size:12px">RAG-powered search across every connected university simultaneously.</p>
-      </div>
-      <div class="card" style="text-align:left">
-        <div style="font-size:28px;margin-bottom:12px">🔐</div>
-        <h3 style="font-size:14px;color:#a855f7;margin-bottom:8px">Quantum Encoding</h3>
-        <p style="font-size:12px">Users encrypt their data locally using QED before any transmission.</p>
-      </div>
-      <div class="card" style="text-align:left">
-        <div style="font-size:28px;margin-bottom:12px">⚛️</div>
-        <h3 style="font-size:14px;color:#ff4500;margin-bottom:8px">QAOA Matching</h3>
-        <p style="font-size:12px">Quantum optimization for collaboration scoring and researcher matching.</p>
-      </div>
-      <div class="card" style="text-align:left">
-        <div style="font-size:28px;margin-bottom:12px">🔒</div>
-        <h3 style="font-size:14px;color:#10b981;margin-bottom:8px">Federated Learning</h3>
-        <p style="font-size:12px">Raw data never leaves the institution. FERPA compliant by design.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE 7: ARCHITECTURE -->
-<div class="slide" id="s7">
-<section id="technical-architecture">
-  <h2>TECHNICAL ARCHITECTURE</h2>
-  <h3>How<br>Luminary<br>Works — 3-Layer System</h3>
-  <p>
-    A federated architecture that brings intelligence to research — without ever touching raw data.
-    <strong>Click any processing node to explore.</strong>
-  </p>
-
-  <!-- Layer 3: University Systems -->
-  <div class="layer layer-3">
-    <h4>LAYER 3 · UNIVERSITY SYSTEMS</h4>
-    <div class="universities">
-      <div class="university">
-        <h5>UNIVERSITY 1</h5>
-        <div class="nodes">
-          <div class="node">KH<br><span>Know.</span></div>
-          <div class="node">CPS<br><span>Comp.</span></div>
-          <div class="node">CE<br><span>Collab</span></div>
-        </div>
-        <div class="storage">
-          <div>University DB</div>
-          <div>SharePoint / Local DS</div>
-        </div>
-      </div>
-
-      <div class="university">
-        <h5>UNIVERSITY 2</h5>
-        <div class="nodes">
-          <div class="node">KH<br><span>Know.</span></div>
-          <div class="node">CPS<br><span>Comp.</span></div>
-          <div class="node">CE<br><span>Collab</span></div>
-        </div>
-        <div class="storage">
-          <div>University DB</div>
-          <div>SharePoint / Local DS</div>
-        </div>
-      </div>
-
-      <div class="university">
-        <h5>UNIVERSITY 3</h5>
-        <div class="nodes">
-          <div class="node">KH<br><span>Know.</span></div>
-          <div class="node">CPS<br><span>Comp.</span></div>
-          <div class="node">CE<br><span>Collab</span></div>
-        </div>
-        <div class="storage">
-          <div>University DB</div>
-          <div>SharePoint / Local DS</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="raw-data">
-      <div>RAW TEXT<br>IMAGES</div>
-      <div>RAW TEXT<br>IMAGES</div>
-      <div>RAW TEXT<br>IMAGES</div>
-    </div>
-  </div>
-
-  <!-- Layer 2: Processing & Encoding Pipeline -->
-  <div class="layer layer-2">
-    <h4>LAYER 2 · PROCESSING &amp; ENCODING PIPELINE</h4>
-    <div class="pipeline">
-      <button class="node quantum">
-        ⚛️<br>QUANTUM ENCRYPTION<br><span>click to explore</span>
-      </button>
-      <span class="connector">parallel</span>
-      <button class="node federated">
-        🧠<br>FEDERATED LEARNING<br><span>click to explore</span>
-      </button>
-    </div>
-    <div class="artifacts">
-      <div>ENCODED DATA</div>
-      <div>FEDERATED MODELS</div>
-    </div>
-  </div>
-
-  <!-- Layer 1: Centralized System -->
-  <div class="layer layer-1">
-    <h4>LAYER 1 · CENTRALIZED SYSTEM</h4>
-    <div class="central-grid">
-      <div class="central-db">
-        <strong>LOCAL DB — LDB</strong><br>
-        <span>stores encoded data + model index</span>
-      </div>
-      <div class="central-system">
-        <strong>CENTRAL SYSTEM — CENT</strong><br>
-        <span>USER-TRIGGERED SEARCH — QUERIES LOCAL DB</span>
-      </div>
-    </div>
-    <div class="search-flow">
-      <div class="user">
-        👤<br>USER
-      </div>
-      <div class="search-node">
-        🔍<br>SCIBERT + COSINE<br><span>click to explore</span>
-      </div>
-      <div class="optimizer">
-        ⚡<br>QAOA OPTIMIZER<br><span>click to explore</span>
-      </div>
-      <div class="results">
-        📊<br>RESULTS
-      </div>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- SLIDE 8: PRODUCT WALKTHROUGH -->
-<div class="slide" id="s8">
   <div style="width:100%;max-width:1000px">
-    <div class="tag blue">Product Walkthrough</div>
-    <h2>How Users Navigate Luminary</h2>
-    <p style="margin-bottom:24px">Click each placeholder to upload screenshots of your product</p>
-    <div class="grid4" style="gap:16px">
-      <div class="walkthrough-step">
-        <div class="walkthrough-num" style="background:#ff4500;color:#fff">1</div>
-        <label class="img-placeholder" id="img1-container" style="min-height:140px">
-          <input type="file" accept="image/*" onchange="handleImageUpload(this, 'img1-container')">
-          <div class="placeholder-content">
-            <div style="font-size:24px;margin-bottom:8px">🏠</div>
-            <div style="font-size:12px;color:#fff8ee">Landing Page</div>
-            <div style="font-size:10px;color:#7a5c2a;margin-top:4px">Click to upload</div>
-          </div>
-        </label>
-        <p style="font-size:11px;margin-top:8px;color:#c9a96e">User arrives at dashboard</p>
-      </div>
-      <div class="walkthrough-step">
-        <div class="walkthrough-num" style="background:#ffd700;color:#000">2</div>
-        <label class="img-placeholder" id="img2-container" style="min-height:140px">
-          <input type="file" accept="image/*" onchange="handleImageUpload(this, 'img2-container')">
-          <div class="placeholder-content">
-            <div style="font-size:24px;margin-bottom:8px">🔍</div>
-            <div style="font-size:12px;color:#fff8ee">Search Interface</div>
-            <div style="font-size:10px;color:#7a5c2a;margin-top:4px">Click to upload</div>
-          </div>
-        </label>
-        <p style="font-size:11px;margin-top:8px;color:#c9a96e">Enter research query</p>
-      </div>
-      <div class="walkthrough-step">
-        <div class="walkthrough-num" style="background:#38bdf8;color:#000">3</div>
-        <label class="img-placeholder" id="img3-container" style="min-height:140px">
-          <input type="file" accept="image/*" onchange="handleImageUpload(this, 'img3-container')">
-          <div class="placeholder-content">
-            <div style="font-size:24px;margin-bottom:8px">📊</div>
-            <div style="font-size:12px;color:#fff8ee">Results + Scores</div>
-            <div style="font-size:10px;color:#7a5c2a;margin-top:4px">Click to upload</div>
-          </div>
-        </label>
-        <p style="font-size:11px;margin-top:8px;color:#c9a96e">View ranked collaborators</p>
-      </div>
-      <div class="walkthrough-step">
-        <div class="walkthrough-num" style="background:#10b981;color:#fff">4</div>
-        <label class="img-placeholder" id="img4-container" style="min-height:140px">
-          <input type="file" accept="image/*" onchange="handleImageUpload(this, 'img4-container')">
-          <div class="placeholder-content">
-            <div style="font-size:24px;margin-bottom:8px">🤝</div>
-            <div style="font-size:12px;color:#fff8ee">Collaboration Request</div>
-            <div style="font-size:10px;color:#7a5c2a;margin-top:4px">Click to upload</div>
-          </div>
-        </label>
-        <p style="font-size:11px;margin-top:8px;color:#c9a96e">Send collab request</p>
-      </div>
-    </div>
-    <div style="margin-top:24px;padding:16px 24px;background:rgba(16,185,129,0.08);border-radius:10px;border:1px solid rgba(16,185,129,0.2);text-align:center">
-      <p style="font-size:14px;color:#10b981"><strong>Result:</strong> What took weeks now takes minutes — with privacy preserved at every step.</p>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE 9: USER JOURNEY -->
-<div class="slide" id="s9">
-  <div style="width:100%;max-width:1000px">
-    <div class="tag amber">Product Experience</div>
-    <h2>Before and After Luminary</h2>
-    <div style="display:flex;gap:20px;margin-top:20px">
-      <div class="ba-col" style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2)">
-        <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">❌ Before Luminary</div>
-        <div class="ba-item"><span style="color:#ef4444;font-size:11px;font-weight:700;min-width:70px">Week 1–2</span><span style="color:#c9a96e">Searches Google Scholar — only published papers, 2yr lag</span></div>
-        <div class="ba-item"><span style="color:#ef4444;font-size:11px;font-weight:700;min-width:70px">Week 3–4</span><span style="color:#c9a96e">Emails 8 professors hoping someone replies</span></div>
-        <div class="ba-item"><span style="color:#ef4444;font-size:11px;font-weight:700;min-width:70px">Week 5–8</span><span style="color:#c9a96e">Waits for IRB approvals and data agreements</span></div>
-        <div class="ba-item"><span style="color:#ef4444;font-size:11px;font-weight:700;min-width:70px">Week 9–12</span><span style="color:#c9a96e">Manually checks 6 different university portals</span></div>
-        <div class="ba-item" style="border:none"><span style="color:#ef4444;font-size:11px;font-weight:700;min-width:70px">Month 4+</span><span style="color:#c9a96e">Discovers duplication — restarts project</span></div>
-      </div>
-      <div style="display:flex;align-items:center;font-size:32px;color:#ffd700">→</div>
-      <div class="ba-col" style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2)">
-        <div style="font-size:13px;font-weight:700;color:#10b981;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">✅ With Luminary</div>
-        <div class="ba-item"><span style="color:#10b981;font-size:11px;font-weight:700;min-width:70px">Minute 1</span><span style="color:#c9a96e">Opens Luminary — types research query</span></div>
-        <div class="ba-item"><span style="color:#10b981;font-size:11px;font-weight:700;min-width:70px">Minute 2</span><span style="color:#c9a96e">Sees 8 ranked researchers across 6 universities</span></div>
-        <div class="ba-item"><span style="color:#10b981;font-size:11px;font-weight:700;min-width:70px">Minute 3</span><span style="color:#c9a96e">Reviews collaboration scores — finds 91% match</span></div>
-        <div class="ba-item"><span style="color:#10b981;font-size:11px;font-weight:700;min-width:70px">Minute 4</span><span style="color:#c9a96e">Sees dataset compatibility — IRB pre-approved</span></div>
-        <div class="ba-item" style="border:none"><span style="color:#10b981;font-size:11px;font-weight:700;min-width:70px">Day 1</span><span style="color:#c9a96e">Collaboration confirmed — no duplication risk</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE 10: COMPETITIVE -->
-<div class="slide" id="s10">
-  <div style="width:100%;max-width:1000px">
-    <div class="tag red">Competitive Analysis</div>
-    <h2>Why Everything Else <span class="grad">Fails</span></h2>
-    <table style="margin-top:20px">
-      <thead>
-        <tr>
-          <th>Solution</th>
-          <th>In-Progress Research</th>
-          <th>Cross-University</th>
-          <th>Semantic Search</th>
-          <th>Privacy Compliant</th>
-          <th>Collab Score</th>
-        </tr>
-      </thead>
+    <div class="tag r">Competitive Analysis</div>
+    <h2>Why Everything Else Fails</h2>
+    <table style="margin-top:10px">
+      <thead><tr><th>Solution</th><th>In-Progress Research</th><th>Cross-University</th><th>Semantic Search</th><th>Privacy Compliant</th><th>Collab Score</th><th>Dataset Discovery</th></tr></thead>
       <tbody>
-        <tr><td>🔍 Google Scholar</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td></tr>
-        <tr><td>🔬 ResearchGate</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td></tr>
-        <tr><td>📚 Semantic Scholar</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td></tr>
-        <tr><td>🗄️ Centralised Database</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗ FERPA</td><td class="cross">✗</td></tr>
-        <tr class="highlight"><td style="color:#ffd700">✦ Luminary</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Google Scholar</td><td><span class="cx">✗</span></td><td><span class="ck">✓</span> Published only</td><td><span class="cx">✗</span> Keyword</td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+        <tr><td>ResearchGate</td><td><span class="cx">✗</span></td><td><span class="ck">✓</span></td><td><span class="cx">✗</span> Self-reported</td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+        <tr><td>Semantic Scholar</td><td><span class="cx">✗</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+        <tr><td>Elsevier / Pure</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span> Siloed</td><td><span class="cx">✗</span> Keyword</td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+        <tr><td>Centralised DB</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="cx">✗</span> FERPA violation</td><td><span class="cx">✗</span></td><td><span class="ck">✓</span></td></tr>
+        <tr class="hl"><td>✦ Luminary</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span> Semantic + FL</td><td><span class="ck">✓</span> By architecture</td><td><span class="ck">✓</span> QAOA</td><td><span class="ck">✓</span></td></tr>
       </tbody>
     </table>
-    <div style="margin-top:16px;padding:14px 20px;background:rgba(255,215,0,0.08);border-radius:10px;border:1px solid rgba(255,215,0,0.2);font-size:14px;color:#ffd700;text-align:center">
-      No existing solution discovers in-progress, cross-university research while keeping raw data private.
+    <div style="margin-top:12px;padding:11px 18px;background:rgba(255,215,0,0.07);border-radius:8px;border:1px solid rgba(255,215,0,0.2);font-size:12px;color:#ffd700;text-align:center">
+      The gap: no existing solution discovers in-progress, cross-university research while keeping raw data private. Every competitor either violates privacy to get comprehensiveness — or sacrifices comprehensiveness to stay compliant. Luminary eliminates the tradeoff.
     </div>
   </div>
 </div>
 
-<!-- SLIDE 11: VALIDATION -->
+<!-- S6 SOLUTION -->
+<div class="slide" id="s6">
+  <div style="width:100%;max-width:980px;text-align:center">
+    <div class="tag g">The Solution</div>
+    <h2><span class="grad">Luminary</span> — One Feature. Done Right.</h2>
+    <p style="font-size:15px;color:#fff8ee;max-width:620px;margin:0 auto 20px">Describe your research. Find who to collaborate with. Right now — not 2 years from now.</p>
+    <div class="g3" style="margin-bottom:14px">
+      <div class="card" style="text-align:left;border-color:rgba(255,69,0,0.3)">
+        <div style="font-size:22px;margin-bottom:8px">🔍</div>
+        <h3 style="color:#ff4500">Semantic Discovery</h3>
+        <p style="font-size:12px">Search by methodology or plain English across every connected university simultaneously. No portal hopping. No cold emails.</p>
+      </div>
+      <div class="card" style="text-align:left;border-color:rgba(255,215,0,0.3)">
+        <div style="font-size:22px;margin-bottom:8px">⚛️</div>
+        <h3 style="color:#ffd700">QAOA Collaboration Score</h3>
+        <p style="font-size:12px">Finds who is complementary — not just similar. Penalises duplication. Rewards the match that accelerates your research timeline.</p>
+      </div>
+      <div class="card" style="text-align:left;border-color:rgba(16,185,129,0.3)">
+        <div style="font-size:22px;margin-bottom:8px">🔒</div>
+        <h3 style="color:#10b981">Privacy by Architecture</h3>
+        <p style="font-size:12px">Federated learning across university nodes. Raw data never leaves the institution. FERPA and IRB compliant by design — not by policy.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:14px 20px;border-color:rgba(255,215,0,0.25);text-align:left">
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:280px">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">The Core Insight</div>
+          <p style="font-size:13px;color:#fff8ee">RAG finds researchers most <em>similar</em> to your query. QAOA finds researchers most <em>complementary</em> to your work. Similarity and complementarity are fundamentally different — only complementarity drives great collaboration.</p>
+        </div>
+        <div style="text-align:center;padding:14px 20px;background:rgba(255,215,0,0.08);border-radius:9px;border:1px solid rgba(255,215,0,0.2);flex-shrink:0">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:4px">North Star Metric</div>
+          <div style="font-size:16px;font-weight:800;color:#fff8ee">Collaboration requests<br>sent per month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 USER JOURNEY -->
+<div class="slide" id="s7">
+  <div style="width:100%;max-width:980px">
+    <div class="tag a">User Journey</div>
+    <h2>Arjun — Before vs After Luminary</h2>
+    <div style="display:flex;gap:14px;margin-top:12px">
+      <div style="flex:1;padding:16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:11px">
+        <div style="font-size:11px;font-weight:700;color:#ef4444;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">❌ Before Luminary</div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 1–2</span><span class="jtext">Searches Google Scholar — only published papers, 2yr lag</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 3–4</span><span class="jtext">Emails 8 professors — most don't reply</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 5–8</span><span class="jtext">Waits for IRB approvals and data agreements</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 9–12</span><span class="jtext">Manually checks 6 different university portals</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 13–16</span><span class="jtext">Accidentally meets collaborator at a seminar</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Month 4+</span><span class="jtext">Discovers duplication — restarts project entirely</span></div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:20px;color:#ffd700;flex-shrink:0">→</div>
+      <div style="flex:1;padding:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:11px">
+        <div style="font-size:11px;font-weight:700;color:#10b981;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">✅ With Luminary</div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 1</span><span class="jtext">Opens Luminary — types research in plain English</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 2</span><span class="jtext">Sees 8 ranked researchers across 6 universities</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 3</span><span class="jtext">Reviews QAOA scores — finds 91% complementarity match</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 4</span><span class="jtext">Sees dataset compatibility — IRB already approved</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 5</span><span class="jtext">Sends collaboration request directly</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Day 1</span><span class="jtext">Collaboration confirmed — zero duplication risk</span></div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px">
+      <div class="card" style="flex:1;text-align:center;padding:10px;border-color:rgba(255,69,0,0.3)"><div style="font-size:20px;font-weight:900;color:#ff4500">4 months</div><div style="font-size:10px;color:#a07050">Old time to collaborate</div></div>
+      <div class="card" style="flex:1;text-align:center;padding:10px;border-color:rgba(255,215,0,0.3)"><div style="font-size:20px;font-weight:900;color:#ffd700">5 minutes</div><div style="font-size:10px;color:#a07050">New time to collaborate</div></div>
+      <div class="card" style="flex:1;text-align:center;padding:10px;border-color:rgba(16,185,129,0.3)"><div style="font-size:20px;font-weight:900;color:#10b981">99.9%</div><div style="font-size:10px;color:#a07050">Reduction in discovery time</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 TECHNICAL -->
+<div class="slide" id="s8">
+  <div style="width:100%;max-width:980px">
+    <div class="tag b">Technical Architecture</div>
+    <h2>3-Layer Federated Intelligence System</h2>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px">
+      <div class="card" style="border-left:3px solid #ff4500;border-color:rgba(255,69,0,0.3);padding:12px 16px">
+        <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:7px">Layer 3 · University Systems — Raw data stays here. Always.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="pill pr">SharePoint</span><span class="pill pr">COEUS / InfoEd</span><span class="pill pr">Ex Libris Library</span><span class="pill pr">Dept. Databases</span><span style="font-size:12px;color:#7a5c2a;align-self:center;margin-left:6px">6 universities connected · encrypted at source</span>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:#7a5c2a">↓ Quantum encoding at source · Only .npz encrypted files travel</div>
+      <div class="card" style="border-left:3px solid #ffd700;border-color:rgba(255,215,0,0.3);padding:12px 16px">
+        <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:9px">Layer 2 · Processing and Encoding Pipeline</div>
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:9px;text-align:center"><div style="font-size:14px;margin-bottom:3px">⚛️</div><div style="font-size:11px;color:#ffd700;font-weight:700">Quantum Encryption</div><div style="font-size:10px;color:#a07050">WHT + Phase Encoding + CNOT</div></div>
+          <div style="color:#a07050">+</div>
+          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:9px;text-align:center"><div style="font-size:14px;margin-bottom:3px">🧠</div><div style="font-size:11px;color:#ffd700;font-weight:700">Federated Learning</div><div style="font-size:10px;color:#a07050">RF + GB + Ridge · FedAvg · R²=0.85</div></div>
+          <div style="color:#a07050">→</div>
+          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:9px;text-align:center"><div style="font-size:14px;margin-bottom:3px">📦</div><div style="font-size:11px;color:#ffd700;font-weight:700">Encoded Artifacts</div><div style="font-size:10px;color:#a07050">Model weights + encrypted embeddings</div></div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:#7a5c2a">↓ Only intelligence travels · Zero raw data centralised</div>
+      <div class="card" style="border-left:3px solid #38bdf8;border-color:rgba(56,189,248,0.3);padding:12px 16px">
+        <div style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:9px">Layer 1 · Centralised Intelligence System</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:7px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">RAG Search</div><div style="font-size:10px;color:#a07050">SciBERT · Cosine similarity</div></div>
+          <div style="color:#38bdf8;font-size:14px">→</div>
+          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:7px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">FL Ensemble Score</div><div style="font-size:10px;color:#a07050">40% weight · R²=0.85</div></div>
+          <div style="color:#38bdf8;font-size:14px">→</div>
+          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:7px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">QAOA Optimizer</div><div style="font-size:10px;color:#a07050">4-variable · 60% weight</div></div>
+          <div style="color:#38bdf8;font-size:14px">→</div>
+          <div style="flex:1;background:rgba(16,185,129,0.08);border-radius:7px;padding:8px;text-align:center;border:1px solid rgba(16,185,129,0.2)"><div style="font-size:11px;color:#10b981;font-weight:700">Ranked Results</div><div style="font-size:10px;color:#a07050">Collaboration score</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S9 PRIVACY -->
+<div class="slide" id="s9">
+  <div style="width:100%;max-width:980px">
+    <div class="tag g">Privacy and Compliance</div>
+    <h2>"Your data never moves. <span class="grad">The intelligence does.</span>"</h2>
+    <div class="g3" style="margin-top:14px">
+      <div class="card" style="border-color:rgba(16,185,129,0.3)">
+        <div style="font-size:20px;margin-bottom:8px">🔒</div>
+        <h3 style="color:#10b981;font-size:13px">FERPA Compliant by Design</h3>
+        <p style="font-size:12px">No raw student or research data leaves university servers. Compliance is architectural — violation is structurally impossible, not just policy.</p>
+      </div>
+      <div class="card" style="border-color:rgba(56,189,248,0.3)">
+        <div style="font-size:20px;margin-bottom:8px">🏥</div>
+        <h3 style="color:#38bdf8;font-size:13px">IRB Friendly</h3>
+        <p style="font-size:12px">No cross-institutional data transfer means no IRB amendment required for discovery. Each university retains full control of its research records.</p>
+      </div>
+      <div class="card" style="border-color:rgba(255,215,0,0.3)">
+        <div style="font-size:20px;margin-bottom:8px">⚛️</div>
+        <h3 style="color:#ffd700;font-size:13px">Quantum Encryption</h3>
+        <p style="font-size:12px">Walsh-Hadamard Transform + Phase Encoding + CNOT entanglement. Lossless encoding that makes raw data unreadable without the university's private key.</p>
+      </div>
+    </div>
+    <div class="g2" style="margin-top:12px">
+      <div class="card" style="padding:14px 16px">
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">What travels to Luminary</div>
+        <div class="lrow"><span style="color:#10b981">✅</span><span>Encrypted model weights — not raw data</span></div>
+        <div class="lrow"><span style="color:#10b981">✅</span><span>Research embeddings — not actual abstracts</span></div>
+        <div class="lrow"><span style="color:#10b981">✅</span><span>Collaboration scores — not researcher records</span></div>
+        <div class="lrow"><span style="color:#ef4444">❌</span><span>Raw research documents — never</span></div>
+        <div class="lrow"><span style="color:#ef4444">❌</span><span>Student personal data — never</span></div>
+        <div class="lrow"><span style="color:#ef4444">❌</span><span>IRB-protected datasets — never</span></div>
+      </div>
+      <div class="card" style="padding:14px 16px">
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Compliance Framework</div>
+        <div class="comprow"><div><div class="complabel">FERPA</div><div class="compsub">Family Educational Rights and Privacy Act</div></div><div class="compstat">✅ Compliant by architecture</div></div>
+        <div class="comprow"><div><div class="complabel">IRB</div><div class="compsub">Institutional Review Board protocols</div></div><div class="compstat">✅ No cross-transfer required</div></div>
+        <div class="comprow"><div><div class="complabel">HIPAA</div><div class="compsub">For health research institutions</div></div><div class="compstat">✅ Ready — no PHI centralised</div></div>
+        <div class="comprow"><div><div class="complabel">GDPR</div><div class="compsub">For EU university partners</div></div><div class="compstat" style="color:#ffd700">⚙️ Planned Phase 3</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S10 FL PERFORMANCE -->
+<div class="slide" id="s10">
+  <div style="width:100%;max-width:980px">
+    <div class="tag g">Technical Proof</div>
+    <h2>Federated Learning Results — <span class="grad">R² = 0.85</span></h2>
+    <div class="g2" style="align-items:center">
+      <canvas id="flChart" height="260"></canvas>
+      <div>
+        <p style="font-size:13px;margin-bottom:12px">3 models trained across <strong style="color:#ffd700">6 university nodes</strong> using FedAvg (McMahan et al. 2017). 56 researcher pairs. 24 features per pair. Raw data never left any node.</p>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Gradient Boosting (Federated)</span><span style="color:#10b981">R² = 0.85</span></div><div class="bartrack"><div class="barfill" style="width:85%;background:#10b981"></div></div></div>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Ensemble (RF + GB + Ridge)</span><span style="color:#ffd700">R² = 0.80</span></div><div class="bartrack"><div class="barfill" style="width:80%;background:#ffd700"></div></div></div>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Random Forest (Federated)</span><span style="color:#38bdf8">R² = 0.60</span></div><div class="bartrack"><div class="barfill" style="width:60%;background:#38bdf8"></div></div></div>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Ridge Regression (Federated)</span><span style="color:#a07050">R² = 0.57</span></div><div class="bartrack"><div class="barfill" style="width:57%;background:#a07050"></div></div></div>
+        <div style="padding:10px 14px;background:rgba(16,185,129,0.08);border-radius:8px;border:1px solid rgba(16,185,129,0.2);font-size:12px;color:#10b981;margin-top:4px">MAE = 0.018 · predictions accurate within 1.8 percentage points · Optimal: RF=10% GB=70% Ridge=20%</div>
+        <div style="padding:10px 14px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:11px;color:#7a5c2a;margin-top:7px">Note: Trained on 8-researcher prototype dataset. R² improves significantly at scale with more university nodes.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S11 MARKET -->
 <div class="slide" id="s11">
-  <div style="width:100%;max-width:960px">
-    <div class="tag green">Product Validation</div>
-    <h2>PM Metrics That Matter</h2>
-    <div class="grid2" style="margin-top:20px;gap:24px">
+  <div style="width:100%;max-width:980px">
+    <div class="tag b">Market Analysis</div>
+    <h2>A <span class="grad">$50M Realistic</span> Serviceable Market</h2>
+    <div class="g2" style="align-items:center">
+      <canvas id="mktChart" height="260"></canvas>
       <div>
-        <div style="font-size:12px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">User Validation</div>
-        <div class="grid2" style="gap:12px">
-          <div class="card stat-box" style="padding:16px">
-            <div class="stat-num" style="color:#ff4500;font-size:28px">3</div>
-            <div style="font-size:11px;color:#a07050">User Interviews</div>
-          </div>
-          <div class="card stat-box" style="padding:16px">
-            <div class="stat-num" style="color:#ffd700;font-size:28px">5/5</div>
-            <div style="font-size:11px;color:#a07050">Pain Points Validated</div>
-          </div>
-          <div class="card stat-box" style="padding:16px">
-            <div class="stat-num" style="color:#10b981;font-size:28px">100%</div>
-            <div style="font-size:11px;color:#a07050">Would Use Product</div>
-          </div>
-          <div class="card stat-box" style="padding:16px">
-            <div class="stat-num" style="color:#38bdf8;font-size:28px">3/3</div>
-            <div style="font-size:11px;color:#a07050">Experienced Duplication</div>
-          </div>
+        <div class="card" style="margin-bottom:9px;border-color:rgba(255,69,0,0.3);padding:13px 16px">
+          <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">TAM · Research Collaboration Software Market</div>
+          <div style="font-size:24px;font-weight:900;color:#ff4500">$2.1B</div>
+          <p style="font-size:11px;margin-top:2px">Broader research intelligence and collaboration tools market · IDC, 2023</p>
         </div>
-      </div>
-      <div>
-        <div style="font-size:12px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">RICE Prioritization</div>
-        <div class="rice-row">
-          <div class="rice-label">Collaboration Request Flow</div>
-          <div class="rice-bar"><div class="rice-fill" style="width:100%;background:#10b981"></div></div>
-          <div class="rice-score" style="color:#10b981">800</div>
+        <div class="card" style="margin-bottom:9px;border-color:rgba(255,215,0,0.3);padding:13px 16px">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">SAM · R1 Universities US + Global Equivalents</div>
+          <div style="font-size:24px;font-weight:900;color:#ffd700">$50M</div>
+          <p style="font-size:11px;margin-top:2px">~500 R1-equivalent universities globally × $100k avg license · Conservative estimate · 146 R1 US alone = $14.6M ceiling</p>
         </div>
-        <div class="rice-row">
-          <div class="rice-label">Semantic Search (RAG)</div>
-          <div class="rice-bar"><div class="rice-fill" style="width:50%;background:#ffd700"></div></div>
-          <div class="rice-score" style="color:#ffd700">400</div>
-        </div>
-        <div class="rice-row">
-          <div class="rice-label">Dataset Discovery</div>
-          <div class="rice-bar"><div class="rice-fill" style="width:44%;background:#38bdf8"></div></div>
-          <div class="rice-score" style="color:#38bdf8">350</div>
-        </div>
-        <div class="rice-row">
-          <div class="rice-label">QAOA Collab Score</div>
-          <div class="rice-bar"><div class="rice-fill" style="width:33%;background:#ff4500"></div></div>
-          <div class="rice-score" style="color:#ff4500">262</div>
-        </div>
-        <div class="rice-row">
-          <div class="rice-label">University Portal</div>
-          <div class="rice-bar"><div class="rice-fill" style="width:11%;background:#a07050"></div></div>
-          <div class="rice-score" style="color:#a07050">87</div>
+        <div class="card" style="border-color:rgba(16,185,129,0.3);padding:13px 16px">
+          <div style="font-size:10px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">SOM · Boston Cluster Year 1</div>
+          <div style="font-size:24px;font-weight:900;color:#10b981">$2M ARR</div>
+          <p style="font-size:11px;margin-top:2px">10 Boston-area universities × $100k–$200k SaaS/yr · 8 world-class institutions within 5 miles of each other</p>
         </div>
       </div>
     </div>
-    <blockquote style="margin-top:20px;max-width:700px">
-      "If I had known they were working on that algorithm last year, my methodology would have been 10x stronger."
-      <span>— User Interview #3</span>
-    </blockquote>
   </div>
 </div>
 
-<!-- SLIDE 12: MARKET -->
+<!-- S12 BUSINESS MODEL -->
 <div class="slide" id="s12">
-  <div style="width:100%;max-width:960px">
-    <div class="tag blue">Market Analysis</div>
-    <h2>A <span class="grad">$2.1 Billion</span> Market Opportunity</h2>
-    <div class="grid2" style="align-items:center;margin-top:20px">
-      <div style="display:flex;align-items:flex-end;justify-content:center;gap:24px">
-        <div style="text-align:center">
-          <div style="height:180px;width:100px;background:linear-gradient(180deg,#ff4500,rgba(255,69,0,0.4));border-radius:10px 10px 0 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px">
-            <span style="color:#fff;font-weight:900;font-size:18px">$2.1B</span>
+  <div style="width:100%;max-width:980px">
+    <div class="tag a">Business Model</div>
+    <h2>Pricing, Revenue and Cost Structure</h2>
+    <div class="g2" style="align-items:start">
+      <div>
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px">Pricing Tiers</div>
+        <div class="ptier" style="border-color:rgba(255,69,0,0.3);background:rgba(255,69,0,0.05)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <div style="font-size:13px;font-weight:700;color:#ff4500">Tier 1 — Department Pilot</div>
+            <div style="font-size:17px;font-weight:900;color:#ff4500">$25k/yr</div>
           </div>
-          <div style="background:rgba(20,5,40,0.75);padding:10px;border-radius:0 0 8px 8px">
-            <div style="font-weight:700;color:#ff4500;font-size:13px">TAM</div>
-          </div>
+          <p style="font-size:12px">1 department · 3 internal systems · removes procurement barrier · faculty champion driven · free pilot option available</p>
         </div>
-        <div style="text-align:center">
-          <div style="height:120px;width:100px;background:linear-gradient(180deg,#ffd700,rgba(255,215,0,0.4));border-radius:10px 10px 0 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px">
-            <span style="color:#fff;font-weight:900;font-size:18px">$290M</span>
+        <div class="ptier" style="border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.05)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <div style="font-size:13px;font-weight:700;color:#ffd700">Tier 2 — University License</div>
+            <div style="font-size:17px;font-weight:900;color:#ffd700">$100–150k/yr</div>
           </div>
-          <div style="background:rgba(20,5,40,0.75);padding:10px;border-radius:0 0 8px 8px">
-            <div style="font-weight:700;color:#ffd700;font-size:13px">SAM</div>
-          </div>
+          <p style="font-size:12px">Full institution · all departments · cross-university discovery · Research VP or Provost is the economic buyer</p>
         </div>
-        <div style="text-align:center">
-          <div style="height:60px;width:100px;background:linear-gradient(180deg,#10b981,rgba(16,185,129,0.4));border-radius:10px 10px 0 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px">
-            <span style="color:#fff;font-weight:900;font-size:18px">$2M</span>
+        <div class="ptier" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.05)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <div style="font-size:13px;font-weight:700;color:#10b981">Tier 3 — Network License</div>
+            <div style="font-size:17px;font-weight:900;color:#10b981">$200k+/yr</div>
           </div>
-          <div style="background:rgba(20,5,40,0.75);padding:10px;border-radius:0 0 8px 8px">
-            <div style="font-weight:700;color:#10b981;font-size:13px">SOM</div>
-          </div>
+          <p style="font-size:12px">Multi-university federated node · cross-institution discovery · full network effect access · consortium pricing available</p>
         </div>
       </div>
       <div>
-        <div class="card" style="margin-bottom:12px;border-color:rgba(255,69,0,0.3)">
-          <div style="font-size:11px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">TAM — Total Addressable Market</div>
-          <div style="font-size:26px;font-weight:900;color:#ff4500">$2.1B</div>
-          <p style="font-size:12px;margin-top:6px">20,000+ universities globally × $105K avg research tool spend = $2.1B</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px">Cost Structure and Unit Economics</div>
+        <div class="card" style="margin-bottom:9px;padding:13px 16px">
+          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:7px">Year 1 Infrastructure (per university)</div>
+          <div class="costrow"><span class="costlabel">Cloud hosting (backend)</span><span class="costval">$2,400–6,000/yr</span></div>
+          <div class="costrow"><span class="costlabel">Database storage</span><span class="costval">$1,200/yr</span></div>
+          <div class="costrow"><span class="costlabel">Total infra per university</span><span class="costval" style="color:#10b981">~$5,000/yr</span></div>
         </div>
-        <div class="card" style="margin-bottom:12px;border-color:rgba(255,215,0,0.3)">
-          <div style="font-size:11px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">SAM — Serviceable Addressable Market</div>
-          <div style="font-size:26px;font-weight:900;color:#ffd700">$290M</div>
-          <p style="font-size:12px;margin-top:6px">187 R1 universities (US) × $155K avg × 10 tools = $290M</p>
-        </div>
-        <div class="card" style="border-color:rgba(16,185,129,0.3)">
-          <div style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">SOM — Serviceable Obtainable Market (Year 1)</div>
-          <div style="font-size:26px;font-weight:900;color:#10b981">$2M ARR</div>
-          <p style="font-size:12px;margin-top:6px">10 Boston-area R1 universities × $200K SaaS license = $2M</p>
+        <div class="card" style="padding:13px 16px">
+          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:7px">Unit Economics — Tier 2</div>
+          <div class="costrow"><span class="costlabel">Revenue per university</span><span class="costval">$100,000/yr</span></div>
+          <div class="costrow"><span class="costlabel">Infrastructure cost</span><span class="costval">$5,000/yr</span></div>
+          <div class="costrow"><span class="costlabel">Gross margin</span><span class="costval" style="color:#10b981;font-size:15px;font-weight:900">~95%</span></div>
+          <div class="costrow"><span class="costlabel">Payback period</span><span class="costval">Immediate — SaaS upfront</span></div>
+          <div style="margin-top:9px;padding:8px;background:rgba(16,185,129,0.08);border-radius:6px;font-size:11px;color:#10b981;text-align:center;font-weight:700">Software business · 95% gross margin · scales with zero marginal cost per user</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 13: GTM -->
+<!-- S13 METRICS -->
 <div class="slide" id="s13">
-  <div style="width:100%;max-width:960px">
-    <div class="tag blue">Go-To-Market</div>
-    <h2>From One Department to <span class="grad">Every University</span></h2>
-    <div class="grid3" style="margin-top:20px">
-      <div class="card" style="border-color:rgba(255,69,0,0.3);border-top:3px solid #ff4500">
-        <div style="font-size:11px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Phase 1 — Department</div>
-        <div style="font-size:22px;font-weight:900;color:#ff4500;margin-bottom:8px">Q1-Q2 2026</div>
-        <p style="font-size:13px;margin-bottom:12px">Single department pilot · 3 internal systems connected · 100 active researchers</p>
-        <div style="font-size:10px;color:#a07050;font-weight:700">Success Gate</div>
-        <p style="font-size:12px;margin-bottom:8px">3 cross-dept collaborations</p>
-        <div style="font-size:10px;color:#a07050;font-weight:700">Revenue</div>
-        <p style="font-size:12px;color:#ff4500;font-weight:700">Pilot (Free)</p>
+  <div style="width:100%;max-width:980px">
+    <div class="tag a">Metrics Framework</div>
+    <h2>North Star + AARRR Growth Funnel</h2>
+    <div class="g2" style="align-items:start">
+      <div>
+        <div class="card" style="margin-bottom:10px;border-color:rgba(255,215,0,0.4);padding:14px 18px;text-align:center">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">⭐ North Star Metric</div>
+          <div style="font-size:16px;font-weight:800;color:#fff8ee;margin-bottom:4px">Collaboration requests sent per month</div>
+          <p style="font-size:12px">Directly measurable · proxy for all value Luminary creates · grows as network expands</p>
+        </div>
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Supporting Metrics</div>
+        <div class="metrow"><div><div class="metleft">Activation</div><div class="metsub">% researchers searching within 7 days</div></div><div class="metval">60% target</div></div>
+        <div class="metrow"><div><div class="metleft">Engagement</div><div class="metsub">Searches per researcher per month</div></div><div class="metval">5+ target</div></div>
+        <div class="metrow"><div><div class="metleft">Quality</div><div class="metsub">% of requests receiving a response</div></div><div class="metval">40% target</div></div>
+        <div class="metrow"><div><div class="metleft">Retention</div><div class="metsub">Researchers active after 30 days</div></div><div class="metval">40% target</div></div>
       </div>
-      <div class="card" style="border-color:rgba(255,215,0,0.3);border-top:3px solid #ffd700">
-        <div style="font-size:11px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Phase 2 — Full University</div>
-        <div style="font-size:22px;font-weight:900;color:#ffd700;margin-bottom:8px">Q3-Q4 2026</div>
-        <p style="font-size:13px;margin-bottom:12px">All university colleges · Dataset access workflow live · Grant landscape visibility</p>
-        <div style="font-size:10px;color:#a07050;font-weight:700">Success Gate</div>
-        <p style="font-size:12px;margin-bottom:8px">$150K-$200K SaaS license</p>
-        <div style="font-size:10px;color:#a07050;font-weight:700">Revenue</div>
-        <p style="font-size:12px;color:#ffd700;font-weight:700">$200K ARR</p>
+      <div>
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">AARRR Funnel</div>
+        <div class="funrow" style="background:rgba(255,69,0,0.12);border:1px solid rgba(255,69,0,0.25)"><div><div class="funlabel" style="color:#ff4500">Acquisition</div><div class="fundesc">Universities onboarded via Research VP outreach</div></div><div class="funval" style="color:#ff4500">3 unis Phase 1</div></div>
+        <div class="funrow" style="background:rgba(255,140,0,0.10);border:1px solid rgba(255,140,0,0.2)"><div><div class="funlabel" style="color:#ff8c00">Activation</div><div class="fundesc">Researchers who search within first week</div></div><div class="funval" style="color:#ff8c00">60% rate</div></div>
+        <div class="funrow" style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.18)"><div><div class="funlabel" style="color:#ffd700">Retention</div><div class="fundesc">Researchers returning within 30 days</div></div><div class="funval" style="color:#ffd700">40% rate</div></div>
+        <div class="funrow" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.18)"><div><div class="funlabel" style="color:#10b981">Revenue</div><div class="fundesc">SaaS licensing · $100k–$200k per institution/yr</div></div><div class="funval" style="color:#10b981">$2M ARR Y1</div></div>
+        <div class="funrow" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.18)"><div><div class="funlabel" style="color:#38bdf8">Referral</div><div class="fundesc">Universities referring peers · network effect moat</div></div><div class="funval" style="color:#38bdf8">2× per uni</div></div>
       </div>
-      <div class="card" style="border-color:rgba(16,185,129,0.3);border-top:3px solid #10b981">
-        <div style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Phase 3 — Multi-University</div>
-        <div style="font-size:22px;font-weight:900;color:#10b981;margin-bottom:8px">Year 2+</div>
-        <p style="font-size:13px;margin-bottom:12px">MIT · BU · Drexel · Tufts as federated nodes · Network effect kicks in</p>
-        <div style="font-size:10px;color:#a07050;font-weight:700">Success Gate</div>
-        <p style="font-size:12px;margin-bottom:8px">10 universities × $200K</p>
-        <div style="font-size:10px;color:#a07050;font-weight:700">Revenue</div>
-        <p style="font-size:12px;color:#10b981;font-weight:700">$2M ARR</p>
-      </div>
-    </div>
-    <div style="margin-top:16px;padding:12px 20px;background:rgba(255,215,0,0.08);border-radius:10px;border:1px solid rgba(255,215,0,0.2);font-size:12px;color:#c9a96e">
-      <strong style="color:#ffd700">Pricing Rationale:</strong> Comparable research tools (Elsevier SciVal, Clarivate InCites) charge $100K-$300K/year for institutional licenses. Our $150K-$200K positions competitively while delivering unique federated + quantum value.
     </div>
   </div>
 </div>
 
-<!-- SLIDE 14: TEAM -->
+<!-- S14 RICE -->
 <div class="slide" id="s14">
-  <div style="width:100%;max-width:900px;text-align:center">
-    <div class="tag amber">Team Quaffle</div>
-    <h2>The Team Behind Luminary</h2>
-    <div class="grid4" style="margin-top:24px">
-      <div class="card" style="text-align:center">
-        <div style="width:64px;height:64px;margin:0 auto 12px;border-radius:50%;background:linear-gradient(135deg,#ff4500,#ffd700);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff">US</div>
-        <div style="font-size:14px;font-weight:700;color:#fff8ee">Uttkarsh Sharma</div>
-        <div style="font-size:12px;color:#ff4500;margin-top:4px">Team Leader</div>
-        <div style="font-size:10px;color:#7a5c2a;margin-top:8px">Product / Market / QAOA</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="width:64px;height:64px;margin:0 auto 12px;border-radius:50%;background:linear-gradient(135deg,#ffd700,#ff4500);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff">RT</div>
-        <div style="font-size:14px;font-weight:700;color:#fff8ee">Riya N Taori</div>
-        <div style="font-size:12px;color:#ffd700;margin-top:4px">ML Engineer</div>
-        <div style="font-size:10px;color:#7a5c2a;margin-top:8px">Federated Learning / Frontend</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="width:64px;height:64px;margin:0 auto 12px;border-radius:50%;background:linear-gradient(135deg,#38bdf8,#10b981);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff">AK</div>
-        <div style="font-size:14px;font-weight:700;color:#fff8ee">Aakash Kumar</div>
-        <div style="font-size:12px;color:#38bdf8;margin-top:4px">Backend Lead</div>
-        <div style="font-size:10px;color:#7a5c2a;margin-top:8px">Deep Learning / Backend</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="width:64px;height:64px;margin:0 auto 12px;border-radius:50%;background:linear-gradient(135deg,#10b981,#ffd700);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff">TO</div>
-        <div style="font-size:14px;font-weight:700;color:#fff8ee">Tanya Ojha</div>
-        <div style="font-size:12px;color:#10b981;margin-top:4px">Data Scientist</div>
-        <div style="font-size:10px;color:#7a5c2a;margin-top:8px">Quantum Encoding / Analytics</div>
-      </div>
-    </div>
-    <div style="margin-top:24px;display:flex;gap:16px;justify-content:center">
-      <span class="pill amber">🏆 Protothon 8.0 Finalists</span>
-      <span class="pill blue">🎓 APMC @ Northeastern</span>
+  <div style="width:100%;max-width:900px">
+    <div class="tag a">PM Framework · Prioritisation</div>
+    <h2>RICE Scoring — What We Built and Why</h2>
+    <p style="font-size:12px;margin-bottom:14px">RICE = (Reach × Impact × Confidence) ÷ Effort · Higher = higher priority · drove every build decision</p>
+    <div id="ricerows"></div>
+    <div style="margin-top:12px;padding:11px 16px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:12px;color:#a07050">
+      <strong style="color:#ffd700">Decision logic:</strong> Collaboration request flow scored highest — maximum reach, minimum effort. Built first. Semantic search and QAOA next — core product value. University upload portal deprioritised to Phase 2 — important but not critical for MVP validation.
     </div>
   </div>
 </div>
 
-<!-- SLIDE 15: CTA -->
+<!-- S15 GTM -->
 <div class="slide" id="s15">
-  <div style="text-align:center;max-width:700px">
-    <div class="tag green">Thank You</div>
-    <h1 style="font-size:64px"><span class="grad">✦ Luminary</span></h1>
-    <p style="font-size:18px;color:#fff8ee;margin-bottom:8px">by Team Quaffle</p>
-    <p style="font-size:15px;margin-bottom:24px">Cross-University Research Discovery Platform</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
-      <span class="pill red">85% research waste addressed</span>
-      <span class="pill amber">187 R1 universities</span>
-      <span class="pill blue">$2.1B TAM</span>
-      <span class="pill green">FERPA compliant</span>
-    </div>
-    <div class="card" style="max-width:550px;margin:0 auto;padding:24px">
-      <p style="font-size:16px;color:#fff8ee;margin-bottom:12px">Time to find a relevant collaborator:</p>
-      <div style="display:flex;align-items:center;justify-content:center;gap:20px">
-        <span style="font-size:28px;color:#ef4444;text-decoration:line-through">Weeks</span>
-        <span style="font-size:32px;color:#ffd700">→</span>
-        <span style="font-size:32px;font-weight:900;color:#10b981">Minutes</span>
+  <div style="width:100%;max-width:980px">
+    <div class="tag b">Go-To-Market</div>
+    <h2>From One Department to <span class="grad">Every University</span></h2>
+    <div class="g3" style="margin-top:14px">
+      <div class="card" style="border-top:3px solid #ff4500;border-color:rgba(255,69,0,0.3)">
+        <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Phase 1 · Beachhead</div>
+        <div style="font-size:18px;font-weight:900;color:#ff4500;margin-bottom:7px">Semester 1</div>
+        <p style="font-size:12px;margin-bottom:8px">Khoury CS at Northeastern · 3 systems connected · 100 active researchers · prove intra-university discovery</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Economic Buyer</div>
+        <p style="font-size:12px;margin-bottom:6px">Department heads — bypass central IT procurement</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Success Gate</div>
+        <p style="font-size:12px;margin-bottom:6px">3 cross-dept collaborations initiated</p>
+        <div style="font-size:14px;font-weight:900;color:#ff4500">$25k pilot</div>
+      </div>
+      <div class="card" style="border-top:3px solid #ffd700;border-color:rgba(255,215,0,0.3)">
+        <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Phase 2 · Full University</div>
+        <div style="font-size:18px;font-weight:900;color:#ffd700;margin-bottom:7px">Semesters 2–3</div>
+        <p style="font-size:12px;margin-bottom:8px">All 9 Northeastern colleges · dataset access workflow · grant landscape visibility for faculty</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Economic Buyer</div>
+        <p style="font-size:12px;margin-bottom:6px">Research VP or Provost office · 6–12 month sales cycle</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Distribution</div>
+        <p style="font-size:12px;margin-bottom:6px">Pilot data accelerates procurement decision</p>
+        <div style="font-size:14px;font-weight:900;color:#ffd700">$100–150k/yr</div>
+      </div>
+      <div class="card" style="border-top:3px solid #10b981;border-color:rgba(16,185,129,0.3)">
+        <div style="font-size:10px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Phase 3 · Multi-University</div>
+        <div style="font-size:18px;font-weight:900;color:#10b981;margin-bottom:7px">Year 2+</div>
+        <p style="font-size:12px;margin-bottom:8px">MIT · BU · Drexel · Tufts as federated nodes · every new node makes entire network smarter</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Distribution</div>
+        <p style="font-size:12px;margin-bottom:6px">University referrals · AAU conference · Research VP network</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Revenue ceiling</div>
+        <div style="font-size:14px;font-weight:900;color:#10b981">$14.6M ARR US R1 only</div>
       </div>
     </div>
-    <!-- QR CODE SECTION -->
-    <div style="margin-top:28px;display:flex;align-items:center;justify-content:center;gap:24px">
-      </div>
-      <div style="text-align:left">
-        <p style="font-size:17px;color:#fff8ee;margin-bottom:6px">📱 <strong>Try the Prototype</strong></p>
-        <p style="font-size:13px;color:#c9a96e">Scan to experience Luminary</p>
-        <p style="font-size:13px;color:#c9a96e">on your device</p>
-        <p style="font-size:11px;color:#7a5c2a;margin-top:8px">Questions? Let's discuss!</p>
-      </div>
+    <div style="margin-top:10px;padding:10px 16px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.06);display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">Research VP / Provost</div><div style="font-size:10px;color:#a07050">Economic Buyer</div></div>
+      <div style="color:#3a2200;font-size:16px;align-self:center">·</div>
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">Department Heads</div><div style="font-size:10px;color:#a07050">Champions</div></div>
+      <div style="color:#3a2200;font-size:16px;align-self:center">·</div>
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">PhD Students</div><div style="font-size:10px;color:#a07050">End Users</div></div>
+      <div style="color:#3a2200;font-size:16px;align-self:center">·</div>
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">NSF / NIH</div><div style="font-size:10px;color:#a07050">Strategic Partners</div></div>
     </div>
-    <p style="margin-top:28px;font-size:14px;color:#a07050">Protothon 8.0 · APMC @ Northeastern · March 15, 2026</p>
   </div>
 </div>
 
-</div><!-- end deck -->
+<!-- S16 RISK -->
+<div class="slide" id="s16">
+  <div style="width:100%;max-width:980px">
+    <div class="tag r">Risk Analysis</div>
+    <h2>5 Risks — Identified and Mitigated</h2>
+    <div class="g2" style="align-items:start">
+      <div>
+        <div class="rrow" style="background:rgba(255,69,0,0.07);border-color:rgba(255,69,0,0.2)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,69,0,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🏛</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">University Adoption</div><span style="font-size:10px;font-weight:700;color:#ff4500;background:rgba(255,69,0,0.1);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,69,0,0.25)">HIGH</span></div><div class="rdesc">Slow procurement cycles. IT approval takes 6–18 months. Research VPs change frequently.</div><div class="rmit">↳ Start with dept heads not central IT. Free pilot removes barrier. Faculty champions bypass bureaucracy.</div></div>
+        </div>
+        <div class="rrow" style="background:rgba(255,69,0,0.07);border-color:rgba(255,69,0,0.2)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,69,0,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🔒</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Data Privacy Concerns</div><span style="font-size:10px;font-weight:700;color:#ff4500;background:rgba(255,69,0,0.1);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,69,0,0.25)">HIGH</span></div><div class="rdesc">Universities may refuse on principle. One breach destroys trust entirely.</div><div class="rmit">↳ Third-party security audit pre-launch. FERPA certification. IRB advisory board from Day 1.</div></div>
+        </div>
+        <div class="rrow" style="background:rgba(255,69,0,0.07);border-color:rgba(255,69,0,0.2)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,69,0,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🌐</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Cold Start Problem</div><span style="font-size:10px;font-weight:700;color:#ff4500;background:rgba(255,69,0,0.1);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,69,0,0.25)">HIGH</span></div><div class="rdesc">With 1–2 universities the product has no value — why would anyone search?</div><div class="rmit">↳ Pre-load with public thesis data. Partner 3 universities simultaneously. Boston cluster strategy.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="rrow" style="background:rgba(255,215,0,0.05);border-color:rgba(255,215,0,0.18)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,215,0,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">⚔️</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Incumbent Competition</div><span style="font-size:10px;font-weight:700;color:#ffd700;background:rgba(255,215,0,0.08);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,215,0,0.2)">MEDIUM</span></div><div class="rdesc">Elsevier, Clarivate or Microsoft could build this with more resources.</div><div class="rmit">↳ Federated architecture is 2-year head start. University relationships are the moat. First mover advantage.</div></div>
+        </div>
+        <div class="rrow" style="background:rgba(255,215,0,0.05);border-color:rgba(255,215,0,0.18)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,215,0,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">⚛️</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Quantum Dependency</div><span style="font-size:10px;font-weight:700;color:#ffd700;background:rgba(255,215,0,0.08);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,215,0,0.2)">MEDIUM</span></div><div class="rdesc">QAOA classically simulated in prototype. Real quantum hardware is expensive and unstable.</div><div class="rmit">↳ Classical simulation performs identically at demo scale. Architecture is quantum-ready not quantum-dependent.</div></div>
+        </div>
+        <div class="card" style="padding:13px 16px;border-color:rgba(168,85,247,0.3);background:rgba(168,85,247,0.05)">
+          <div style="font-size:10px;color:#a855f7;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Handling Uncertainty in Conversations</div>
+          <p style="font-size:12px;line-height:1.7">When asked questions without data yet — acknowledge honestly, cite comparable benchmarks, state how you will measure it going forward. University SaaS typically sees 85–90% renewal. We will track from Day 1 of pilot. This builds more trust than fabricated numbers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- Navigation -->
+<!-- S17 WHY WIN -->
+<div class="slide" id="s17">
+  <div style="width:100%;max-width:980px;text-align:center">
+    <div class="tag a">Why Luminary Wins</div>
+    <h2>The Only Product That Does <span class="grad">All Five</span></h2>
+    <div class="g3" style="margin:14px 0">
+      <div class="card" style="border-color:rgba(255,69,0,0.3);text-align:left">
+        <div style="font-size:20px;margin-bottom:7px">🔒</div>
+        <h3 style="color:#ff4500;font-size:13px">Privacy is Architectural</h3>
+        <p style="font-size:12px">FERPA + IRB built in. The architecture makes violation structurally impossible. Universities will actually deploy this.</p>
+      </div>
+      <div class="card" style="border-color:rgba(255,215,0,0.3);text-align:left">
+        <div style="font-size:20px;margin-bottom:7px">⚛️</div>
+        <h3 style="color:#ffd700;font-size:13px">Quantum is the Right Tool</h3>
+        <p style="font-size:12px">Collaboration matching is NP-hard. QAOA finds optimal pairs across 4 variables simultaneously. Classical solvers cannot do this at scale.</p>
+      </div>
+      <div class="card" style="border-color:rgba(16,185,129,0.3);text-align:left">
+        <div style="font-size:20px;margin-bottom:7px">🌐</div>
+        <h3 style="color:#10b981;font-size:13px">Network Effect Moat</h3>
+        <p style="font-size:12px">Every new university makes every existing node smarter. No competitor can replicate a federated network already in place.</p>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card" style="text-align:left;border-color:rgba(56,189,248,0.3)">
+        <div style="font-size:20px;margin-bottom:7px">🎯</div>
+        <h3 style="color:#38bdf8;font-size:13px">Solves Both Problems</h3>
+        <p style="font-size:12px">Intra-university AND inter-university — same pipeline, same privacy guarantee. No competitor addresses both simultaneously.</p>
+      </div>
+      <div class="card" style="text-align:left;border-color:rgba(168,85,247,0.3)">
+        <div style="font-size:20px;margin-bottom:7px">🛠</div>
+        <h3 style="color:#a855f7;font-size:13px">Team Capability Matches Vision</h3>
+        <p style="font-size:12px">Federated Learning ✓ · Quantum Computing ✓ · Full Stack ✓ · Cloud Deployment ✓ · Product Management ✓</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S18 PARTNERSHIP -->
+<div class="slide" id="s18">
+  <div style="width:100%;max-width:980px;text-align:center">
+    <div class="tag p">Strategic Partnership</div>
+    <h2>What We Are Looking For <span class="grad">Next</span></h2>
+    <div class="g3" style="margin:14px 0;text-align:left">
+      <div class="card" style="border-color:rgba(168,85,247,0.3)">
+        <div style="font-size:20px;margin-bottom:8px">🤝</div>
+        <h3 style="color:#a855f7;font-size:13px">AI Infrastructure Partner</h3>
+        <p style="font-size:12px">A partner who provides the AI model backbone — embeddings, semantic understanding, LLM capabilities — so we focus on the federated architecture and university distribution.</p>
+      </div>
+      <div class="card" style="border-color:rgba(255,215,0,0.3)">
+        <div style="font-size:20px;margin-bottom:8px">🏛</div>
+        <h3 style="color:#ffd700;font-size:13px">University Network Access</h3>
+        <p style="font-size:12px">Warm introductions to Research VPs and innovation offices at R1 universities. The product sells itself — we need the door opened.</p>
+      </div>
+      <div class="card" style="border-color:rgba(16,185,129,0.3)">
+        <div style="font-size:20px;margin-bottom:8px">⚡</div>
+        <h3 style="color:#10b981;font-size:13px">Go-To-Market Support</h3>
+        <p style="font-size:12px">Guidance on enterprise SaaS sales cycles, pricing validation, and the transition from hackathon MVP to production-grade institutional software.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:16px 22px;border-color:rgba(255,215,0,0.25);text-align:left">
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">What We Bring to Any Partnership</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap">
+            <span class="pill pa">Working FL + QAOA pipeline</span>
+            <span class="pill pa">6 university node architecture</span>
+            <span class="pill pa">Validated user research</span>
+            <span class="pill pa">Protothon #1 winner</span>
+            <span class="pill pa">Privacy-first by design</span>
+            <span class="pill pa">Full stack team</span>
+          </div>
+        </div>
+        <div style="text-align:center;padding:14px 18px;background:rgba(255,215,0,0.06);border-radius:9px;border:1px solid rgba(255,215,0,0.2);flex-shrink:0">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:4px">Current Stage</div>
+          <div style="font-size:15px;font-weight:800;color:#fff8ee">Functional MVP</div>
+          <div style="font-size:10px;color:#a07050;margin-top:3px">Production-ready architecture<br>Pre-revenue · Pre-pilot</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S19 THANK YOU -->
+<div class="slide" id="s19">
+  <div style="text-align:center;max-width:700px">
+    <div class="tag g">Thank You</div>
+    <h1 style="font-size:56px"><span class="grad">✦ Luminary</span></h1>
+    <p style="font-size:16px;color:#fff8ee;margin-bottom:5px">by Team Quaffle · Protothon 8.0 Winners</p>
+    <p style="font-size:13px;margin-bottom:24px">APMC @ Northeastern University · March 2026</p>
+    <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
+      <span class="pill pr">$28B problem</span>
+      <span class="pill pa">6 university nodes</span>
+      <span class="pill pb">R² = 0.85</span>
+      <span class="pill pg">FERPA compliant</span>
+      <span class="pill pp">95% gross margin</span>
+    </div>
+    <div class="card" style="max-width:520px;margin:0 auto 14px;padding:16px 22px">
+      <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:1px">⭐ North Star</div>
+      <p style="font-size:14px;color:#fff8ee">Collaboration requests sent per month</p>
+      <p style="font-size:12px;margin-top:4px">Weeks to find a collaborator → Minutes. That is the transformation.</p>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <div class="card" style="padding:10px 16px;text-align:center;border-color:rgba(255,215,0,0.3)">
+        <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:3px">GitHub</div>
+        <div style="font-size:11px;color:#c9a96e">github.com/uttkarsh1308-hub/Luminary</div>
+      </div>
+      <div class="card" style="padding:10px 16px;text-align:center;border-color:rgba(255,69,0,0.3)">
+        <div style="font-size:10px;color:#ff4500;font-weight:700;margin-bottom:3px">Live MVP</div>
+        <div style="font-size:11px;color:#c9a96e">uttkarsh1308-hub.github.io/Luminary</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- NAV -->
 <div class="nav">
   <button class="arr" onclick="go(-1)">←</button>
-  <button onclick="go(0,1)" id="nb1">Intro</button>
+  <button onclick="go(0,1)" id="nb1">Cover</button>
   <button onclick="go(0,2)" id="nb2">Problem</button>
   <button onclick="go(0,3)" id="nb3">Scale</button>
   <button onclick="go(0,4)" id="nb4">Research</button>
-  <button onclick="go(0,5)" id="nb5">Videos</button>
+  <button onclick="go(0,5)" id="nb5">Compete</button>
   <button onclick="go(0,6)" id="nb6">Solution</button>
-  <button onclick="go(0,7)" id="nb7">Arch</button>
-  <button onclick="go(0,8)" id="nb8">Product</button>
-  <button onclick="go(0,9)" id="nb9">Journey</button>
-  <button onclick="go(0,10)" id="nb10">Compete</button>
-  <button onclick="go(0,11)" id="nb11">Validate</button>
-  <button onclick="go(0,12)" id="nb12">Market</button>
-  <button onclick="go(0,13)" id="nb13">GTM</button>
-  <button onclick="go(0,14)" id="nb14">Team</button>
-  <button onclick="go(0,15)" id="nb15">End</button>
-  <span id="slideNum">1 / 15</span>
+  <button onclick="go(0,7)" id="nb7">Journey</button>
+  <button onclick="go(0,8)" id="nb8">Tech</button>
+  <button onclick="go(0,9)" id="nb9">Privacy</button>
+  <button onclick="go(0,10)" id="nb10">FL Proof</button>
+  <button onclick="go(0,11)" id="nb11">Market</button>
+  <button onclick="go(0,12)" id="nb12">Business</button>
+  <button onclick="go(0,13)" id="nb13">Metrics</button>
+  <button onclick="go(0,14)" id="nb14">RICE</button>
+  <button onclick="go(0,15)" id="nb15">GTM</button>
+  <button onclick="go(0,16)" id="nb16">Risk</button>
+  <button onclick="go(0,17)" id="nb17">Why Win</button>
+  <button onclick="go(0,18)" id="nb18">Partner</button>
+  <button onclick="go(0,19)" id="nb19">End</button>
+  <span id="snum">1/19</span>
   <button class="arr" onclick="go(1)">→</button>
 </div>
 
 <script>
-// Cosmic background
+// COSMIC BG
 const cv=document.getElementById('bg'),ctx=cv.getContext('2d');
 let W,H;
-function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
-resize();window.addEventListener('resize',resize);
+function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+rsz();window.addEventListener('resize',rsz);
 const stars=Array.from({length:220},()=>({x:Math.random()*1920,y:Math.random()*1080,z:Math.random()*1920,pz:0}));
-const qp=Array.from({length:35},()=>({x:Math.random()*1920,y:Math.random()*1080,r:Math.random()*2+0.5,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,phase:Math.random()*Math.PI*2,col:Math.random()>.5?'#ff4500':'#ffd700',op:Math.random()*.5+.2}));
+const qp=Array.from({length:35},()=>({x:Math.random()*1920,y:Math.random()*1080,r:Math.random()*2+.5,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,ph:Math.random()*Math.PI*2,c:Math.random()>.5?0:1,op:Math.random()*.4+.2}));
 function drawBg(){
-  ctx.fillStyle='rgba(3,0,10,0.25)';ctx.fillRect(0,0,W,H);
-  const cx=W/2,cy=H/2;
-  stars.forEach(s=>{
-    s.pz=s.z;s.z-=3;
-    if(s.z<=0){s.x=Math.random()*W;s.y=Math.random()*H;s.z=W;s.pz=W}
-    const sx=(s.x-cx)/s.z*W+cx,sy=(s.y-cy)/s.z*W+cy;
-    const px=(s.x-cx)/s.pz*W+cx,py=(s.y-cy)/s.pz*W+cy;
-    const sp=1-s.z/W;
-    ctx.strokeStyle=`rgba(255,${Math.floor(180*sp)},0,${sp*.9})`;
+  ctx.fillStyle='rgba(3,0,10,0.22)';ctx.fillRect(0,0,W,H);
+  var cx=W/2,cy=H/2;
+  stars.forEach(function(s){
+    s.pz=s.z;s.z-=4;
+    if(s.z<=0){s.x=Math.random()*W;s.y=Math.random()*H;s.z=W;s.pz=W;}
+    var sx=(s.x-cx)/s.z*W+cx,sy=(s.y-cy)/s.z*W+cy,px=(s.x-cx)/s.pz*W+cx,py=(s.y-cy)/s.pz*W+cy,sp=1-s.z/W;
+    ctx.strokeStyle='rgba(255,'+Math.floor(180*sp)+',0,'+sp*.85+')';
     ctx.lineWidth=(1-s.z/W)*2;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(sx,sy);ctx.stroke();
   });
-  qp.forEach((p,i)=>{
-    p.x+=p.vx;p.y+=p.vy;p.phase+=.02;
+  qp.forEach(function(p,i){
+    p.x+=p.vx;p.y+=p.vy;p.ph+=.02;
     if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-    const pulse=Math.sin(p.phase)*.4+.6;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r*(1+pulse*.8),0,Math.PI*2);
-    ctx.fillStyle=p.col==='#ff4500'?`rgba(255,69,0,${p.op*pulse})`:`rgba(255,215,0,${p.op*pulse})`;ctx.fill();
-    for(let j=i+1;j<Math.min(i+3,qp.length);j++){
-      const q=qp[j],dx=q.x-p.x,dy=q.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){ctx.strokeStyle=`rgba(255,150,0,${(1-d/120)*.12*pulse})`;ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}
+    var pulse=Math.sin(p.ph)*.4+.6;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r*(1+pulse*.7),0,Math.PI*2);
+    ctx.fillStyle=p.c===0?'rgba(255,69,0,'+p.op*pulse+')':'rgba(255,215,0,'+p.op*pulse+')';
+    ctx.fill();
+    for(var j=i+1;j<Math.min(i+3,qp.length);j++){
+      var q=qp[j],dx=q.x-p.x,dy=q.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<110){ctx.strokeStyle='rgba(255,140,0,'+(1-d/110)*.1*pulse+')';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
     }
   });
   requestAnimationFrame(drawBg);
 }
 drawBg();
 
-// Slide navigation
-let cur=1,total=15;
+// NAVIGATION
+var cur=1,total=19;
 function go(dir,target){
-  const prev=cur;
-  if(target)cur=target;
-  else cur=Math.max(1,Math.min(total,cur+dir));
+  var prev=cur;
+  cur=target||Math.max(1,Math.min(total,cur+dir));
   document.getElementById('s'+prev).classList.remove('active');
   document.getElementById('s'+cur).classList.add('active');
-  document.getElementById('slideNum').textContent=cur+' / '+total;
-  document.querySelectorAll('.nav button[id^=nb]').forEach(b=>b.classList.remove('active'));
-  const nb=document.getElementById('nb'+cur);
-  if(nb)nb.classList.add('active');
+  document.getElementById('snum').textContent=cur+'/'+total;
+  document.querySelectorAll('.nav button[id^=nb]').forEach(function(b){b.classList.remove('act');});
+  var nb=document.getElementById('nb'+cur);if(nb)nb.classList.add('act');
+  if(cur===10)buildFL();
+  if(cur===11)buildMkt();
+  if(cur===14)buildRice();
 }
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')go(1);
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
   if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
 });
-document.getElementById('nb1').classList.add('active');
+document.getElementById('nb1').classList.add('act');
 
-// Video upload handler
-function handleVideoUpload(input, containerId) {
-  const file = input.files[0];
-  if (file) {
-    const container = document.getElementById(containerId);
-    const url = URL.createObjectURL(file);
-    container.innerHTML = `<video src="${url}" controls style="max-width:100%;max-height:280px;border-radius:10px"></video>
-    <div style="margin-top:10px;font-size:11px;color:#7a5c2a">Click video to play · <a href="#" onclick="resetVideoPlaceholder('${containerId}', event)" style="color:#ff4500">Remove</a></div>`;
-  }
+// FL CHART
+function buildFL(){
+  if(window._fl)return;
+  window._fl=new Chart(document.getElementById('flChart'),{
+    type:'bar',
+    data:{
+      labels:['Random Forest','Gradient Boosting','Ridge Regression','Ensemble'],
+      datasets:[
+        {label:'R²',data:[.60,.85,.57,.80],backgroundColor:['rgba(56,189,248,.7)','rgba(16,185,129,.7)','rgba(160,112,80,.7)','rgba(255,215,0,.7)'],borderColor:['#38bdf8','#10b981','#a07050','#ffd700'],borderWidth:2,borderRadius:6},
+        {label:'MAE',data:[.0315,.0182,.0348,.0218],backgroundColor:['rgba(56,189,248,.25)','rgba(16,185,129,.25)','rgba(160,112,80,.25)','rgba(255,215,0,.25)'],borderColor:['#38bdf8','#10b981','#a07050','#ffd700'],borderWidth:1,borderRadius:6}
+      ]
+    },
+    options:{plugins:{legend:{labels:{color:'#c9a96e',font:{size:10}}}},scales:{x:{ticks:{color:'#7a5c2a',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#7a5c2a',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}}}}
+  });
 }
 
-// Image upload handler
-function handleImageUpload(input, containerId) {
-  const file = input.files[0];
-  if (file) {
-    const container = document.getElementById(containerId);
-    const url = URL.createObjectURL(file);
-    container.innerHTML = `<img src="${url}" style="max-width:100%;max-height:180px;border-radius:8px">
-    <div style="margin-top:8px;font-size:10px;color:#7a5c2a"><a href="#" onclick="resetImagePlaceholder('${containerId}', event)" style="color:#38bdf8">Remove</a></div>`;
-  }
+// MARKET CHART
+function buildMkt(){
+  if(window._mkt)return;
+  window._mkt=new Chart(document.getElementById('mktChart'),{
+    type:'doughnut',
+    data:{
+      labels:['TAM $2.1B','SAM $50M','SOM $2M ARR'],
+      datasets:[{data:[2100,50,2],backgroundColor:['rgba(255,69,0,.65)','rgba(255,215,0,.65)','rgba(16,185,129,.65)'],borderColor:['#ff4500','#ffd700','#10b981'],borderWidth:2}]
+    },
+    options:{plugins:{legend:{position:'bottom',labels:{color:'#c9a96e',font:{size:11},padding:12}}},cutout:'52%'}
+  });
 }
 
-// Reset video placeholder
-function resetVideoPlaceholder(containerId, e) {
-  e.preventDefault();
-  const container = document.getElementById(containerId);
-  const num = containerId.replace('video', '').replace('-container', '');
-  container.innerHTML = `<input type="file" accept="video/*" onchange="handleVideoUpload(this, '${containerId}')">
-    <div class="placeholder-content">
-      <div style="font-size:40px;margin-bottom:12px">🎬</div>
-      <div style="font-size:15px;font-weight:700;color:#fff8ee">User Interview #${num}</div>
-      <div style="font-size:12px;color:#a07050;margin-top:4px">Click to upload video</div>
-    </div>`;
-}
-
-// Reset image placeholder
-function resetImagePlaceholder(containerId, e) {
-  e.preventDefault();
-  const container = document.getElementById(containerId);
-  const labels = {
-    'img1-container': {icon: '🏠', label: 'Landing Page'},
-    'img2-container': {icon: '🔍', label: 'Search Interface'},
-    'img3-container': {icon: '📊', label: 'Results + Scores'},
-    'img4-container': {icon: '🤝', label: 'Collaboration Request'}
-  };
-  const info = labels[containerId] || {icon: '📷', label: 'Screenshot'};
-  container.innerHTML = `<input type="file" accept="image/*" onchange="handleImageUpload(this, '${containerId}')">
-    <div class="placeholder-content">
-      <div style="font-size:24px;margin-bottom:8px">${info.icon}</div>
-      <div style="font-size:12px;color:#fff8ee">${info.label}</div>
-      <div style="font-size:10px;color:#7a5c2a;margin-top:4px">Click to upload</div>
-    </div>`;
-}
-// QR Code upload handler
-function handleQRUpload(input) {
-  const file = input.files[0];
-  if (file) {
-    const container = document.getElementById('qr-container');
-    const url = URL.createObjectURL(file);
-    container.innerHTML = `<img src="${url}" style="width:120px;height:120px;display:block;border-radius:12px">
-    <input type="file" id="qr-upload" accept="image/*" style="display:none" onchange="handleQRUpload(this)">`;
-    container.onclick = function() { document.getElementById('qr-upload').click(); };
-  }
+// RICE
+function buildRice(){
+  var c=document.getElementById('ricerows');
+  if(!c||c.children.length>0)return;
+  var data=[
+    {f:'Collaboration Request Flow',sc:800,col:'#10b981'},
+    {f:'Semantic Search (RAG)',sc:400,col:'#ffd700'},
+    {f:'Dataset Discovery',sc:350,col:'#38bdf8'},
+    {f:'QAOA Collaboration Score',sc:262,col:'#ff4500'},
+    {f:'University Upload Portal',sc:87,col:'#a07050'}
+  ];
+  data.forEach(function(d,i){
+    var pct=d.sc/800*100;
+    var row=document.createElement('div');
+    row.className='ricerow';
+    row.innerHTML='<div class="ricefeat">'+d.f+'</div><div class="ricebar"><div class="ricefill" style="width:0%;background:'+d.col+';transition:width 1s ease '+(i*.12)+'s"></div></div><div class="ricesc" style="color:'+d.col+'">'+d.sc+'</div>';
+    c.appendChild(row);
+    setTimeout(function(){row.querySelector('.ricefill').style.width=pct+'%';},80);
+  });
 }
 </script>
 </body>
