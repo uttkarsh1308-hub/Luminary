@@ -13,31 +13,31 @@ canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px 72px;opacity:0;pointer-events:none;transition:opacity .5s ease;overflow:hidden}
 .slide.active{opacity:1;pointer-events:all}
 .slide>*{position:relative;z-index:1}
-.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:100;align-items:center;background:rgba(0,0,0,0.6);padding:8px 16px;border-radius:30px;border:1px solid rgba(255,69,0,0.25);backdrop-filter:blur(12px)}
-.nav button{background:none;border:none;color:#7a5c2a;font-size:11px;cursor:pointer;padding:4px 10px;border-radius:16px;transition:all .2s;font-family:inherit;white-space:nowrap}
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:100;align-items:center;background:rgba(0,0,0,0.7);padding:8px 14px;border-radius:30px;border:1px solid rgba(255,69,0,0.25);backdrop-filter:blur(12px);flex-wrap:nowrap;overflow-x:auto;max-width:98vw}
+.nav button{background:none;border:none;color:#7a5c2a;font-size:10px;cursor:pointer;padding:4px 8px;border-radius:14px;transition:all .2s;font-family:inherit;white-space:nowrap}
 .nav button:hover,.nav button.act{background:rgba(255,69,0,0.2);color:#ff4500}
-#snum{color:#7a5c2a;font-size:11px;min-width:44px;text-align:center}
-.arr{font-size:16px;cursor:pointer;color:#ff4500;background:none;border:none;padding:2px 8px}
-.tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+#snum{color:#7a5c2a;font-size:10px;min-width:36px;text-align:center}
+.arr{font-size:15px;cursor:pointer;color:#ff4500;background:none;border:none;padding:2px 6px;flex-shrink:0}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
 .tag.r{background:rgba(255,69,0,0.15);color:#ff4500;border:1px solid rgba(255,69,0,0.3)}
 .tag.a{background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3)}
 .tag.b{background:rgba(56,189,248,0.15);color:#38bdf8;border:1px solid rgba(56,189,248,0.3)}
 .tag.g{background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3)}
 .tag.p{background:rgba(168,85,247,0.15);color:#a855f7;border:1px solid rgba(168,85,247,0.3)}
 h1{font-size:48px;font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:14px}
-h2{font-size:32px;font-weight:800;line-height:1.1;letter-spacing:-0.5px;margin-bottom:12px}
-h3{font-size:18px;font-weight:700;margin-bottom:8px}
-p{font-size:15px;line-height:1.7;color:#c9a96e}
+h2{font-size:30px;font-weight:800;line-height:1.1;letter-spacing:-0.5px;margin-bottom:12px}
+h3{font-size:16px;font-weight:700;margin-bottom:7px}
+p{font-size:14px;line-height:1.7;color:#c9a96e}
 .grad{background:linear-gradient(90deg,#ff4500,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.card{background:rgba(15,5,30,0.8);border:1px solid rgba(220,80,0,0.2);border-radius:12px;padding:20px;backdrop-filter:blur(8px)}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;width:100%}
-.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;width:100%}
-.sn{font-size:30px;font-weight:900;margin-bottom:4px}
-.sl{font-size:11px;color:#a07050;font-weight:600;text-transform:uppercase;letter-spacing:1px}
-.ssrc{font-size:10px;color:#5a3a20;margin-top:4px;font-style:italic}
-bq{display:block;border-left:3px solid #ff4500;padding:12px 18px;background:rgba(255,69,0,0.07);border-radius:0 8px 8px 0;font-size:14px;font-style:italic;color:#fff8ee;line-height:1.6;margin:8px 0}
-bq s{display:block;font-size:11px;color:#ff4500;margin-top:6px;font-style:normal;font-weight:700}
+.card{background:rgba(15,5,30,0.85);border:1px solid rgba(220,80,0,0.2);border-radius:12px;padding:18px;backdrop-filter:blur(8px)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:100%}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;width:100%}
+.sn{font-size:28px;font-weight:900;margin-bottom:4px}
+.sl{font-size:10px;color:#a07050;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.src{font-size:10px;color:#4a3010;margin-top:3px;font-style:italic}
+.bq{border-left:3px solid #ff4500;padding:10px 16px;background:rgba(255,69,0,0.07);border-radius:0 8px 8px 0;font-size:13px;font-style:italic;color:#fff8ee;line-height:1.6;margin:7px 0}
+.bqs{display:block;font-size:10px;color:#ff4500;margin-top:5px;font-style:normal;font-weight:700}
 .pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;margin:2px}
 .pr{background:rgba(255,69,0,0.12);color:#ff4500;border:1px solid rgba(255,69,0,0.25)}
 .pa{background:rgba(255,215,0,0.12);color:#ffd700;border:1px solid rgba(255,215,0,0.25)}
@@ -45,175 +45,195 @@ bq s{display:block;font-size:11px;color:#ff4500;margin-top:6px;font-style:normal
 .pg{background:rgba(16,185,129,0.12);color:#10b981;border:1px solid rgba(16,185,129,0.25)}
 .pp{background:rgba(168,85,247,0.12);color:#a855f7;border:1px solid rgba(168,85,247,0.25)}
 table{width:100%;border-collapse:collapse;font-size:12px}
-th{padding:8px 12px;text-align:left;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#a07050;border-bottom:1px solid rgba(255,255,255,0.06)}
-td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#c9a96e;vertical-align:middle}
+th{padding:8px 10px;text-align:left;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#a07050;border-bottom:1px solid rgba(255,255,255,0.06)}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.04);color:#c9a96e;vertical-align:middle}
 tr.hl td{background:rgba(255,69,0,0.08);color:#fff8ee;font-weight:600}
-.ck{color:#10b981;font-size:14px}
-.cx{color:#ef4444;font-size:14px}
-.brow{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.05)}
-.bdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.blab{flex:1;font-size:13px;color:#fff8ee}
-.bevid{font-size:11px;color:#ff4500;margin-top:2px;font-weight:600}
-.bbar{flex:2;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;align-self:center}
+.ck{color:#10b981}.cx{color:#ef4444}
+.brow{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:7px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.05)}
+.bdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.blab{font-size:12px;color:#fff8ee}
+.bevid{font-size:10px;color:#ff4500;margin-top:2px;font-weight:600}
+.bbar{flex:2;height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;align-self:center}
 .bfill{height:100%;border-radius:3px;background:linear-gradient(90deg,#ff4500,#ffd700)}
-.rrow{display:flex;align-items:flex-start;gap:14px;padding:12px 16px;background:rgba(255,255,255,0.03);border-radius:10px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.06)}
-.ricon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.rtitle{font-size:13px;font-weight:700;color:#fff8ee;margin-bottom:3px}
-.rdesc{font-size:12px;color:#c9a96e;line-height:1.5}
-.rmit{font-size:11px;color:#10b981;margin-top:4px;font-weight:600}
-.funrow{padding:12px 20px;margin-bottom:5px;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
-.ptier{border-radius:12px;padding:20px;border:1px solid;margin-bottom:0}
-.barlabel{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;color:#c9a96e}
-.bartrack{height:7px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.rrow{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:rgba(255,255,255,0.03);border-radius:9px;margin-bottom:7px;border:1px solid rgba(255,255,255,0.06)}
+.rtitle{font-size:12px;font-weight:700;color:#fff8ee;margin-bottom:2px}
+.rdesc{font-size:11px;color:#c9a96e;line-height:1.5}
+.rmit{font-size:11px;color:#10b981;margin-top:3px;font-weight:600}
+.barlab{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;color:#c9a96e}
+.bartrack{height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
 .barfill{height:100%;border-radius:3px;transition:width 1.5s ease}
+.ptier{border-radius:10px;padding:14px 16px;border:1px solid;margin-bottom:7px}
+.jrow{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px}
+.jtime{font-size:10px;font-weight:700;min-width:62px}
+.jtext{color:#c9a96e}
+.funrow{border-radius:7px;padding:9px 14px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+.funlabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.fundesc{font-size:11px;color:#c9a96e;margin-top:2px}
+.funval{font-size:14px;font-weight:900;white-space:nowrap;margin-left:10px}
+.metrow{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,0.03);border-radius:6px;margin-bottom:5px;border:1px solid rgba(255,255,255,0.05)}
+.metleft{font-size:12px;color:#fff8ee;font-weight:600}
+.metsub{font-size:10px;color:#7a5c2a}
+.metval{font-size:12px;color:#ffd700;font-weight:700;white-space:nowrap;margin-left:8px}
+.costrow{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px}
+.costlabel{color:#c9a96e}
+.costval{color:#fff8ee;font-weight:600}
+.comprow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.complabel{font-size:12px;color:#fff8ee;font-weight:600}
+.compsub{font-size:10px;color:#7a5c2a;margin-top:1px}
+.compstat{font-size:11px;color:#10b981;font-weight:600}
+.ricerow{display:flex;align-items:center;gap:12px;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:7px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.05)}
+.ricefeat{flex:2;font-size:12px;color:#fff8ee;font-weight:600}
+.ricebar{flex:3;height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.ricefill{height:100%;border-radius:3px}
+.ricesc{font-size:17px;font-weight:900;min-width:44px;text-align:right}
+.lrow{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:#c9a96e}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div class="deck">
 
-<!-- S1: COVER -->
+<!-- S1 COVER -->
 <div class="slide active" id="s1">
   <div style="text-align:center;max-width:780px">
     <div class="tag a">Team Quaffle · Protothon 8.0 Winners · APMC @ Northeastern</div>
     <h1><span class="grad">Luminary</span></h1>
-    <p style="font-size:20px;color:#fff8ee;margin-bottom:10px">Cross-University Research Discovery Platform</p>
-    <p style="font-size:15px;max-width:560px;margin:0 auto 28px">Making institutional research visible, discoverable, and collaborative — without exposing any raw data.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+    <p style="font-size:19px;color:#fff8ee;margin-bottom:10px">Cross-University Research Discovery Platform</p>
+    <p style="font-size:14px;max-width:540px;margin:0 auto 24px">Making institutional research visible, discoverable, and collaborative — without exposing any raw data.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
       <span class="pill pr">Federated Learning</span>
       <span class="pill pa">Quantum QAOA</span>
       <span class="pill pb">Privacy by Architecture</span>
       <span class="pill pg">RAG Semantic Search</span>
     </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <div class="card" style="padding:12px 20px;text-align:center;min-width:120px">
+      <div class="card" style="padding:12px 20px;text-align:center">
         <div style="font-size:20px;font-weight:900;color:#ff4500">🏆 #1</div>
-        <div style="font-size:11px;color:#a07050;margin-top:2px">Protothon 8.0</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">Protothon 8.0</div>
       </div>
-      <div class="card" style="padding:12px 20px;text-align:center;min-width:120px">
+      <div class="card" style="padding:12px 20px;text-align:center">
         <div style="font-size:20px;font-weight:900;color:#ffd700">50</div>
-        <div style="font-size:11px;color:#a07050;margin-top:2px">Teams Competed</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">Teams Competed</div>
       </div>
-      <div class="card" style="padding:12px 20px;text-align:center;min-width:120px">
+      <div class="card" style="padding:12px 20px;text-align:center">
         <div style="font-size:20px;font-weight:900;color:#10b981">2 wks</div>
-        <div style="font-size:11px;color:#a07050;margin-top:2px">Build Time</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">Build Time</div>
       </div>
-      <div class="card" style="padding:12px 20px;text-align:center;min-width:120px">
+      <div class="card" style="padding:12px 20px;text-align:center">
         <div style="font-size:20px;font-weight:900;color:#38bdf8">6</div>
-        <div style="font-size:11px;color:#a07050;margin-top:2px">University Nodes</div>
+        <div style="font-size:10px;color:#a07050;margin-top:2px">University Nodes</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S2: THE PROBLEM -->
+<!-- S2 PROBLEM -->
 <div class="slide" id="s2">
   <div style="width:100%;max-width:980px">
     <div class="tag r">The Problem</div>
     <h2>Three Researchers. Three Wasted Years.</h2>
     <div class="g3">
-      <div class="card" style="border-color:rgba(255,69,0,0.3)">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
-          <div style="width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#ff4500,#ffd700);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0">A</div>
-          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Arjun</div><div style="font-size:11px;color:#a07050">PhD · Northeastern CS</div></div>
+      <div class="card" style="border-color:rgba(255,69,0,0.35)">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+          <div style="width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#ff4500,#ffd700);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0">A</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Arjun</div><div style="font-size:10px;color:#a07050">PhD · Northeastern CS</div></div>
         </div>
-        <p style="font-size:13px;margin-bottom:10px">Spent <strong style="color:#ff4500">4 months</strong> building a federated learning pipeline. Found out a Health Sciences lab two buildings away finished the exact same work 6 months ago.</p>
-        <div style="background:rgba(255,69,0,0.1);border-radius:6px;padding:8px;font-size:12px;color:#ff4500;font-weight:700;text-align:center">4 months of PhD — gone</div>
+        <p style="font-size:12px;margin-bottom:10px">Spent <strong style="color:#ff4500">4 months</strong> building a federated learning pipeline. Found out a Health Sciences lab two buildings away finished the exact same work 6 months ago.</p>
+        <div style="background:rgba(255,69,0,0.1);border-radius:6px;padding:7px;font-size:11px;color:#ff4500;font-weight:700;text-align:center">4 months of PhD — gone</div>
       </div>
-      <div class="card" style="border-color:rgba(56,189,248,0.3)">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
-          <div style="width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#1d6fa4,#38bdf8);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0">P</div>
-          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Priya</div><div style="font-size:11px;color:#a07050">International PhD · F-1 Visa</div></div>
+      <div class="card" style="border-color:rgba(56,189,248,0.35)">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+          <div style="width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#1d6fa4,#38bdf8);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0">P</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Priya</div><div style="font-size:10px;color:#a07050">International PhD · F-1 Visa</div></div>
         </div>
-        <p style="font-size:13px;margin-bottom:10px">Needs IRB-approved genomic datasets. Emailed 12 professors across 4 universities. <strong style="color:#38bdf8">8 weeks later</strong> — still waiting. Thesis deadline moved.</p>
-        <div style="background:rgba(56,189,248,0.1);border-radius:6px;padding:8px;font-size:12px;color:#38bdf8;font-weight:700;text-align:center">8 weeks lost to cold emails</div>
+        <p style="font-size:12px;margin-bottom:10px">Needs IRB-approved genomic datasets. Emailed 12 professors across 4 universities. <strong style="color:#38bdf8">8 weeks later</strong> — still waiting. Thesis deadline moved.</p>
+        <div style="background:rgba(56,189,248,0.1);border-radius:6px;padding:7px;font-size:11px;color:#38bdf8;font-weight:700;text-align:center">8 weeks lost to cold emails</div>
       </div>
-      <div class="card" style="border-color:rgba(16,185,129,0.3)">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
-          <div style="width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0">W</div>
-          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Wei</div><div style="font-size:11px;color:#a07050">First-Gen PhD · MIT</div></div>
+      <div class="card" style="border-color:rgba(16,185,129,0.35)">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+          <div style="width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0">W</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff8ee">Wei</div><div style="font-size:10px;color:#a07050">First-Gen PhD · MIT</div></div>
         </div>
-        <p style="font-size:13px;margin-bottom:10px">Found his perfect collaborator at a conference — same university, different building. <strong style="color:#10b981">2 years</strong> after he could have met them through a simple search.</p>
-        <div style="background:rgba(16,185,129,0.1);border-radius:6px;padding:8px;font-size:12px;color:#10b981;font-weight:700;text-align:center">2 years too late</div>
+        <p style="font-size:12px;margin-bottom:10px">Found his perfect collaborator at a conference — same university, different building. <strong style="color:#10b981">2 years</strong> after he could have met them through a simple search.</p>
+        <div style="background:rgba(16,185,129,0.1);border-radius:6px;padding:7px;font-size:11px;color:#10b981;font-weight:700;text-align:center">2 years too late</div>
       </div>
     </div>
-    <div style="margin-top:14px;padding:14px 20px;background:rgba(255,69,0,0.06);border-radius:10px;border:1px solid rgba(255,69,0,0.15);text-align:center">
-      <p style="font-size:14px;color:#fff8ee">These are not edge cases. <strong style="color:#ffd700">This is the daily reality of every PhD student at every research university.</strong></p>
+    <div style="margin-top:12px;padding:12px 18px;background:rgba(255,69,0,0.06);border-radius:9px;border:1px solid rgba(255,69,0,0.15);text-align:center">
+      <p style="font-size:13px;color:#fff8ee">These are not edge cases. <strong style="color:#ffd700">This is the daily reality of every PhD student at every research university.</strong></p>
     </div>
   </div>
 </div>
 
-<!-- S3: SCALE -->
+<!-- S3 SCALE -->
 <div class="slide" id="s3">
   <div style="width:100%;max-width:980px;text-align:center">
     <div class="tag r">Validated at Scale</div>
     <h2>The Hidden Cost of <span class="grad">Invisible Research</span></h2>
-    <div class="g4" style="margin:20px 0">
-      <div class="card" style="text-align:center;padding:20px 14px">
+    <div class="g4" style="margin:18px 0">
+      <div class="card" style="text-align:center;padding:18px 12px">
         <div class="sn" style="color:#ff4500">$28B</div>
         <div class="sl">Annual duplication cost</div>
-        <div class="ssrc">RAND Corporation, 2016 R&D Inefficiency Study</div>
+        <div class="src">RAND Corporation, 2016 R&D Inefficiency Study</div>
       </div>
-      <div class="card" style="text-align:center;padding:20px 14px">
+      <div class="card" style="text-align:center;padding:18px 12px">
         <div class="sn" style="color:#ffd700">15%</div>
         <div class="sl">Formal collaboration rate</div>
-        <div class="ssrc">Academic Network Studies, peer-reviewed literature</div>
+        <div class="src">Academic Network Studies, peer-reviewed literature</div>
       </div>
-      <div class="card" style="text-align:center;padding:20px 14px">
+      <div class="card" style="text-align:center;padding:18px 12px">
         <div class="sn" style="color:#38bdf8">5.8 yrs</div>
         <div class="sl">Average PhD duration</div>
-        <div class="ssrc">NSF Survey of Earned Doctorates, 2022</div>
+        <div class="src">NSF Survey of Earned Doctorates, 2022</div>
       </div>
-      <div class="card" style="text-align:center;padding:20px 14px">
+      <div class="card" style="text-align:center;padding:18px 12px">
         <div class="sn" style="color:#10b981">&lt;30%</div>
-        <div class="sl">Datasets reused post-publication</div>
-        <div class="ssrc">PLOS ONE reproducibility studies, Open Science literature</div>
+        <div class="sl">Datasets reused post-pub</div>
+        <div class="src">PLOS ONE reproducibility studies</div>
       </div>
     </div>
     <div class="g2">
-      <bq>"The hardest part is figuring out what work already exists. A lot of time is spent searching scattered sources."<s>— PhD Student, Interview #1 · Northeastern University</s></bq>
-      <bq>"We are surrounded by geniuses — but we're all staring at our own screens."<s>— PhD Student, Interview #3 · Validated across all 3 interviews</s></bq>
+      <div class="bq">"The hardest part is figuring out what work already exists. A lot of time is spent searching scattered sources."<span class="bqs">— PhD Student, Interview #1 · Northeastern University</span></div>
+      <div class="bq">"We are surrounded by geniuses — but we're all staring at our own screens."<span class="bqs">— PhD Student, Interview #3 · Confirmed across all 3 interviews</span></div>
     </div>
-    <div style="margin-top:12px;padding:12px 20px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:13px;color:#ffd700">
+    <div style="margin-top:10px;padding:10px 18px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:12px;color:#ffd700">
       Boston alone has 8 world-class research institutions within 5 miles of each other — and zero shared infrastructure connecting their PhD students.
     </div>
   </div>
 </div>
 
-<!-- S4: USER RESEARCH -->
+<!-- S4 USER RESEARCH -->
 <div class="slide" id="s4">
   <div style="width:100%;max-width:980px">
     <div class="tag a">User Research</div>
     <h2>3 Interviews. 5 Failure Modes. Zero Prompting.</h2>
     <div class="g2" style="align-items:start">
       <div>
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Validated Pain Points</div>
-        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div><div class="blab">Duplication of effort is the norm</div><div class="bevid">3/3 users experienced directly · avg 3 months wasted</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
-        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div><div class="blab">Discovery is entirely accidental</div><div class="bevid">3/3 rely solely on word-of-mouth, seminars, chance</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
-        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div><div class="blab">Cross-department data access: 4–12 weeks</div><div class="bevid">3/3 reported significant delays via cold emails + IRB</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
-        <div class="brow"><div class="bdot" style="background:#f97316"></div><div><div class="blab">Cold start problem — dead ends repeat</div><div class="bevid">2/3 · negative results never published</div></div><div class="bbar"><div class="bfill" style="width:67%"></div></div></div>
-        <div class="brow"><div class="bdot" style="background:#f97316"></div><div><div class="blab">Collaboration found 2 years post-publication</div><div class="bevid">2/3 · opportunity cost is enormous</div></div><div class="bbar"><div class="bfill" style="width:67%"></div></div></div>
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Validated Pain Points</div>
+        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div style="flex:1"><div class="blab">Duplication of effort is the norm</div><div class="bevid">3/3 users · avg 3 months wasted per incident</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div style="flex:1"><div class="blab">Discovery is entirely accidental</div><div class="bevid">3/3 users · seminars, hallways, coffee shop conversations</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#ff4500"></div><div style="flex:1"><div class="blab">Cross-department data access: 4–12 weeks</div><div class="bevid">3/3 users · cold emails, IRB amendments, data agreements</div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#f97316"></div><div style="flex:1"><div class="blab">Cold start — dead ends repeat every semester</div><div class="bevid">2/3 users · negative results never published</div></div><div class="bbar"><div class="bfill" style="width:67%"></div></div></div>
+        <div class="brow"><div class="bdot" style="background:#f97316"></div><div style="flex:1"><div class="blab">Collaboration found 2 years post-publication</div><div class="bevid">2/3 users · opportunity cost enormous</div></div><div class="bbar"><div class="bfill" style="width:67%"></div></div></div>
       </div>
       <div>
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Interview Methodology</div>
-        <div class="card" style="margin-bottom:10px">
-          <div style="font-size:13px;color:#fff8ee;font-weight:600;margin-bottom:6px">3 open-ended interviews · 7 questions each</div>
-          <p style="font-size:12px">Themes: Discovery & Duplication · Data Access · Frustration Moments. All 3 users independently confirmed the same failure modes without any leading questions.</p>
+        <div class="card" style="margin-bottom:10px;padding:14px 16px">
+          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:6px">Methodology · 3 open-ended interviews · 7 questions each</div>
+          <p style="font-size:12px">Themes: Discovery and Duplication · Data Access · Frustration Moments. All 3 users independently confirmed the same failure modes without leading questions.</p>
         </div>
-        <bq>"Projects die on the vine because the administrative friction of moving data across departments is higher than the value of the research itself."<s>— PhD Student, Interview #3</s></bq>
-        <bq>"If I had known they were working on that algorithm last year, my methodology would have been 10x stronger."<s>— PhD Student, Interview #3</s></bq>
+        <div class="bq">"Projects die on the vine because the administrative friction of moving data across departments is higher than the value of the research itself."<span class="bqs">— PhD Student, Interview #3</span></div>
+        <div class="bq" style="margin-top:8px">"If I had known they were working on that algorithm last year, my methodology would have been 10x stronger."<span class="bqs">— PhD Student, Interview #3</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S5: COMPETITIVE -->
+<!-- S5 COMPETITIVE -->
 <div class="slide" id="s5">
   <div style="width:100%;max-width:1000px">
     <div class="tag r">Competitive Analysis</div>
     <h2>Why Everything Else Fails</h2>
-    <table style="margin-top:12px">
-      <thead><tr><th>Solution</th><th>In-Progress Research</th><th>Cross-University</th><th>Semantic Search</th><th>Privacy Compliant</th><th>Collaboration Score</th><th>Dataset Discovery</th></tr></thead>
+    <table style="margin-top:10px">
+      <thead><tr><th>Solution</th><th>In-Progress Research</th><th>Cross-University</th><th>Semantic Search</th><th>Privacy Compliant</th><th>Collab Score</th><th>Dataset Discovery</th></tr></thead>
       <tbody>
         <tr><td>Google Scholar</td><td><span class="cx">✗</span></td><td><span class="ck">✓</span> Published only</td><td><span class="cx">✗</span> Keyword</td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
         <tr><td>ResearchGate</td><td><span class="cx">✗</span></td><td><span class="ck">✓</span></td><td><span class="cx">✗</span> Self-reported</td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
@@ -223,477 +243,533 @@ tr.hl td{background:rgba(255,69,0,0.08);color:#fff8ee;font-weight:600}
         <tr class="hl"><td>✦ Luminary</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span> Semantic + FL</td><td><span class="ck">✓</span> By architecture</td><td><span class="ck">✓</span> QAOA</td><td><span class="ck">✓</span></td></tr>
       </tbody>
     </table>
-    <div style="margin-top:12px;padding:12px 20px;background:rgba(255,215,0,0.07);border-radius:8px;border:1px solid rgba(255,215,0,0.2);font-size:13px;color:#ffd700;text-align:center">
+    <div style="margin-top:12px;padding:11px 18px;background:rgba(255,215,0,0.07);border-radius:8px;border:1px solid rgba(255,215,0,0.2);font-size:12px;color:#ffd700;text-align:center">
       The gap: no existing solution discovers in-progress, cross-university research while keeping raw data private. Every competitor either violates privacy to get comprehensiveness — or sacrifices comprehensiveness to stay compliant. Luminary eliminates the tradeoff.
     </div>
   </div>
 </div>
 
-<!-- S6: SOLUTION -->
+<!-- S6 SOLUTION -->
 <div class="slide" id="s6">
   <div style="width:100%;max-width:980px;text-align:center">
     <div class="tag g">The Solution</div>
     <h2><span class="grad">Luminary</span> — One Feature. Done Right.</h2>
-    <p style="font-size:16px;color:#fff8ee;max-width:640px;margin:0 auto 24px">Describe your research. Find who to collaborate with. Right now — not 2 years from now.</p>
-    <div class="g3" style="margin-bottom:16px">
+    <p style="font-size:15px;color:#fff8ee;max-width:620px;margin:0 auto 20px">Describe your research. Find who to collaborate with. Right now — not 2 years from now.</p>
+    <div class="g3" style="margin-bottom:14px">
       <div class="card" style="text-align:left;border-color:rgba(255,69,0,0.3)">
-        <div style="font-size:24px;margin-bottom:10px">🔍</div>
-        <h3 style="font-size:15px;color:#ff4500;margin-bottom:6px">Semantic Discovery</h3>
-        <p style="font-size:13px">Search by methodology or plain English across every connected university simultaneously. No portal hopping. No cold emails.</p>
+        <div style="font-size:22px;margin-bottom:8px">🔍</div>
+        <h3 style="color:#ff4500">Semantic Discovery</h3>
+        <p style="font-size:12px">Search by methodology or plain English across every connected university simultaneously. No portal hopping. No cold emails.</p>
       </div>
       <div class="card" style="text-align:left;border-color:rgba(255,215,0,0.3)">
-        <div style="font-size:24px;margin-bottom:10px">⚛️</div>
-        <h3 style="font-size:15px;color:#ffd700;margin-bottom:6px">QAOA Collaboration Score</h3>
-        <p style="font-size:13px">Finds who is <em>complementary</em> — not just similar. Penalises duplication. Rewards the match that accelerates your research.</p>
+        <div style="font-size:22px;margin-bottom:8px">⚛️</div>
+        <h3 style="color:#ffd700">QAOA Collaboration Score</h3>
+        <p style="font-size:12px">Finds who is complementary — not just similar. Penalises duplication. Rewards the match that accelerates your research timeline.</p>
       </div>
       <div class="card" style="text-align:left;border-color:rgba(16,185,129,0.3)">
-        <div style="font-size:24px;margin-bottom:10px">🔒</div>
-        <h3 style="font-size:15px;color:#10b981;margin-bottom:6px">Privacy by Architecture</h3>
-        <p style="font-size:13px">Federated learning across university nodes. Raw data never leaves the institution. FERPA and IRB compliant by design — not by policy.</p>
+        <div style="font-size:22px;margin-bottom:8px">🔒</div>
+        <h3 style="color:#10b981">Privacy by Architecture</h3>
+        <p style="font-size:12px">Federated learning across university nodes. Raw data never leaves the institution. FERPA and IRB compliant by design — not by policy.</p>
       </div>
     </div>
-    <div class="card" style="padding:16px 24px;border-color:rgba(255,215,0,0.25);text-align:left">
-      <div style="display:flex;gap:16px;align-items:center">
-        <div style="flex:1">
-          <div style="font-size:11px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">The Core Insight</div>
-          <p style="font-size:14px;color:#fff8ee">RAG finds researchers most <em>similar</em> to your query. QAOA finds researchers most <em>complementary</em> to your work. Similarity and complementarity are fundamentally different — and only complementarity drives great collaboration.</p>
+    <div class="card" style="padding:14px 20px;border-color:rgba(255,215,0,0.25);text-align:left">
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:280px">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">The Core Insight</div>
+          <p style="font-size:13px;color:#fff8ee">RAG finds researchers most <em>similar</em> to your query. QAOA finds researchers most <em>complementary</em> to your work. Similarity and complementarity are fundamentally different — only complementarity drives great collaboration.</p>
         </div>
-        <div style="text-align:center;padding:16px 24px;background:rgba(255,215,0,0.08);border-radius:10px;border:1px solid rgba(255,215,0,0.2);flex-shrink:0">
-          <div style="font-size:11px;color:#ffd700;font-weight:700;margin-bottom:4px">North Star Metric</div>
-          <div style="font-size:20px;font-weight:900;color:#fff8ee">Collaboration requests<br>sent per month</div>
+        <div style="text-align:center;padding:14px 20px;background:rgba(255,215,0,0.08);border-radius:9px;border:1px solid rgba(255,215,0,0.2);flex-shrink:0">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:4px">North Star Metric</div>
+          <div style="font-size:16px;font-weight:800;color:#fff8ee">Collaboration requests<br>sent per month</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S7: USER JOURNEY -->
+<!-- S7 USER JOURNEY -->
 <div class="slide" id="s7">
   <div style="width:100%;max-width:980px">
     <div class="tag a">User Journey</div>
-    <h2>Arjun's Experience — Before vs After</h2>
-    <div style="display:flex;gap:16px;margin-top:14px">
-      <div style="flex:1;padding:18px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px">
-        <div style="font-size:12px;font-weight:700;color:#ef4444;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px">❌ Before Luminary</div>
-        ${[["Week 1–2","Searches Google Scholar — only published papers, 2yr lag"],["Week 3–4","Emails 8 professors — most don't reply"],["Week 5–8","Waits for IRB approvals and data agreements"],["Week 9–12","Manually checks 6 different portals"],["Week 13–16","Accidentally meets collaborator at a seminar"],["Month 4+","Discovers duplication — restarts project"]].map(([w,t])=>`<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px"><span style="color:#ef4444;font-size:10px;font-weight:700;min-width:64px">${w}</span><span style="color:#c9a96e">${t}</span></div>`).join('')}
+    <h2>Arjun — Before vs After Luminary</h2>
+    <div style="display:flex;gap:14px;margin-top:12px">
+      <div style="flex:1;padding:16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:11px">
+        <div style="font-size:11px;font-weight:700;color:#ef4444;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">❌ Before Luminary</div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 1–2</span><span class="jtext">Searches Google Scholar — only published papers, 2yr lag</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 3–4</span><span class="jtext">Emails 8 professors — most don't reply</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 5–8</span><span class="jtext">Waits for IRB approvals and data agreements</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 9–12</span><span class="jtext">Manually checks 6 different university portals</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Week 13–16</span><span class="jtext">Accidentally meets collaborator at a seminar</span></div>
+        <div class="jrow"><span class="jtime" style="color:#ef4444">Month 4+</span><span class="jtext">Discovers duplication — restarts project entirely</span></div>
       </div>
-      <div style="display:flex;align-items:center;font-size:22px;color:#ffd700;flex-shrink:0">→</div>
-      <div style="flex:1;padding:18px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:12px">
-        <div style="font-size:12px;font-weight:700;color:#10b981;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px">✅ With Luminary</div>
-        ${[["Minute 1","Opens Luminary — types research in plain English"],["Minute 2","Sees 8 ranked researchers across 6 universities"],["Minute 3","Reviews QAOA collaboration scores — finds 91% match"],["Minute 4","Sees dataset compatibility — IRB already approved"],["Minute 5","Sends collaboration request directly"],["Day 1","Collaboration confirmed — zero duplication risk"]].map(([w,t])=>`<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px"><span style="color:#10b981;font-size:10px;font-weight:700;min-width:64px">${w}</span><span style="color:#c9a96e">${t}</span></div>`).join('')}
+      <div style="display:flex;align-items:center;font-size:20px;color:#ffd700;flex-shrink:0">→</div>
+      <div style="flex:1;padding:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:11px">
+        <div style="font-size:11px;font-weight:700;color:#10b981;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">✅ With Luminary</div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 1</span><span class="jtext">Opens Luminary — types research in plain English</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 2</span><span class="jtext">Sees 8 ranked researchers across 6 universities</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 3</span><span class="jtext">Reviews QAOA scores — finds 91% complementarity match</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 4</span><span class="jtext">Sees dataset compatibility — IRB already approved</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Minute 5</span><span class="jtext">Sends collaboration request directly</span></div>
+        <div class="jrow"><span class="jtime" style="color:#10b981">Day 1</span><span class="jtext">Collaboration confirmed — zero duplication risk</span></div>
       </div>
     </div>
-    <div style="margin-top:12px;display:flex;gap:12px">
-      <div class="card" style="flex:1;text-align:center;padding:12px;border-color:rgba(255,69,0,0.3)"><div style="font-size:22px;font-weight:900;color:#ff4500">4 months</div><div style="font-size:11px;color:#a07050">Old time to collaborate</div></div>
-      <div class="card" style="flex:1;text-align:center;padding:12px;border-color:rgba(255,215,0,0.3)"><div style="font-size:22px;font-weight:900;color:#ffd700">5 minutes</div><div style="font-size:11px;color:#a07050">New time to collaborate</div></div>
-      <div class="card" style="flex:1;text-align:center;padding:12px;border-color:rgba(16,185,129,0.3)"><div style="font-size:22px;font-weight:900;color:#10b981">99.9%</div><div style="font-size:11px;color:#a07050">Reduction in discovery time</div></div>
+    <div style="margin-top:12px;display:flex;gap:10px">
+      <div class="card" style="flex:1;text-align:center;padding:10px;border-color:rgba(255,69,0,0.3)"><div style="font-size:20px;font-weight:900;color:#ff4500">4 months</div><div style="font-size:10px;color:#a07050">Old time to collaborate</div></div>
+      <div class="card" style="flex:1;text-align:center;padding:10px;border-color:rgba(255,215,0,0.3)"><div style="font-size:20px;font-weight:900;color:#ffd700">5 minutes</div><div style="font-size:10px;color:#a07050">New time to collaborate</div></div>
+      <div class="card" style="flex:1;text-align:center;padding:10px;border-color:rgba(16,185,129,0.3)"><div style="font-size:20px;font-weight:900;color:#10b981">99.9%</div><div style="font-size:10px;color:#a07050">Reduction in discovery time</div></div>
     </div>
   </div>
 </div>
 
-<!-- S8: TECHNICAL -->
+<!-- S8 TECHNICAL -->
 <div class="slide" id="s8">
   <div style="width:100%;max-width:980px">
     <div class="tag b">Technical Architecture</div>
     <h2>3-Layer Federated Intelligence System</h2>
-    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
-      <div class="card" style="border-color:rgba(255,69,0,0.3);border-left:3px solid #ff4500;padding:14px 18px">
-        <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Layer 3 · University Systems</div>
-        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:#c9a96e">
-          <span class="pill pr">SharePoint</span><span class="pill pr">COEUS/InfoEd</span><span class="pill pr">Ex Libris</span><span class="pill pr">Dept. Databases</span>
-          <span style="color:#a07050;margin-left:8px">Raw data stays here. Always.</span>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px">
+      <div class="card" style="border-left:3px solid #ff4500;border-color:rgba(255,69,0,0.3);padding:12px 16px">
+        <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:7px">Layer 3 · University Systems — Raw data stays here. Always.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="pill pr">SharePoint</span><span class="pill pr">COEUS / InfoEd</span><span class="pill pr">Ex Libris Library</span><span class="pill pr">Dept. Databases</span><span style="font-size:12px;color:#7a5c2a;align-self:center;margin-left:6px">6 universities connected · encrypted at source</span>
         </div>
       </div>
-      <div style="text-align:center;font-size:12px;color:#a07050">↓ Quantum encoding at source · Only .npz encrypted files travel</div>
-      <div class="card" style="border-color:rgba(255,215,0,0.3);border-left:3px solid #ffd700;padding:14px 18px">
-        <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Layer 2 · Processing & Encoding Pipeline</div>
-        <div style="display:flex;gap:16px;align-items:center;font-size:13px">
-          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:10px;text-align:center"><div style="font-size:16px;margin-bottom:4px">⚛️</div><div style="font-size:12px;color:#ffd700;font-weight:700">Quantum Encryption</div><div style="font-size:11px;color:#a07050">WHT + Phase Encoding + CNOT</div></div>
+      <div style="text-align:center;font-size:11px;color:#7a5c2a">↓ Quantum encoding at source · Only .npz encrypted files travel</div>
+      <div class="card" style="border-left:3px solid #ffd700;border-color:rgba(255,215,0,0.3);padding:12px 16px">
+        <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:9px">Layer 2 · Processing and Encoding Pipeline</div>
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:9px;text-align:center"><div style="font-size:14px;margin-bottom:3px">⚛️</div><div style="font-size:11px;color:#ffd700;font-weight:700">Quantum Encryption</div><div style="font-size:10px;color:#a07050">WHT + Phase Encoding + CNOT</div></div>
           <div style="color:#a07050">+</div>
-          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:10px;text-align:center"><div style="font-size:16px;margin-bottom:4px">🧠</div><div style="font-size:12px;color:#ffd700;font-weight:700">Federated Learning</div><div style="font-size:11px;color:#a07050">RF + GB + Ridge · FedAvg · R²=0.85</div></div>
+          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:9px;text-align:center"><div style="font-size:14px;margin-bottom:3px">🧠</div><div style="font-size:11px;color:#ffd700;font-weight:700">Federated Learning</div><div style="font-size:10px;color:#a07050">RF + GB + Ridge · FedAvg · R²=0.85</div></div>
           <div style="color:#a07050">→</div>
-          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:10px;text-align:center"><div style="font-size:16px;margin-bottom:4px">📦</div><div style="font-size:12px;color:#ffd700;font-weight:700">Encoded Artifacts</div><div style="font-size:11px;color:#a07050">Model weights + encrypted embeddings</div></div>
+          <div style="flex:1;background:rgba(255,215,0,0.08);border-radius:8px;padding:9px;text-align:center"><div style="font-size:14px;margin-bottom:3px">📦</div><div style="font-size:11px;color:#ffd700;font-weight:700">Encoded Artifacts</div><div style="font-size:10px;color:#a07050">Model weights + encrypted embeddings</div></div>
         </div>
       </div>
-      <div style="text-align:center;font-size:12px;color:#a07050">↓ Only intelligence travels · Zero raw data centralised</div>
-      <div class="card" style="border-color:rgba(56,189,248,0.3);border-left:3px solid #38bdf8;padding:14px 18px">
-        <div style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Layer 1 · Centralised Intelligence System</div>
-        <div style="display:flex;gap:10px;align-items:center;font-size:13px">
-          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:8px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">RAG Search</div><div style="font-size:10px;color:#a07050">SciBERT · Cosine similarity</div></div>
-          <div style="color:#38bdf8">→</div>
-          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:8px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">FL Scoring</div><div style="font-size:10px;color:#a07050">Ensemble · 40% weight</div></div>
-          <div style="color:#38bdf8">→</div>
-          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:8px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">QAOA Optimizer</div><div style="font-size:10px;color:#a07050">4-variable · 60% weight</div></div>
-          <div style="color:#38bdf8">→</div>
-          <div style="flex:1;background:rgba(16,185,129,0.08);border-radius:8px;padding:8px;text-align:center;border:1px solid rgba(16,185,129,0.2)"><div style="font-size:11px;color:#10b981;font-weight:700">Ranked Results</div><div style="font-size:10px;color:#a07050">Collaboration score</div></div>
+      <div style="text-align:center;font-size:11px;color:#7a5c2a">↓ Only intelligence travels · Zero raw data centralised</div>
+      <div class="card" style="border-left:3px solid #38bdf8;border-color:rgba(56,189,248,0.3);padding:12px 16px">
+        <div style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:9px">Layer 1 · Centralised Intelligence System</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:7px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">RAG Search</div><div style="font-size:10px;color:#a07050">SciBERT · Cosine similarity</div></div>
+          <div style="color:#38bdf8;font-size:14px">→</div>
+          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:7px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">FL Ensemble Score</div><div style="font-size:10px;color:#a07050">40% weight · R²=0.85</div></div>
+          <div style="color:#38bdf8;font-size:14px">→</div>
+          <div style="flex:1;background:rgba(56,189,248,0.08);border-radius:7px;padding:8px;text-align:center"><div style="font-size:11px;color:#38bdf8;font-weight:700">QAOA Optimizer</div><div style="font-size:10px;color:#a07050">4-variable · 60% weight</div></div>
+          <div style="color:#38bdf8;font-size:14px">→</div>
+          <div style="flex:1;background:rgba(16,185,129,0.08);border-radius:7px;padding:8px;text-align:center;border:1px solid rgba(16,185,129,0.2)"><div style="font-size:11px;color:#10b981;font-weight:700">Ranked Results</div><div style="font-size:10px;color:#a07050">Collaboration score</div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S9: PRIVACY -->
+<!-- S9 PRIVACY -->
 <div class="slide" id="s9">
   <div style="width:100%;max-width:980px">
-    <div class="tag g">Privacy & Compliance</div>
+    <div class="tag g">Privacy and Compliance</div>
     <h2>"Your data never moves. <span class="grad">The intelligence does.</span>"</h2>
-    <div class="g3" style="margin-top:16px">
+    <div class="g3" style="margin-top:14px">
       <div class="card" style="border-color:rgba(16,185,129,0.3)">
-        <div style="font-size:22px;margin-bottom:10px">🔒</div>
-        <h3 style="font-size:14px;color:#10b981;margin-bottom:8px">FERPA Compliant by Design</h3>
-        <p style="font-size:12px">No raw student or research data ever leaves the university's servers. Compliance is architectural — violation is structurally impossible, not just policy.</p>
+        <div style="font-size:20px;margin-bottom:8px">🔒</div>
+        <h3 style="color:#10b981;font-size:13px">FERPA Compliant by Design</h3>
+        <p style="font-size:12px">No raw student or research data leaves university servers. Compliance is architectural — violation is structurally impossible, not just policy.</p>
       </div>
       <div class="card" style="border-color:rgba(56,189,248,0.3)">
-        <div style="font-size:22px;margin-bottom:10px">🏥</div>
-        <h3 style="font-size:14px;color:#38bdf8;margin-bottom:8px">IRB Friendly</h3>
+        <div style="font-size:20px;margin-bottom:8px">🏥</div>
+        <h3 style="color:#38bdf8;font-size:13px">IRB Friendly</h3>
         <p style="font-size:12px">No cross-institutional data transfer means no IRB amendment required for discovery. Each university retains full control of its research records.</p>
       </div>
       <div class="card" style="border-color:rgba(255,215,0,0.3)">
-        <div style="font-size:22px;margin-bottom:10px">⚛️</div>
-        <h3 style="font-size:14px;color:#ffd700;margin-bottom:8px">Quantum Encryption</h3>
-        <p style="font-size:12px">Walsh-Hadamard Transform + Phase Encoding + CNOT entanglement. Lossless, reversible encoding that makes raw data unreadable without the university's private key.</p>
+        <div style="font-size:20px;margin-bottom:8px">⚛️</div>
+        <h3 style="color:#ffd700;font-size:13px">Quantum Encryption</h3>
+        <p style="font-size:12px">Walsh-Hadamard Transform + Phase Encoding + CNOT entanglement. Lossless encoding that makes raw data unreadable without the university's private key.</p>
       </div>
     </div>
-    <div class="g2" style="margin-top:14px">
-      <div class="card" style="padding:14px 18px">
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">What travels to Luminary</div>
-        ${[["✅","Encrypted model weights (not raw data)"],["✅","Research embeddings (not actual abstracts)"],["✅","Collaboration scores (not researcher records)"],["❌","Raw research documents — never"],["❌","Student personal data — never"],["❌","IRB-protected datasets — never"]].map(([i,t])=>`<div style="display:flex;gap:8px;padding:5px 0;font-size:12px;color:#c9a96e;border-bottom:1px solid rgba(255,255,255,0.04)"><span>${i}</span><span>${t}</span></div>`).join('')}
+    <div class="g2" style="margin-top:12px">
+      <div class="card" style="padding:14px 16px">
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">What travels to Luminary</div>
+        <div class="lrow"><span style="color:#10b981">✅</span><span>Encrypted model weights — not raw data</span></div>
+        <div class="lrow"><span style="color:#10b981">✅</span><span>Research embeddings — not actual abstracts</span></div>
+        <div class="lrow"><span style="color:#10b981">✅</span><span>Collaboration scores — not researcher records</span></div>
+        <div class="lrow"><span style="color:#ef4444">❌</span><span>Raw research documents — never</span></div>
+        <div class="lrow"><span style="color:#ef4444">❌</span><span>Student personal data — never</span></div>
+        <div class="lrow"><span style="color:#ef4444">❌</span><span>IRB-protected datasets — never</span></div>
       </div>
-      <div class="card" style="padding:14px 18px">
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Compliance Framework</div>
-        ${[["FERPA","Family Educational Rights & Privacy Act","✅ Compliant by architecture"],["IRB","Institutional Review Board protocols","✅ No cross-transfer required"],["HIPAA","For health research institutions","✅ Ready — no PHI centralised"],["GDPR","For EU university partners","⚙️ Planned for Phase 3"]].map(([n,d,s])=>`<div style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04)"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:#fff8ee;font-weight:600">${n}</span><span style="color:#10b981;font-size:11px">${s}</span></div><div style="font-size:11px;color:#7a5c2a;margin-top:1px">${d}</div></div>`).join('')}
+      <div class="card" style="padding:14px 16px">
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Compliance Framework</div>
+        <div class="comprow"><div><div class="complabel">FERPA</div><div class="compsub">Family Educational Rights and Privacy Act</div></div><div class="compstat">✅ Compliant by architecture</div></div>
+        <div class="comprow"><div><div class="complabel">IRB</div><div class="compsub">Institutional Review Board protocols</div></div><div class="compstat">✅ No cross-transfer required</div></div>
+        <div class="comprow"><div><div class="complabel">HIPAA</div><div class="compsub">For health research institutions</div></div><div class="compstat">✅ Ready — no PHI centralised</div></div>
+        <div class="comprow"><div><div class="complabel">GDPR</div><div class="compsub">For EU university partners</div></div><div class="compstat" style="color:#ffd700">⚙️ Planned Phase 3</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S10: FL PERFORMANCE -->
+<!-- S10 FL PERFORMANCE -->
 <div class="slide" id="s10">
   <div style="width:100%;max-width:980px">
     <div class="tag g">Technical Proof</div>
     <h2>Federated Learning Results — <span class="grad">R² = 0.85</span></h2>
     <div class="g2" style="align-items:center">
+      <canvas id="flChart" height="260"></canvas>
       <div>
-        <canvas id="flChart" height="260"></canvas>
-      </div>
-      <div>
-        <p style="font-size:14px;margin-bottom:14px">3 models trained across <strong style="color:#ffd700">6 university nodes</strong> using FedAvg (McMahan et al. 2017). 56 researcher pairs. 24 features. Raw data never left any node.</p>
-        ${[["Gradient Boosting (Federated)","85%","#10b981"],["Ensemble (RF + GB + Ridge)","80%","#ffd700"],["Random Forest (Federated)","60%","#38bdf8"],["Ridge Regression (Federated)","57%","#a07050"]].map(([l,v,c])=>`<div style="margin-bottom:12px"><div class="barlabel"><span>${l}</span><span style="color:${c}">R² = ${v}</span></div><div class="bartrack"><div class="barfill" style="width:${v};background:${c}"></div></div></div>`).join('')}
-        <div style="margin-top:12px;padding:10px 14px;background:rgba(16,185,129,0.08);border-radius:8px;border:1px solid rgba(16,185,129,0.2);font-size:12px;color:#10b981">
-          MAE = 0.018 · predictions accurate within 1.8 percentage points · Optimal ensemble: RF=10% GB=70% Ridge=20%
-        </div>
-        <div style="margin-top:8px;padding:10px 14px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:12px;color:#ffd700">
-          Note: Trained on 8-researcher prototype dataset. R² improves significantly with more university nodes and researcher pairs at scale.
-        </div>
+        <p style="font-size:13px;margin-bottom:12px">3 models trained across <strong style="color:#ffd700">6 university nodes</strong> using FedAvg (McMahan et al. 2017). 56 researcher pairs. 24 features per pair. Raw data never left any node.</p>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Gradient Boosting (Federated)</span><span style="color:#10b981">R² = 0.85</span></div><div class="bartrack"><div class="barfill" style="width:85%;background:#10b981"></div></div></div>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Ensemble (RF + GB + Ridge)</span><span style="color:#ffd700">R² = 0.80</span></div><div class="bartrack"><div class="barfill" style="width:80%;background:#ffd700"></div></div></div>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Random Forest (Federated)</span><span style="color:#38bdf8">R² = 0.60</span></div><div class="bartrack"><div class="barfill" style="width:60%;background:#38bdf8"></div></div></div>
+        <div style="margin-bottom:11px"><div class="barlab"><span>Ridge Regression (Federated)</span><span style="color:#a07050">R² = 0.57</span></div><div class="bartrack"><div class="barfill" style="width:57%;background:#a07050"></div></div></div>
+        <div style="padding:10px 14px;background:rgba(16,185,129,0.08);border-radius:8px;border:1px solid rgba(16,185,129,0.2);font-size:12px;color:#10b981;margin-top:4px">MAE = 0.018 · predictions accurate within 1.8 percentage points · Optimal: RF=10% GB=70% Ridge=20%</div>
+        <div style="padding:10px 14px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:11px;color:#7a5c2a;margin-top:7px">Note: Trained on 8-researcher prototype dataset. R² improves significantly at scale with more university nodes.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S11: MARKET -->
+<!-- S11 MARKET -->
 <div class="slide" id="s11">
   <div style="width:100%;max-width:980px">
     <div class="tag b">Market Analysis</div>
-    <h2>A <span class="grad">$50M Realistic</span> Addressable Market</h2>
+    <h2>A <span class="grad">$50M Realistic</span> Serviceable Market</h2>
     <div class="g2" style="align-items:center">
       <canvas id="mktChart" height="260"></canvas>
       <div>
-        <div class="card" style="margin-bottom:10px;border-color:rgba(255,69,0,0.3);padding:14px 18px">
-          <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">TAM · Research Collaboration Software Market</div>
-          <div style="font-size:26px;font-weight:900;color:#ff4500">$2.1B</div>
-          <p style="font-size:11px;margin-top:3px">Broader research intelligence + collaboration tools market · IDC, 2023</p>
+        <div class="card" style="margin-bottom:9px;border-color:rgba(255,69,0,0.3);padding:13px 16px">
+          <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">TAM · Research Collaboration Software Market</div>
+          <div style="font-size:24px;font-weight:900;color:#ff4500">$2.1B</div>
+          <p style="font-size:11px;margin-top:2px">Broader research intelligence and collaboration tools market · IDC, 2023</p>
         </div>
-        <div class="card" style="margin-bottom:10px;border-color:rgba(255,215,0,0.3);padding:14px 18px">
-          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">SAM · R1 Universities US + Global Equivalents</div>
-          <div style="font-size:26px;font-weight:900;color:#ffd700">$50M</div>
-          <p style="font-size:11px;margin-top:3px">~500 R1-equivalent universities globally × $100k avg license · Conservative estimate</p>
+        <div class="card" style="margin-bottom:9px;border-color:rgba(255,215,0,0.3);padding:13px 16px">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">SAM · R1 Universities US + Global Equivalents</div>
+          <div style="font-size:24px;font-weight:900;color:#ffd700">$50M</div>
+          <p style="font-size:11px;margin-top:2px">~500 R1-equivalent universities globally × $100k avg license · Conservative estimate · 146 R1 US alone = $14.6M ceiling</p>
         </div>
-        <div class="card" style="border-color:rgba(16,185,129,0.3);padding:14px 18px">
-          <div style="font-size:10px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">SOM · Boston Cluster Year 1</div>
-          <div style="font-size:26px;font-weight:900;color:#10b981">$2M ARR</div>
-          <p style="font-size:11px;margin-top:3px">10 Boston-area universities × $100k–$200k SaaS/yr · 8 world-class institutions within 5 miles</p>
+        <div class="card" style="border-color:rgba(16,185,129,0.3);padding:13px 16px">
+          <div style="font-size:10px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">SOM · Boston Cluster Year 1</div>
+          <div style="font-size:24px;font-weight:900;color:#10b981">$2M ARR</div>
+          <p style="font-size:11px;margin-top:2px">10 Boston-area universities × $100k–$200k SaaS/yr · 8 world-class institutions within 5 miles of each other</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S12: BUSINESS MODEL -->
+<!-- S12 BUSINESS MODEL -->
 <div class="slide" id="s12">
   <div style="width:100%;max-width:980px">
     <div class="tag a">Business Model</div>
-    <h2>Pricing, Revenue & Cost Structure</h2>
+    <h2>Pricing, Revenue and Cost Structure</h2>
     <div class="g2" style="align-items:start">
       <div>
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Pricing Tiers</div>
-        <div class="ptier" style="border-color:rgba(255,69,0,0.3);background:rgba(255,69,0,0.06);margin-bottom:8px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px">Pricing Tiers</div>
+        <div class="ptier" style="border-color:rgba(255,69,0,0.3);background:rgba(255,69,0,0.05)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
             <div style="font-size:13px;font-weight:700;color:#ff4500">Tier 1 — Department Pilot</div>
-            <div style="font-size:18px;font-weight:900;color:#ff4500">$25k/yr</div>
+            <div style="font-size:17px;font-weight:900;color:#ff4500">$25k/yr</div>
           </div>
-          <p style="font-size:12px">1 department · 3 internal systems · removes procurement barrier · faculty champion driven</p>
+          <p style="font-size:12px">1 department · 3 internal systems · removes procurement barrier · faculty champion driven · free pilot option available</p>
         </div>
-        <div class="ptier" style="border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.06);margin-bottom:8px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div class="ptier" style="border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.05)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
             <div style="font-size:13px;font-weight:700;color:#ffd700">Tier 2 — University License</div>
-            <div style="font-size:18px;font-weight:900;color:#ffd700">$100–150k/yr</div>
+            <div style="font-size:17px;font-weight:900;color:#ffd700">$100–150k/yr</div>
           </div>
-          <p style="font-size:12px">Full institution · all departments · cross-university discovery · Research VP / Provost buyer</p>
+          <p style="font-size:12px">Full institution · all departments · cross-university discovery · Research VP or Provost is the economic buyer</p>
         </div>
-        <div class="ptier" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div class="ptier" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.05)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
             <div style="font-size:13px;font-weight:700;color:#10b981">Tier 3 — Network License</div>
-            <div style="font-size:18px;font-weight:900;color:#10b981">$200k+/yr</div>
+            <div style="font-size:17px;font-weight:900;color:#10b981">$200k+/yr</div>
           </div>
-          <p style="font-size:12px">Multi-university federated node · cross-institution discovery · network effect access</p>
+          <p style="font-size:12px">Multi-university federated node · cross-institution discovery · full network effect access · consortium pricing available</p>
         </div>
       </div>
       <div>
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Cost Structure & Unit Economics</div>
-        <div class="card" style="margin-bottom:10px;padding:14px 18px">
-          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:8px">Year 1 Infrastructure (per university)</div>
-          ${[["Cloud hosting (backend)","$2,400–6,000/yr"],["Database storage","$1,200/yr"],["Total infra per university","~$5,000/yr"]].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px"><span style="color:#c9a96e">${l}</span><span style="color:#fff8ee;font-weight:600">${v}</span></div>`).join('')}
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px">Cost Structure and Unit Economics</div>
+        <div class="card" style="margin-bottom:9px;padding:13px 16px">
+          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:7px">Year 1 Infrastructure (per university)</div>
+          <div class="costrow"><span class="costlabel">Cloud hosting (backend)</span><span class="costval">$2,400–6,000/yr</span></div>
+          <div class="costrow"><span class="costlabel">Database storage</span><span class="costval">$1,200/yr</span></div>
+          <div class="costrow"><span class="costlabel">Total infra per university</span><span class="costval" style="color:#10b981">~$5,000/yr</span></div>
         </div>
-        <div class="card" style="padding:14px 18px">
-          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:8px">Unit Economics (Tier 2)</div>
-          ${[["Revenue per university","$100,000/yr"],["Infrastructure cost","$5,000/yr"],["Gross margin","~95%"],["Payback period","Immediate — SaaS upfront"]].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px"><span style="color:#c9a96e">${l}</span><span style="color:#10b981;font-weight:700">${v}</span></div>`).join('')}
-          <div style="margin-top:10px;padding:8px;background:rgba(16,185,129,0.08);border-radius:6px;font-size:12px;color:#10b981;text-align:center;font-weight:700">Software business · 95% gross margin · scales with zero marginal cost</div>
+        <div class="card" style="padding:13px 16px">
+          <div style="font-size:12px;color:#fff8ee;font-weight:700;margin-bottom:7px">Unit Economics — Tier 2</div>
+          <div class="costrow"><span class="costlabel">Revenue per university</span><span class="costval">$100,000/yr</span></div>
+          <div class="costrow"><span class="costlabel">Infrastructure cost</span><span class="costval">$5,000/yr</span></div>
+          <div class="costrow"><span class="costlabel">Gross margin</span><span class="costval" style="color:#10b981;font-size:15px;font-weight:900">~95%</span></div>
+          <div class="costrow"><span class="costlabel">Payback period</span><span class="costval">Immediate — SaaS upfront</span></div>
+          <div style="margin-top:9px;padding:8px;background:rgba(16,185,129,0.08);border-radius:6px;font-size:11px;color:#10b981;text-align:center;font-weight:700">Software business · 95% gross margin · scales with zero marginal cost per user</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S13: NORTH STAR + AARRR -->
+<!-- S13 METRICS -->
 <div class="slide" id="s13">
   <div style="width:100%;max-width:980px">
     <div class="tag a">Metrics Framework</div>
     <h2>North Star + AARRR Growth Funnel</h2>
     <div class="g2" style="align-items:start">
       <div>
-        <div class="card" style="margin-bottom:12px;border-color:rgba(255,215,0,0.4);padding:16px 20px;text-align:center">
-          <div style="font-size:11px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">⭐ North Star Metric</div>
-          <div style="font-size:18px;font-weight:800;color:#fff8ee;margin-bottom:4px">Collaboration requests sent per month</div>
-          <p style="font-size:12px">Directly measurable · proxy for all value Luminary creates · grows as network expands · investors understand immediately</p>
+        <div class="card" style="margin-bottom:10px;border-color:rgba(255,215,0,0.4);padding:14px 18px;text-align:center">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">⭐ North Star Metric</div>
+          <div style="font-size:16px;font-weight:800;color:#fff8ee;margin-bottom:4px">Collaboration requests sent per month</div>
+          <p style="font-size:12px">Directly measurable · proxy for all value Luminary creates · grows as network expands</p>
         </div>
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Supporting Metrics</div>
-        ${[["Activation","% researchers searching within 7 days of onboarding","60% target"],["Engagement","Searches per researcher per month","5+ target"],["Quality","% of requests receiving a response","40% target"],["Retention","Researchers active after 30 days","40% target"]].map(([n,d,t])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:7px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.05)"><div><div style="font-size:12px;color:#fff8ee;font-weight:600">${n}</div><div style="font-size:11px;color:#7a5c2a">${d}</div></div><div style="font-size:12px;color:#ffd700;font-weight:700;white-space:nowrap;margin-left:10px">${t}</div></div>`).join('')}
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Supporting Metrics</div>
+        <div class="metrow"><div><div class="metleft">Activation</div><div class="metsub">% researchers searching within 7 days</div></div><div class="metval">60% target</div></div>
+        <div class="metrow"><div><div class="metleft">Engagement</div><div class="metsub">Searches per researcher per month</div></div><div class="metval">5+ target</div></div>
+        <div class="metrow"><div><div class="metleft">Quality</div><div class="metsub">% of requests receiving a response</div></div><div class="metval">40% target</div></div>
+        <div class="metrow"><div><div class="metleft">Retention</div><div class="metsub">Researchers active after 30 days</div></div><div class="metval">40% target</div></div>
       </div>
       <div>
-        <div style="font-size:11px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">AARRR Funnel</div>
-        ${[["Acquisition","rgba(255,69,0,0.15)","rgba(255,69,0,0.3)","#ff4500","Universities onboarded via Research VP outreach + conference presence","3 unis Phase 1"],["Activation","rgba(255,140,0,0.12)","rgba(255,140,0,0.25)","#ff8c00","Researchers who search within first week of university onboarding","60% rate"],["Retention","rgba(255,215,0,0.10)","rgba(255,215,0,0.2)","#ffd700","Researchers returning to search again within 30 days","40% rate"],["Revenue","rgba(16,185,129,0.10)","rgba(16,185,129,0.2)","#10b981","SaaS licensing per institution · $100k–$200k/yr","$2M ARR Y1"],["Referral","rgba(56,189,248,0.10)","rgba(56,189,248,0.2)","#38bdf8","Universities referring peer institutions · network effect moat","2× per uni"]].map(([n,bg,bc,c,d,v])=>`<div style="background:${bg};border:1px solid ${bc};border-radius:8px;padding:10px 14px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:11px;font-weight:700;color:${c};text-transform:uppercase;letter-spacing:1px">${n}</div><div style="font-size:12px;color:#c9a96e;margin-top:2px">${d}</div></div><div style="font-size:14px;font-weight:900;color:${c};white-space:nowrap;margin-left:12px">${v}</div></div>`).join('')}
+        <div style="font-size:10px;color:#a07050;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">AARRR Funnel</div>
+        <div class="funrow" style="background:rgba(255,69,0,0.12);border:1px solid rgba(255,69,0,0.25)"><div><div class="funlabel" style="color:#ff4500">Acquisition</div><div class="fundesc">Universities onboarded via Research VP outreach</div></div><div class="funval" style="color:#ff4500">3 unis Phase 1</div></div>
+        <div class="funrow" style="background:rgba(255,140,0,0.10);border:1px solid rgba(255,140,0,0.2)"><div><div class="funlabel" style="color:#ff8c00">Activation</div><div class="fundesc">Researchers who search within first week</div></div><div class="funval" style="color:#ff8c00">60% rate</div></div>
+        <div class="funrow" style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.18)"><div><div class="funlabel" style="color:#ffd700">Retention</div><div class="fundesc">Researchers returning within 30 days</div></div><div class="funval" style="color:#ffd700">40% rate</div></div>
+        <div class="funrow" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.18)"><div><div class="funlabel" style="color:#10b981">Revenue</div><div class="fundesc">SaaS licensing · $100k–$200k per institution/yr</div></div><div class="funval" style="color:#10b981">$2M ARR Y1</div></div>
+        <div class="funrow" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.18)"><div><div class="funlabel" style="color:#38bdf8">Referral</div><div class="fundesc">Universities referring peers · network effect moat</div></div><div class="funval" style="color:#38bdf8">2× per uni</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S14: RICE -->
+<!-- S14 RICE -->
 <div class="slide" id="s14">
   <div style="width:100%;max-width:900px">
     <div class="tag a">PM Framework · Prioritisation</div>
-    <h2>RICE Scoring — What We Built & Why</h2>
-    <p style="font-size:13px;margin-bottom:16px">RICE = (Reach × Impact × Confidence) ÷ Effort · Higher score = higher priority · Drove every build decision</p>
+    <h2>RICE Scoring — What We Built and Why</h2>
+    <p style="font-size:12px;margin-bottom:14px">RICE = (Reach × Impact × Confidence) ÷ Effort · Higher = higher priority · drove every build decision</p>
     <div id="ricerows"></div>
-    <div style="margin-top:12px;padding:12px 18px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:13px;color:#a07050">
-      <strong style="color:#ffd700">Decision logic:</strong> Collaboration request flow scored highest — maximum reach, minimum effort. Built first. Semantic search and QAOA scored next — core product value. University upload portal and network visualiser deprioritised to Phase 2 — important but not critical for MVP validation.
+    <div style="margin-top:12px;padding:11px 16px;background:rgba(255,215,0,0.06);border-radius:8px;border:1px solid rgba(255,215,0,0.15);font-size:12px;color:#a07050">
+      <strong style="color:#ffd700">Decision logic:</strong> Collaboration request flow scored highest — maximum reach, minimum effort. Built first. Semantic search and QAOA next — core product value. University upload portal deprioritised to Phase 2 — important but not critical for MVP validation.
     </div>
   </div>
 </div>
 
-<!-- S15: GTM -->
+<!-- S15 GTM -->
 <div class="slide" id="s15">
   <div style="width:100%;max-width:980px">
     <div class="tag b">Go-To-Market</div>
     <h2>From One Department to <span class="grad">Every University</span></h2>
-    <div class="g3" style="margin-top:16px">
+    <div class="g3" style="margin-top:14px">
       <div class="card" style="border-top:3px solid #ff4500;border-color:rgba(255,69,0,0.3)">
-        <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Phase 1 · Beachhead</div>
-        <div style="font-size:20px;font-weight:900;color:#ff4500;margin-bottom:8px">Semester 1</div>
-        <p style="font-size:13px;margin-bottom:10px">Khoury CS at Northeastern · 3 systems connected · 100 active researchers · prove intra-university discovery</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Economic Buyer</div>
-        <p style="font-size:12px;margin-bottom:8px">Department heads + Research advisors (bypass central IT)</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Success Gate</div>
-        <p style="font-size:12px;margin-bottom:8px">3 cross-dept collaborations initiated</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Revenue</div>
-        <p style="font-size:12px;color:#ff4500;font-weight:700">$25k pilot license</p>
+        <div style="font-size:10px;color:#ff4500;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Phase 1 · Beachhead</div>
+        <div style="font-size:18px;font-weight:900;color:#ff4500;margin-bottom:7px">Semester 1</div>
+        <p style="font-size:12px;margin-bottom:8px">Khoury CS at Northeastern · 3 systems connected · 100 active researchers · prove intra-university discovery</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Economic Buyer</div>
+        <p style="font-size:12px;margin-bottom:6px">Department heads — bypass central IT procurement</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Success Gate</div>
+        <p style="font-size:12px;margin-bottom:6px">3 cross-dept collaborations initiated</p>
+        <div style="font-size:14px;font-weight:900;color:#ff4500">$25k pilot</div>
       </div>
       <div class="card" style="border-top:3px solid #ffd700;border-color:rgba(255,215,0,0.3)">
-        <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Phase 2 · Full University</div>
-        <div style="font-size:20px;font-weight:900;color:#ffd700;margin-bottom:8px">Semesters 2–3</div>
-        <p style="font-size:13px;margin-bottom:10px">All 9 Northeastern colleges · dataset access workflow · grant landscape visibility for faculty</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Economic Buyer</div>
-        <p style="font-size:12px;margin-bottom:8px">University Research VP / Provost office</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Sales Cycle</div>
-        <p style="font-size:12px;margin-bottom:8px">6–12 months · pilot data accelerates decision</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Revenue</div>
-        <p style="font-size:12px;color:#ffd700;font-weight:700">$100–150k university license</p>
+        <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Phase 2 · Full University</div>
+        <div style="font-size:18px;font-weight:900;color:#ffd700;margin-bottom:7px">Semesters 2–3</div>
+        <p style="font-size:12px;margin-bottom:8px">All 9 Northeastern colleges · dataset access workflow · grant landscape visibility for faculty</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Economic Buyer</div>
+        <p style="font-size:12px;margin-bottom:6px">Research VP or Provost office · 6–12 month sales cycle</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Distribution</div>
+        <p style="font-size:12px;margin-bottom:6px">Pilot data accelerates procurement decision</p>
+        <div style="font-size:14px;font-weight:900;color:#ffd700">$100–150k/yr</div>
       </div>
       <div class="card" style="border-top:3px solid #10b981;border-color:rgba(16,185,129,0.3)">
-        <div style="font-size:10px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Phase 3 · Multi-University</div>
-        <div style="font-size:20px;font-weight:900;color:#10b981;margin-bottom:8px">Year 2+</div>
-        <p style="font-size:13px;margin-bottom:10px">MIT · BU · Drexel · Tufts as federated nodes · every new node makes entire network smarter</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Distribution</div>
-        <p style="font-size:12px;margin-bottom:8px">University referrals · AAU conference · Research VP network</p>
-        <div style="font-size:11px;color:#a07050;font-weight:700;margin-bottom:4px">Revenue ceiling</div>
-        <p style="font-size:12px;color:#10b981;font-weight:700">$14.6M ARR (US R1 only)</p>
+        <div style="font-size:10px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Phase 3 · Multi-University</div>
+        <div style="font-size:18px;font-weight:900;color:#10b981;margin-bottom:7px">Year 2+</div>
+        <p style="font-size:12px;margin-bottom:8px">MIT · BU · Drexel · Tufts as federated nodes · every new node makes entire network smarter</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Distribution</div>
+        <p style="font-size:12px;margin-bottom:6px">University referrals · AAU conference · Research VP network</p>
+        <div style="font-size:10px;color:#a07050;font-weight:700;margin-bottom:3px">Revenue ceiling</div>
+        <div style="font-size:14px;font-weight:900;color:#10b981">$14.6M ARR US R1 only</div>
       </div>
     </div>
-    <div style="margin-top:12px;padding:12px 18px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.07);display:flex;gap:20px;justify-content:center">
-      ${[["Research VP / Provost","Economic Buyer"],["Department Heads","Champions"],["PhD Students","End Users"],["NSF / NIH","Strategic Partners"]].map(([r,l])=>`<div style="text-align:center"><div style="font-size:13px;font-weight:700;color:#fff8ee">${r}</div><div style="font-size:11px;color:#a07050">${l}</div></div>`).join('<div style="color:#3a2200;font-size:18px;align-self:center">·</div>')}
+    <div style="margin-top:10px;padding:10px 16px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.06);display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">Research VP / Provost</div><div style="font-size:10px;color:#a07050">Economic Buyer</div></div>
+      <div style="color:#3a2200;font-size:16px;align-self:center">·</div>
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">Department Heads</div><div style="font-size:10px;color:#a07050">Champions</div></div>
+      <div style="color:#3a2200;font-size:16px;align-self:center">·</div>
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">PhD Students</div><div style="font-size:10px;color:#a07050">End Users</div></div>
+      <div style="color:#3a2200;font-size:16px;align-self:center">·</div>
+      <div style="text-align:center"><div style="font-size:12px;font-weight:700;color:#fff8ee">NSF / NIH</div><div style="font-size:10px;color:#a07050">Strategic Partners</div></div>
     </div>
   </div>
 </div>
 
-<!-- S16: RISK -->
+<!-- S16 RISK -->
 <div class="slide" id="s16">
   <div style="width:100%;max-width:980px">
     <div class="tag r">Risk Analysis</div>
-    <h2>5 Risks — Identified & Mitigated</h2>
+    <h2>5 Risks — Identified and Mitigated</h2>
     <div class="g2" style="align-items:start">
       <div>
-        ${[
-          ["🏛","HIGH","University Adoption","Slow procurement cycles. IT approval takes 6–18 months.","Start with department heads not central IT. Free pilot removes procurement barrier. Faculty champions bypass bureaucracy.","rgba(255,69,0,0.08)","rgba(255,69,0,0.25)","#ff4500"],
-          ["🔒","HIGH","Data Privacy Concerns","Universities may refuse on principle. One breach destroys trust.","Third-party security audit pre-launch. FERPA certification. IRB advisory board from Day 1. Liability agreement per institution.","rgba(255,69,0,0.08)","rgba(255,69,0,0.25)","#ff4500"],
-          ["🌐","HIGH","Cold Start Problem","With 1–2 universities the product has no value — why search?","Pre-load with public thesis data. Partner 3 universities simultaneously. Boston cluster — 5 institutions within 5 miles.","rgba(255,69,0,0.08)","rgba(255,69,0,0.25)","#ff4500"]
-        ].map(([icon,sev,title,risk,mit,bg,bc,c])=>`
-        <div class="rrow" style="background:${bg};border-color:${bc}">
-          <div class="ricon" style="background:${bg}">${icon}</div>
-          <div style="flex:1"><div style="display:flex;align-items:center;gap:8px;margin-bottom:3px"><div class="rtitle">${title}</div><span style="font-size:10px;font-weight:700;color:${c};background:${bg};padding:1px 7px;border-radius:10px;border:1px solid ${bc}">${sev}</span></div><div class="rdesc">${risk}</div><div class="rmit">↳ ${mit}</div></div>
-        </div>`).join('')}
+        <div class="rrow" style="background:rgba(255,69,0,0.07);border-color:rgba(255,69,0,0.2)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,69,0,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🏛</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">University Adoption</div><span style="font-size:10px;font-weight:700;color:#ff4500;background:rgba(255,69,0,0.1);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,69,0,0.25)">HIGH</span></div><div class="rdesc">Slow procurement cycles. IT approval takes 6–18 months. Research VPs change frequently.</div><div class="rmit">↳ Start with dept heads not central IT. Free pilot removes barrier. Faculty champions bypass bureaucracy.</div></div>
+        </div>
+        <div class="rrow" style="background:rgba(255,69,0,0.07);border-color:rgba(255,69,0,0.2)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,69,0,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🔒</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Data Privacy Concerns</div><span style="font-size:10px;font-weight:700;color:#ff4500;background:rgba(255,69,0,0.1);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,69,0,0.25)">HIGH</span></div><div class="rdesc">Universities may refuse on principle. One breach destroys trust entirely.</div><div class="rmit">↳ Third-party security audit pre-launch. FERPA certification. IRB advisory board from Day 1.</div></div>
+        </div>
+        <div class="rrow" style="background:rgba(255,69,0,0.07);border-color:rgba(255,69,0,0.2)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,69,0,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🌐</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Cold Start Problem</div><span style="font-size:10px;font-weight:700;color:#ff4500;background:rgba(255,69,0,0.1);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,69,0,0.25)">HIGH</span></div><div class="rdesc">With 1–2 universities the product has no value — why would anyone search?</div><div class="rmit">↳ Pre-load with public thesis data. Partner 3 universities simultaneously. Boston cluster strategy.</div></div>
+        </div>
       </div>
       <div>
-        ${[
-          ["⚔️","MEDIUM","Incumbent Competition","Elsevier, Clarivate or Microsoft could build this with more resources.","Federated architecture is 2-year head start. University relationships are the moat. First mover in privacy-preserving discovery. Open source community builds defensibility.","rgba(255,215,0,0.06)","rgba(255,215,0,0.2)","#ffd700"],
-          ["⚛️","MEDIUM","Quantum Dependency","QAOA is simulated classically. Real quantum hardware is expensive.","Classical simulation performs identically at demo scale. Quantum advantage at 1000+ researchers. Architecture is quantum-ready not quantum-dependent. Ship classical first, upgrade later.","rgba(255,215,0,0.06)","rgba(255,215,0,0.2)","#ffd700"]
-        ].map(([icon,sev,title,risk,mit,bg,bc,c])=>`
-        <div class="rrow" style="background:${bg};border-color:${bc}">
-          <div class="ricon" style="background:${bg}">${icon}</div>
-          <div style="flex:1"><div style="display:flex;align-items:center;gap:8px;margin-bottom:3px"><div class="rtitle">${title}</div><span style="font-size:10px;font-weight:700;color:${c};background:${bg};padding:1px 7px;border-radius:10px;border:1px solid ${bc}">${sev}</span></div><div class="rdesc">${risk}</div><div class="rmit">↳ ${mit}</div></div>
-        </div>`).join('')}
-        <div class="card" style="padding:14px 18px;border-color:rgba(168,85,247,0.3);background:rgba(168,85,247,0.06)">
-          <div style="font-size:11px;color:#a855f7;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Handling Uncertainty in Conversations</div>
-          <p style="font-size:12px;line-height:1.7">When asked questions without data yet — acknowledge honestly, cite comparable benchmarks, state how you'll measure it. University SaaS typically sees 85–90% renewal. We'll track from Day 1 of pilot. This approach builds more trust than fabricated numbers.</p>
+        <div class="rrow" style="background:rgba(255,215,0,0.05);border-color:rgba(255,215,0,0.18)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,215,0,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">⚔️</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Incumbent Competition</div><span style="font-size:10px;font-weight:700;color:#ffd700;background:rgba(255,215,0,0.08);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,215,0,0.2)">MEDIUM</span></div><div class="rdesc">Elsevier, Clarivate or Microsoft could build this with more resources.</div><div class="rmit">↳ Federated architecture is 2-year head start. University relationships are the moat. First mover advantage.</div></div>
+        </div>
+        <div class="rrow" style="background:rgba(255,215,0,0.05);border-color:rgba(255,215,0,0.18)">
+          <div style="width:32px;height:32px;border-radius:7px;background:rgba(255,215,0,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">⚛️</div>
+          <div><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><div class="rtitle">Quantum Dependency</div><span style="font-size:10px;font-weight:700;color:#ffd700;background:rgba(255,215,0,0.08);padding:1px 7px;border-radius:10px;border:1px solid rgba(255,215,0,0.2)">MEDIUM</span></div><div class="rdesc">QAOA classically simulated in prototype. Real quantum hardware is expensive and unstable.</div><div class="rmit">↳ Classical simulation performs identically at demo scale. Architecture is quantum-ready not quantum-dependent.</div></div>
+        </div>
+        <div class="card" style="padding:13px 16px;border-color:rgba(168,85,247,0.3);background:rgba(168,85,247,0.05)">
+          <div style="font-size:10px;color:#a855f7;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Handling Uncertainty in Conversations</div>
+          <p style="font-size:12px;line-height:1.7">When asked questions without data yet — acknowledge honestly, cite comparable benchmarks, state how you will measure it going forward. University SaaS typically sees 85–90% renewal. We will track from Day 1 of pilot. This builds more trust than fabricated numbers.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S17: WHY WE WIN -->
+<!-- S17 WHY WIN -->
 <div class="slide" id="s17">
   <div style="width:100%;max-width:980px;text-align:center">
     <div class="tag a">Why Luminary Wins</div>
     <h2>The Only Product That Does <span class="grad">All Five</span></h2>
-    <div class="g3" style="margin:16px 0">
+    <div class="g3" style="margin:14px 0">
       <div class="card" style="border-color:rgba(255,69,0,0.3);text-align:left">
-        <div style="font-size:22px;margin-bottom:8px">🔒</div>
-        <h3 style="font-size:14px;color:#ff4500;margin-bottom:6px">Privacy is Architectural</h3>
-        <p style="font-size:12px">FERPA + IRB built in. Not a policy checkbox. The architecture makes violation structurally impossible. Universities will actually deploy this.</p>
+        <div style="font-size:20px;margin-bottom:7px">🔒</div>
+        <h3 style="color:#ff4500;font-size:13px">Privacy is Architectural</h3>
+        <p style="font-size:12px">FERPA + IRB built in. The architecture makes violation structurally impossible. Universities will actually deploy this.</p>
       </div>
       <div class="card" style="border-color:rgba(255,215,0,0.3);text-align:left">
-        <div style="font-size:22px;margin-bottom:8px">⚛️</div>
-        <h3 style="font-size:14px;color:#ffd700;margin-bottom:6px">Quantum is the Right Tool</h3>
-        <p style="font-size:12px">Collaboration matching is NP-hard. QAOA finds optimal pairs across 4 variables simultaneously — classical solvers cannot do this at scale.</p>
+        <div style="font-size:20px;margin-bottom:7px">⚛️</div>
+        <h3 style="color:#ffd700;font-size:13px">Quantum is the Right Tool</h3>
+        <p style="font-size:12px">Collaboration matching is NP-hard. QAOA finds optimal pairs across 4 variables simultaneously. Classical solvers cannot do this at scale.</p>
       </div>
       <div class="card" style="border-color:rgba(16,185,129,0.3);text-align:left">
-        <div style="font-size:22px;margin-bottom:8px">🌐</div>
-        <h3 style="font-size:14px;color:#10b981;margin-bottom:6px">Network Effect Moat</h3>
-        <p style="font-size:12px">Every new university makes every existing node smarter. The product improves as it scales — no competitor can replicate a federated network already in place.</p>
+        <div style="font-size:20px;margin-bottom:7px">🌐</div>
+        <h3 style="color:#10b981;font-size:13px">Network Effect Moat</h3>
+        <p style="font-size:12px">Every new university makes every existing node smarter. No competitor can replicate a federated network already in place.</p>
       </div>
     </div>
     <div class="g2">
       <div class="card" style="text-align:left;border-color:rgba(56,189,248,0.3)">
-        <div style="font-size:22px;margin-bottom:8px">🎯</div>
-        <h3 style="font-size:14px;color:#38bdf8;margin-bottom:6px">Solves Both Problems</h3>
+        <div style="font-size:20px;margin-bottom:7px">🎯</div>
+        <h3 style="color:#38bdf8;font-size:13px">Solves Both Problems</h3>
         <p style="font-size:12px">Intra-university AND inter-university — same pipeline, same privacy guarantee. No competitor addresses both simultaneously.</p>
       </div>
       <div class="card" style="text-align:left;border-color:rgba(168,85,247,0.3)">
-        <div style="font-size:22px;margin-bottom:8px">🛠</div>
-        <h3 style="font-size:14px;color:#a855f7;margin-bottom:6px">Team Capability Matches Vision</h3>
+        <div style="font-size:20px;margin-bottom:7px">🛠</div>
+        <h3 style="color:#a855f7;font-size:13px">Team Capability Matches Vision</h3>
         <p style="font-size:12px">Federated Learning ✓ · Quantum Computing ✓ · Full Stack ✓ · Cloud Deployment ✓ · Product Management ✓</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S18: PARTNERSHIP -->
+<!-- S18 PARTNERSHIP -->
 <div class="slide" id="s18">
   <div style="width:100%;max-width:980px;text-align:center">
     <div class="tag p">Strategic Partnership</div>
-    <h2>What We're Looking For <span class="grad">Next</span></h2>
-    <div class="g3" style="margin:16px 0;text-align:left">
+    <h2>What We Are Looking For <span class="grad">Next</span></h2>
+    <div class="g3" style="margin:14px 0;text-align:left">
       <div class="card" style="border-color:rgba(168,85,247,0.3)">
-        <div style="font-size:22px;margin-bottom:10px">🤝</div>
-        <h3 style="font-size:14px;color:#a855f7;margin-bottom:8px">AI Infrastructure Partner</h3>
+        <div style="font-size:20px;margin-bottom:8px">🤝</div>
+        <h3 style="color:#a855f7;font-size:13px">AI Infrastructure Partner</h3>
         <p style="font-size:12px">A partner who provides the AI model backbone — embeddings, semantic understanding, LLM capabilities — so we focus on the federated architecture and university distribution.</p>
       </div>
       <div class="card" style="border-color:rgba(255,215,0,0.3)">
-        <div style="font-size:22px;margin-bottom:10px">🏛</div>
-        <h3 style="font-size:14px;color:#ffd700;margin-bottom:8px">University Network Access</h3>
+        <div style="font-size:20px;margin-bottom:8px">🏛</div>
+        <h3 style="color:#ffd700;font-size:13px">University Network Access</h3>
         <p style="font-size:12px">Warm introductions to Research VPs and innovation offices at R1 universities. The product sells itself — we need the door opened.</p>
       </div>
       <div class="card" style="border-color:rgba(16,185,129,0.3)">
-        <div style="font-size:22px;margin-bottom:10px">⚡</div>
-        <h3 style="font-size:14px;color:#10b981;margin-bottom:8px">Go-To-Market Support</h3>
+        <div style="font-size:20px;margin-bottom:8px">⚡</div>
+        <h3 style="color:#10b981;font-size:13px">Go-To-Market Support</h3>
         <p style="font-size:12px">Guidance on enterprise SaaS sales cycles, pricing validation, and the transition from hackathon MVP to production-grade institutional software.</p>
       </div>
     </div>
-    <div class="card" style="padding:18px 24px;border-color:rgba(255,215,0,0.25);text-align:left">
-      <div style="display:flex;gap:20px;align-items:center">
-        <div style="flex:1">
-          <div style="font-size:11px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">What We Bring to Any Partnership</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            ${["Working FL + QAOA pipeline","6 university node architecture","Validated user research","Protothon #1 winner","Privacy-first by design","Full stack team"].map(t=>`<span class="pill pa">${t}</span>`).join('')}
+    <div class="card" style="padding:16px 22px;border-color:rgba(255,215,0,0.25);text-align:left">
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">What We Bring to Any Partnership</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap">
+            <span class="pill pa">Working FL + QAOA pipeline</span>
+            <span class="pill pa">6 university node architecture</span>
+            <span class="pill pa">Validated user research</span>
+            <span class="pill pa">Protothon #1 winner</span>
+            <span class="pill pa">Privacy-first by design</span>
+            <span class="pill pa">Full stack team</span>
           </div>
         </div>
-        <div style="text-align:center;padding:16px 20px;background:rgba(255,215,0,0.06);border-radius:10px;border:1px solid rgba(255,215,0,0.2);flex-shrink:0">
-          <div style="font-size:11px;color:#ffd700;font-weight:700;margin-bottom:6px">Current Stage</div>
-          <div style="font-size:16px;font-weight:800;color:#fff8ee">Functional MVP</div>
-          <div style="font-size:11px;color:#a07050;margin-top:4px">Production-ready architecture<br>Pre-revenue · Pre-pilot</div>
+        <div style="text-align:center;padding:14px 18px;background:rgba(255,215,0,0.06);border-radius:9px;border:1px solid rgba(255,215,0,0.2);flex-shrink:0">
+          <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:4px">Current Stage</div>
+          <div style="font-size:15px;font-weight:800;color:#fff8ee">Functional MVP</div>
+          <div style="font-size:10px;color:#a07050;margin-top:3px">Production-ready architecture<br>Pre-revenue · Pre-pilot</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S19: THANK YOU -->
+<!-- S19 THANK YOU -->
 <div class="slide" id="s19">
   <div style="text-align:center;max-width:700px">
     <div class="tag g">Thank You</div>
-    <h1 style="font-size:60px"><span class="grad">✦ Luminary</span></h1>
-    <p style="font-size:17px;color:#fff8ee;margin-bottom:6px">by Team Quaffle · Protothon 8.0 Winners</p>
-    <p style="font-size:14px;margin-bottom:28px">APMC @ Northeastern University · March 2026</p>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+    <h1 style="font-size:56px"><span class="grad">✦ Luminary</span></h1>
+    <p style="font-size:16px;color:#fff8ee;margin-bottom:5px">by Team Quaffle · Protothon 8.0 Winners</p>
+    <p style="font-size:13px;margin-bottom:24px">APMC @ Northeastern University · March 2026</p>
+    <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
       <span class="pill pr">$28B problem</span>
       <span class="pill pa">6 university nodes</span>
       <span class="pill pb">R² = 0.85</span>
       <span class="pill pg">FERPA compliant</span>
       <span class="pill pp">95% gross margin</span>
     </div>
-    <div class="card" style="max-width:540px;margin:0 auto 16px;padding:18px 24px">
-      <div style="font-size:11px;color:#ffd700;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">⭐ North Star</div>
-      <p style="font-size:15px;color:#fff8ee">Collaboration requests sent per month</p>
-      <p style="font-size:13px;margin-top:4px">Weeks → Minutes. That's the transformation.</p>
+    <div class="card" style="max-width:520px;margin:0 auto 14px;padding:16px 22px">
+      <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:1px">⭐ North Star</div>
+      <p style="font-size:14px;color:#fff8ee">Collaboration requests sent per month</p>
+      <p style="font-size:12px;margin-top:4px">Weeks to find a collaborator → Minutes. That is the transformation.</p>
     </div>
-    <div style="display:flex;gap:12px;justify-content:center">
-      <div class="card" style="padding:12px 18px;text-align:center;border-color:rgba(255,215,0,0.3)">
-        <div style="font-size:11px;color:#ffd700;font-weight:700;margin-bottom:4px">GitHub</div>
-        <div style="font-size:12px;color:#c9a96e">github.com/uttkarsh1308-hub/Luminary</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <div class="card" style="padding:10px 16px;text-align:center;border-color:rgba(255,215,0,0.3)">
+        <div style="font-size:10px;color:#ffd700;font-weight:700;margin-bottom:3px">GitHub</div>
+        <div style="font-size:11px;color:#c9a96e">github.com/uttkarsh1308-hub/Luminary</div>
       </div>
-      <div class="card" style="padding:12px 18px;text-align:center;border-color:rgba(255,69,0,0.3)">
-        <div style="font-size:11px;color:#ff4500;font-weight:700;margin-bottom:4px">Live MVP</div>
-        <div style="font-size:12px;color:#c9a96e">uttkarsh1308-hub.github.io/Luminary</div>
+      <div class="card" style="padding:10px 16px;text-align:center;border-color:rgba(255,69,0,0.3)">
+        <div style="font-size:10px;color:#ff4500;font-weight:700;margin-bottom:3px">Live MVP</div>
+        <div style="font-size:11px;color:#c9a96e">uttkarsh1308-hub.github.io/Luminary</div>
       </div>
     </div>
   </div>
 </div>
 
-</div><!-- end deck -->
+</div>
 
 <!-- NAV -->
 <div class="nav">
   <button class="arr" onclick="go(-1)">←</button>
-  ${Array.from({length:19},(_,i)=>`<button onclick="go(0,${i+1})" id="nb${i+1}">${i+1}</button>`).join('')}
+  <button onclick="go(0,1)" id="nb1">Cover</button>
+  <button onclick="go(0,2)" id="nb2">Problem</button>
+  <button onclick="go(0,3)" id="nb3">Scale</button>
+  <button onclick="go(0,4)" id="nb4">Research</button>
+  <button onclick="go(0,5)" id="nb5">Compete</button>
+  <button onclick="go(0,6)" id="nb6">Solution</button>
+  <button onclick="go(0,7)" id="nb7">Journey</button>
+  <button onclick="go(0,8)" id="nb8">Tech</button>
+  <button onclick="go(0,9)" id="nb9">Privacy</button>
+  <button onclick="go(0,10)" id="nb10">FL Proof</button>
+  <button onclick="go(0,11)" id="nb11">Market</button>
+  <button onclick="go(0,12)" id="nb12">Business</button>
+  <button onclick="go(0,13)" id="nb13">Metrics</button>
+  <button onclick="go(0,14)" id="nb14">RICE</button>
+  <button onclick="go(0,15)" id="nb15">GTM</button>
+  <button onclick="go(0,16)" id="nb16">Risk</button>
+  <button onclick="go(0,17)" id="nb17">Why Win</button>
+  <button onclick="go(0,18)" id="nb18">Partner</button>
+  <button onclick="go(0,19)" id="nb19">End</button>
   <span id="snum">1/19</span>
   <button class="arr" onclick="go(1)">→</button>
 </div>
@@ -702,29 +778,30 @@ tr.hl td{background:rgba(255,69,0,0.08);color:#fff8ee;font-weight:600}
 // COSMIC BG
 const cv=document.getElementById('bg'),ctx=cv.getContext('2d');
 let W,H;
-function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
+function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
 rsz();window.addEventListener('resize',rsz);
 const stars=Array.from({length:220},()=>({x:Math.random()*1920,y:Math.random()*1080,z:Math.random()*1920,pz:0}));
 const qp=Array.from({length:35},()=>({x:Math.random()*1920,y:Math.random()*1080,r:Math.random()*2+.5,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,ph:Math.random()*Math.PI*2,c:Math.random()>.5?0:1,op:Math.random()*.4+.2}));
 function drawBg(){
   ctx.fillStyle='rgba(3,0,10,0.22)';ctx.fillRect(0,0,W,H);
-  const cx=W/2,cy=H/2;
-  stars.forEach(s=>{
+  var cx=W/2,cy=H/2;
+  stars.forEach(function(s){
     s.pz=s.z;s.z-=4;
-    if(s.z<=0){s.x=Math.random()*W;s.y=Math.random()*H;s.z=W;s.pz=W}
-    const sx=(s.x-cx)/s.z*W+cx,sy=(s.y-cy)/s.z*W+cy,px=(s.x-cx)/s.pz*W+cx,py=(s.y-cy)/s.pz*W+cy,sp=1-s.z/W;
-    ctx.strokeStyle=`rgba(255,${Math.floor(180*sp)},0,${sp*.85})`;ctx.lineWidth=(1-s.z/W)*2;
-    ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(sx,sy);ctx.stroke();
+    if(s.z<=0){s.x=Math.random()*W;s.y=Math.random()*H;s.z=W;s.pz=W;}
+    var sx=(s.x-cx)/s.z*W+cx,sy=(s.y-cy)/s.z*W+cy,px=(s.x-cx)/s.pz*W+cx,py=(s.y-cy)/s.pz*W+cy,sp=1-s.z/W;
+    ctx.strokeStyle='rgba(255,'+Math.floor(180*sp)+',0,'+sp*.85+')';
+    ctx.lineWidth=(1-s.z/W)*2;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(sx,sy);ctx.stroke();
   });
-  qp.forEach((p,i)=>{
+  qp.forEach(function(p,i){
     p.x+=p.vx;p.y+=p.vy;p.ph+=.02;
     if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-    const pulse=Math.sin(p.ph)*.4+.6;
+    var pulse=Math.sin(p.ph)*.4+.6;
     ctx.beginPath();ctx.arc(p.x,p.y,p.r*(1+pulse*.7),0,Math.PI*2);
-    ctx.fillStyle=p.c===0?`rgba(255,69,0,${p.op*pulse})`:`rgba(255,215,0,${p.op*pulse})`;ctx.fill();
-    for(let j=i+1;j<Math.min(i+3,qp.length);j++){
-      const q=qp[j],dx=q.x-p.x,dy=q.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<110){ctx.strokeStyle=`rgba(255,140,0,${(1-d/110)*.1*pulse})`;ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+    ctx.fillStyle=p.c===0?'rgba(255,69,0,'+p.op*pulse+')':'rgba(255,215,0,'+p.op*pulse+')';
+    ctx.fill();
+    for(var j=i+1;j<Math.min(i+3,qp.length);j++){
+      var q=qp[j],dx=q.x-p.x,dy=q.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<110){ctx.strokeStyle='rgba(255,140,0,'+(1-d/110)*.1*pulse+')';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
     }
   });
   requestAnimationFrame(drawBg);
@@ -732,20 +809,20 @@ function drawBg(){
 drawBg();
 
 // NAVIGATION
-let cur=1,total=19;
+var cur=1,total=19;
 function go(dir,target){
-  const prev=cur;
+  var prev=cur;
   cur=target||Math.max(1,Math.min(total,cur+dir));
   document.getElementById('s'+prev).classList.remove('active');
   document.getElementById('s'+cur).classList.add('active');
   document.getElementById('snum').textContent=cur+'/'+total;
-  document.querySelectorAll('.nav button[id^=nb]').forEach(b=>b.classList.remove('act'));
-  const nb=document.getElementById('nb'+cur);if(nb)nb.classList.add('act');
+  document.querySelectorAll('.nav button[id^=nb]').forEach(function(b){b.classList.remove('act');});
+  var nb=document.getElementById('nb'+cur);if(nb)nb.classList.add('act');
   if(cur===10)buildFL();
   if(cur===11)buildMkt();
   if(cur===14)buildRice();
 }
-document.addEventListener('keydown',e=>{
+document.addEventListener('keydown',function(e){
   if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
   if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
 });
@@ -763,7 +840,7 @@ function buildFL(){
         {label:'MAE',data:[.0315,.0182,.0348,.0218],backgroundColor:['rgba(56,189,248,.25)','rgba(16,185,129,.25)','rgba(160,112,80,.25)','rgba(255,215,0,.25)'],borderColor:['#38bdf8','#10b981','#a07050','#ffd700'],borderWidth:1,borderRadius:6}
       ]
     },
-    options:{plugins:{legend:{labels:{color:'#c9a96e',font:{size:11}}}},scales:{x:{ticks:{color:'#7a5c2a',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#7a5c2a',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}}}}
+    options:{plugins:{legend:{labels:{color:'#c9a96e',font:{size:10}}}},scales:{x:{ticks:{color:'#7a5c2a',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#7a5c2a',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}}}}
   });
 }
 
@@ -773,32 +850,31 @@ function buildMkt(){
   window._mkt=new Chart(document.getElementById('mktChart'),{
     type:'doughnut',
     data:{
-      labels:['TAM — $2.1B','SAM — $50M','SOM — $2M ARR'],
+      labels:['TAM $2.1B','SAM $50M','SOM $2M ARR'],
       datasets:[{data:[2100,50,2],backgroundColor:['rgba(255,69,0,.65)','rgba(255,215,0,.65)','rgba(16,185,129,.65)'],borderColor:['#ff4500','#ffd700','#10b981'],borderWidth:2}]
     },
-    options:{plugins:{legend:{position:'bottom',labels:{color:'#c9a96e',font:{size:11},padding:14}}},cutout:'52%'}
+    options:{plugins:{legend:{position:'bottom',labels:{color:'#c9a96e',font:{size:11},padding:12}}},cutout:'52%'}
   });
 }
 
 // RICE
 function buildRice(){
-  const c=document.getElementById('ricerows');
-  if(c&&c.children.length>0)return;
-  if(!c)return;
-  const data=[
+  var c=document.getElementById('ricerows');
+  if(!c||c.children.length>0)return;
+  var data=[
     {f:'Collaboration Request Flow',sc:800,col:'#10b981'},
     {f:'Semantic Search (RAG)',sc:400,col:'#ffd700'},
     {f:'Dataset Discovery',sc:350,col:'#38bdf8'},
     {f:'QAOA Collaboration Score',sc:262,col:'#ff4500'},
-    {f:'University Upload Portal',sc:87,col:'#a07050'},
+    {f:'University Upload Portal',sc:87,col:'#a07050'}
   ];
-  data.forEach((d,i)=>{
-    const pct=d.sc/800*100;
-    const row=document.createElement('div');
-    row.style.cssText='display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:7px;border:1px solid rgba(255,255,255,0.05)';
-    row.innerHTML=`<div style="flex:2;font-size:13px;color:#fff8ee;font-weight:600">${d.f}</div><div style="flex:3;height:7px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden"><div style="width:0%;height:100%;border-radius:3px;background:${d.col};transition:width 1s ease ${i*.12}s"></div></div><div style="font-size:18px;font-weight:900;min-width:50px;text-align:right;color:${d.col}">${d.sc}</div>`;
+  data.forEach(function(d,i){
+    var pct=d.sc/800*100;
+    var row=document.createElement('div');
+    row.className='ricerow';
+    row.innerHTML='<div class="ricefeat">'+d.f+'</div><div class="ricebar"><div class="ricefill" style="width:0%;background:'+d.col+';transition:width 1s ease '+(i*.12)+'s"></div></div><div class="ricesc" style="color:'+d.col+'">'+d.sc+'</div>';
     c.appendChild(row);
-    setTimeout(()=>{row.querySelector('div div').style.width=pct+'%'},80);
+    setTimeout(function(){row.querySelector('.ricefill').style.width=pct+'%';},80);
   });
 }
 </script>
