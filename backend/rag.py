@@ -9,6 +9,15 @@ with open(os.path.join(BASE, "researchers.json")) as f:
 
 
 def reload_researchers():
+    """
+    Re-reads researchers.json and updates the global RESEARCHERS list in-place.
+    Called after every new upload so the new entry is immediately searchable
+    without restarting the server.
+    """
+    global RESEARCHERS
+    with open(os.path.join(BASE, "researchers.json")) as f:
+        RESEARCHERS = json.load(f)["researchers"]
+    print(f"✅ RESEARCHERS reloaded — {len(RESEARCHERS)} total entries")
     global RESEARCHERS
     with open(os.path.join(BASE, "researchers.json")) as f:
         RESEARCHERS = json.load(f)["researchers"]
