@@ -460,27 +460,6 @@ tr.highlight td{background:rgba(255,69,0,0.1);color:#fff8ee;font-weight:600}
   </div>
 </div>
 
-<!-- S11: FL PROOF -->
-<div class="slide" id="s11">
-  <div style="width:100%;max-width:960px">
-    <div class="tag green">Technical Proof</div>
-    <h2 style="font-size:24px;margin-bottom:10px">Federated Learning — <span class="grad">R² = 0.85</span></h2>
-    <div style="display:flex;gap:18px;align-items:center">
-      <div style="flex:0 0 340px;height:200px;position:relative">
-        <canvas id="flChart"></canvas>
-      </div>
-      <div style="flex:1;min-width:0">
-        <p style="font-size:11px;margin-bottom:10px;color:#c9a96e">3 models · <strong style="color:#ffd700">6 university nodes</strong> · FedAvg · 56 researcher pairs · 24 features · raw data never left any node.</p>
-        <div style="margin-bottom:6px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;color:#c9a96e"><span>Gradient Boosting</span><span style="color:#10b981;font-weight:700">R² = 0.85</span></div><div style="height:5px;background:rgba(255,255,255,0.07);border-radius:3px"><div style="width:85%;height:100%;background:#10b981;border-radius:3px"></div></div></div>
-        <div style="margin-bottom:6px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;color:#c9a96e"><span>Ensemble RF + GB + Ridge</span><span style="color:#ffd700;font-weight:700">R² = 0.80</span></div><div style="height:5px;background:rgba(255,255,255,0.07);border-radius:3px"><div style="width:80%;height:100%;background:#ffd700;border-radius:3px"></div></div></div>
-        <div style="margin-bottom:6px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;color:#c9a96e"><span>Random Forest</span><span style="color:#38bdf8;font-weight:700">R² = 0.60</span></div><div style="height:5px;background:rgba(255,255,255,0.07);border-radius:3px"><div style="width:60%;height:100%;background:#38bdf8;border-radius:3px"></div></div></div>
-        <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;color:#c9a96e"><span>Ridge Regression</span><span style="color:#a07050;font-weight:700">R² = 0.57</span></div><div style="height:5px;background:rgba(255,255,255,0.07);border-radius:3px"><div style="width:57%;height:100%;background:#a07050;border-radius:3px"></div></div></div>
-        <div style="padding:7px 10px;background:rgba(16,185,129,0.08);border-radius:6px;border:1px solid rgba(16,185,129,0.2);font-size:10px;color:#10b981;margin-bottom:5px">MAE = 0.018 · accurate within 1.8 pp · Optimal: RF=10% GB=70% Ridge=20%</div>
-        <div style="padding:6px 10px;background:rgba(255,215,0,0.05);border-radius:6px;border:1px solid rgba(255,215,0,0.12);font-size:10px;color:#7a5c2a">Prototype dataset (8 researchers). R² improves at scale — this is the floor, not the ceiling.</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- S12: MARKET -->
 <div class="slide" id="s12">
