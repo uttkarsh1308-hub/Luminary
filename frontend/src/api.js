@@ -4,6 +4,9 @@
 
 const BASE_URL = "http://localhost:8000";
 
+/**
+ * Search researchers — RAG + FL + QAOA pipeline
+ */
 export async function searchResearchers({
   query,
   universityFilter = null,
@@ -32,46 +35,8 @@ export async function searchResearchers({
 }
 
 /**
- * Submit researcher + dataset description to the backend.
- * No files are sent — only metadata as plain JSON.
- * The backend writes the record to researchers.json.
+ * Get single researcher profile
  */
-export async function uploadDataset({
-  name,
-  university,
-  dept        = "",
-  email       = "",
-  description,
-  dataTypes   = [],   // e.g. ["Images", "CSV", "Model Weights"]
-  irbApproved = false,
-  status      = "ongoing",
-  stage       = "early",
-}) {
-  const res = await fetch(`${BASE_URL}/upload/dataset`, {
-    method:  "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      university,
-      dept,
-      email,
-      description,
-      data_types:   dataTypes,
-      irb_approved: irbApproved,
-      status,
-      stage,
-    }),
-  });
-
-  if (!res.ok) {
-    let detail = `Upload failed (${res.status})`;
-    try { detail = (await res.json()).detail || detail; } catch (_) {}
-    throw new Error(detail);
-  }
-
-  return res.json();
-}
-
 export async function getResearcher(id) {
   try {
     const res = await fetch(`${BASE_URL}/researcher/${id}`);
@@ -83,6 +48,9 @@ export async function getResearcher(id) {
   }
 }
 
+/**
+ * Health check
+ */
 export async function checkHealth() {
   try {
     const res = await fetch(`${BASE_URL}/health`);
