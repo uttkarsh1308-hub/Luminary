@@ -18,6 +18,10 @@ def reload_researchers():
     with open(os.path.join(BASE, "researchers.json")) as f:
         RESEARCHERS = json.load(f)["researchers"]
     print(f"✅ RESEARCHERS reloaded — {len(RESEARCHERS)} total entries")
+    global RESEARCHERS
+    with open(os.path.join(BASE, "researchers.json")) as f:
+        RESEARCHERS = json.load(f)["researchers"]
+    print(f"✅ RESEARCHERS reloaded — {len(RESEARCHERS)} total")
 
 
 def get_query_embedding(query: str) -> np.ndarray:

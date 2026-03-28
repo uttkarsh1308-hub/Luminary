@@ -310,7 +310,7 @@ function SearchScreen({ onSearch, onNav }) {
       <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:`radial-gradient(circle,${C.primary}18 0%,transparent 70%)`, pointerEvents:"none" }} />
       <div style={{ fontSize:11, fontWeight:700, color:C.primary, textTransform:"uppercase", letterSpacing:3, marginBottom:16 }}>Protothon 8.0 — Team Quaffle</div>
       <h1 style={{ fontSize:56, fontWeight:900, textAlign:"center", lineHeight:1.05, marginBottom:16, maxWidth:720, letterSpacing:"-1.5px" }}>
-        <span style={{ color:C.white }}>Discover Research.</span><br/>
+        <span style={{ color:C.white }}>Discoveryyyyyyyyyyyyy Research.</span><br/>
         <span style={{ background:`linear-gradient(90deg,${C.primary},${C.amber})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Find Collaborators.</span>
       </h1>
       <p style={{ fontSize:17, color:C.textSub, textAlign:"center", marginBottom:40, maxWidth:520, lineHeight:1.8 }}>

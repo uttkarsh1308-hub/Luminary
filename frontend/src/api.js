@@ -1,6 +1,5 @@
 /**
  * Luminary API client
- * Connects React frontend to FastAPI backend
  */
 
 const BASE_URL = "http://localhost:8000";
@@ -122,7 +121,7 @@ export async function getResearcher(id) {
 }
 
 /**
- * Health check — is backend alive?
+ * Health check
  */
 export async function checkHealth() {
   try {

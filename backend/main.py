@@ -16,6 +16,7 @@ import io
 
 import numpy as np
 
+
 from rag import rag_search, get_query_embedding, RESEARCHERS, reload_researchers
 from qaoa import qaoa_rank, query_to_profile
 from federated import run_federated_round, encrypt_all_researchers
@@ -29,6 +30,8 @@ app = FastAPI(title="Luminary API", version="2.0.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://localhost:3000", "*"],
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -64,9 +67,21 @@ async def startup():
 class SearchRequest(BaseModel):
     query: str
     university_filter: Optional[str] = None
-    irb_filter: Optional[bool] = None
-    status_filter: Optional[str] = None
-    top_k: Optional[int] = 8
+    irb_filter:        Optional[bool] = None
+    status_filter:     Optional[str]  = None
+    top_k:             Optional[int]  = 8
+
+
+class UploadRequest(BaseModel):
+    name:         str
+    university:   str
+    dept:         Optional[str]  = ""
+    email:        Optional[str]  = ""
+    description:  str
+    data_types:   Optional[List[str]] = []   # ["Images", "CSV", "Model Weights", etc.]
+    irb_approved: Optional[bool] = False
+    status:       Optional[str]  = "ongoing"
+    stage:        Optional[str]  = "early"
 
 
 @app.get("/")
@@ -404,6 +419,111 @@ async def upload_dataset(
             f"'{name}' from {university} added to Luminary. "
             f"{total} file(s) detected ({upload_type}). Searchable immediately."
         ),
+# UPLOAD — no files saved, only metadata written to researchers.json
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _detect_methodology(desc: str) -> list:
+    d = desc.lower()
+    rules = [
+        (["federated learning", "federated"],          "Federated Learning"),
+        (["quantum", "qaoa", "qubo"],                  "Quantum Computing"),
+        (["transformer", "bert", "gpt", "llm"],        "Transformer"),
+        (["cnn", "convolutional", "resnet", "yolo"],   "CNN"),
+        (["graph neural", "gnn"],                      "Graph Neural Network"),
+        (["gan", "generative adversarial"],            "GAN"),
+        (["diffusion"],                                "Diffusion Model"),
+        (["reinforcement learning"],                   "Reinforcement Learning"),
+        (["nlp", "natural language"],                  "NLP"),
+        (["differential privacy"],                     "Differential Privacy"),
+        (["random forest", "gradient boost", "xgboost"], "Gradient Boosting"),
+        (["deep learning", "neural network"],          "Deep Learning"),
+        (["transfer learning", "fine-tun"],            "Transfer Learning"),
+        (["segmentation", "object detection"],         "Computer Vision"),
+        (["statistical", "regression", "bayesian"],    "Statistical Analysis"),
+    ]
+    found = [label for kws, label in rules if any(kw in d for kw in kws)]
+    return found if found else ["Machine Learning"]
+
+
+def _detect_domain(desc: str) -> list:
+    d = desc.lower()
+    rules = [
+        (["genomic", "genome", "exome", "dna", "rna"],  "Genomics"),
+        (["rare disease", "orphan"],                     "Rare Disease"),
+        (["multi-omics", "proteomics", "metabolomics"],  "Multi-Omics"),
+        (["cancer", "tumor", "oncology"],                "Cancer"),
+        (["mri", "fmri", "ct scan", "radiology"],        "Medical Imaging"),
+        (["clinical note", "ehr", "electronic health"],  "Clinical NLP"),
+        (["drug discovery", "molecular", "protein fold"],"Drug Discovery"),
+        (["bioinformatics", "sequence"],                 "Bioinformatics"),
+        (["neuroscience", "brain", "eeg"],               "Neuroscience"),
+        (["privacy", "security", "encryption"],         "Privacy"),
+        (["healthcare", "hospital", "patient"],         "Healthcare"),
+        (["x-ray", "ultrasound", "pathology"],          "Medical Imaging"),
+    ]
+    found = [label for kws, label in rules if any(kw in d for kw in kws)]
+    return found if found else ["Biomedical"]
+
+
+@app.post("/upload/dataset")
+def upload_dataset(req: UploadRequest):
+    # Validate
+    if not req.name.strip():
+        raise HTTPException(status_code=400, detail="Name is required.")
+    if not req.university.strip():
+        raise HTTPException(status_code=400, detail="University is required.")
+    if len(req.description.strip()) < 30:
+        raise HTTPException(status_code=400, detail="Description must be at least 30 characters.")
+
+    # Sanitise enums
+    status = req.status if req.status in {"ongoing", "published", "dataset_available"} else "ongoing"
+    stage  = req.stage  if req.stage  in {"early", "mid", "published", "dataset_available"} else "early"
+
+    # Build dataset labels from the data_types the user ticked
+    datasets = req.data_types if req.data_types else ["Research Dataset"]
+
+    # Generate embedding from description
+    embedding = get_query_embedding(req.description).tolist()
+
+    # First sentence of description → title
+    title = req.description.strip().split(".")[0].strip()[:120]
+
+    new_researcher = {
+        "id":          str(uuid.uuid4())[:8],
+        "name":        req.name.strip(),
+        "university":  req.university.strip(),
+        "dept":        req.dept.strip() if req.dept else "Research Department",
+        "title":       title,
+        "status":      status,
+        "stage":       stage,
+        "irb_status":  "approved" if req.irb_approved else "pending",
+        "methodology": _detect_methodology(req.description),
+        "domain":      _detect_domain(req.description),
+        "datasets":    datasets,
+        "abstract":    req.description.strip(),
+        "email":       req.email.strip() if req.email else "",
+        "embedding":   embedding,
+    }
+
+    # Write to researchers.json
+    try:
+        with open(RESEARCHERS_JSON_PATH) as f:
+            data = json.load(f)
+        data["researchers"].append(new_researcher)
+        with open(RESEARCHERS_JSON_PATH, "w") as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to save: {e}")
+
+    # Reload in-memory list so it's searchable immediately
+    reload_researchers()
+
+    print(f"✅ New researcher: {req.name} | {req.university} | id={new_researcher['id']}")
+
+    return {
+        "success":    True,
+        "researcher": new_researcher,
+        "message":    f"'{req.name}' from {req.university} added. Searchable immediately.",
     }
 
 
@@ -423,6 +543,8 @@ def fl_summary():
         },
         "pipeline": "FL score weighted {:.0f}% + QAOA {:.0f}%".format(40, 60),
         "nodes": list(set(r["university"] for r in RESEARCHERS)),
+        "pipeline": "FL score weighted 40% + QAOA 60%",
+        "nodes":    list(set(r["university"] for r in RESEARCHERS)),
     }
 
 
