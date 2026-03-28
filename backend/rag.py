@@ -3,8 +3,16 @@ import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+
 with open(os.path.join(BASE, "researchers.json")) as f:
     RESEARCHERS = json.load(f)["researchers"]
+
+
+def reload_researchers():
+    global RESEARCHERS
+    with open(os.path.join(BASE, "researchers.json")) as f:
+        RESEARCHERS = json.load(f)["researchers"]
+    print(f"✅ RESEARCHERS reloaded — {len(RESEARCHERS)} total")
 
 
 def get_query_embedding(query: str) -> np.ndarray:
